@@ -83,6 +83,12 @@ class Regression(nn.Module):
         Dict[str, torch.Tensor]
             Dictionary containing the model predictions in the 'y_hat' key.
         """
+
+        # print(f'in regression head, x is: {x.shape}')
+        # print(f'in regression head, self.net is: {self.net}')
+        # print(f'self.net(x) is: {self.net(x).shape}')
+        # exit(0)
+
         return {'y_hat': self.net(x)}
 
 

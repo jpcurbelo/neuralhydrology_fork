@@ -188,8 +188,22 @@ class MaskedMSELoss(BaseLoss):
         super(MaskedMSELoss, self).__init__(cfg, prediction_keys=['y_hat'], ground_truth_keys=['y'])
 
     def _get_loss(self, prediction: Dict[str, torch.Tensor], ground_truth: Dict[str, torch.Tensor], **kwargs):
+        
+        # print(f"in loss.py, MaskedMSELoss, prediction['y_hat']: {prediction['y_hat'].shape}")
+        # print(f"in loss.py, MaskedMSELoss, prediction: {prediction}")
+
+        # print(f"in loss.py, MaskedMSELoss, ground_truth['y']: {ground_truth['y'].shape}")
+        
         mask = ~torch.isnan(ground_truth['y'])
+
+        # print(f'in loss.py, MaskedMSELoss, mask: {mask.shape}')
+
+        loss_aux = prediction['y_hat'][mask] - ground_truth['y'][mask]
+        # print(f"in loss.py, MaskedMSELoss, prediction['y_hat'][mask] - ground_truth['y'][mask]: {loss_aux.shape}")
+        # print(f"in loss.py, MaskedMSELoss, prediction['y_hat'][mask]: {prediction['y_hat'][mask].shape}")
         loss = 0.5 * torch.mean((prediction['y_hat'][mask] - ground_truth['y'][mask])**2)
+
+        # print(f'in loss.py, MaskedMSELoss, loss: {loss}')
         return loss
 
 

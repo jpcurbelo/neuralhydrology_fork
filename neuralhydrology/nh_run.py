@@ -66,7 +66,7 @@ def start_run(config_file: Path, gpu: int = None):
     """
 
     config = Config(config_file)
-
+    
     # check if a GPU has been specified as command line argument. If yes, overwrite config
     if gpu is not None and gpu >= 0:
         config.device = f"cuda:{gpu}"

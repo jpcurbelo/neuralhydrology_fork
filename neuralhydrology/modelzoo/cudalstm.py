@@ -34,6 +34,9 @@ class CudaLSTM(BaseModel):
 
         self.embedding_net = InputLayer(cfg)
 
+        # print('in cudalstm, self.embedding_net is: ', self.embedding_net)
+        # exit(0)
+
         self.lstm = nn.LSTM(input_size=self.embedding_net.output_size, hidden_size=cfg.hidden_size)
 
         self.dropout = nn.Dropout(p=cfg.output_dropout)
@@ -64,7 +67,17 @@ class CudaLSTM(BaseModel):
                 - `c_n`: cell state at the last time step of the sequence of shape [batch size, 1, hidden size].
         """
         # possibly pass dynamic and static inputs through embedding layers, then concatenate them
+
+        # print('\n\n in cudalstm/forward, data is:')
+        # print(data.keys())
+        # print(data['x_d'].shape)
+        # print(data['y'].shape)
+        # print(data['date'].shape)
+
         x_d = self.embedding_net(data)
+
+        # print(f'num_layers= {self.lstm.num_layers}')
+
         lstm_output, (h_n, c_n) = self.lstm(input=x_d)
 
         # reshape to [batch_size, seq, n_hiddens]
@@ -73,6 +86,11 @@ class CudaLSTM(BaseModel):
         c_n = c_n.transpose(0, 1)
 
         pred = {'lstm_output': lstm_output, 'h_n': h_n, 'c_n': c_n}
+
+        # print(f"pred= {pred['lstm_output'].shape}", 'before update')
+
         pred.update(self.head(self.dropout(lstm_output)))
+
+        # print(Zf"pred= {pred['lstm_output'].shape}", 'after update')
 
         return pred

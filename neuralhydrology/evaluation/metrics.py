@@ -589,6 +589,12 @@ def mean_peak_timing(obs: DataArray,
     # infer name of datetime index
     if datetime_coord is None:
         datetime_coord = utils.infer_datetime_coord(obs)
+        
+    # print(f'obs = {obs}')
+        
+    # print(f'peaks = {peaks}' )
+        
+    # print(f'datetime_coord = {datetime_coord}' )
 
     if window is None:
         # infer a reasonable window size
@@ -599,9 +605,23 @@ def mean_peak_timing(obs: DataArray,
     for idx in peaks:
         # skip peaks at the start and end of the sequence and peaks around missing observations
         # (NaNs that were removed in obs & sim would result in windows that span too much time).
+        
+        # print(obs[idx - window][datetime_coord].values)
+        
+        # print(idx, window, (idx - window > 0))
+        # print(idx, window,  (idx + window <= len(obs)))
+        
+        # if (idx - window > 0) and (idx + window <= len(obs)):
+        # #     print(obs[idx - window][datetime_coord].values)
+        # #     print(obs[idx + window][datetime_coord].values)
+        #     print(pd.date_range(obs[idx - window][datetime_coord].values,
+        #                         obs[idx + window][datetime_coord].values,
+        #                         freq=resolution).size)
+        
         if (idx - window < 0) or (idx + window >= len(obs)) or (pd.date_range(obs[idx - window][datetime_coord].values,
                                                                               obs[idx + window][datetime_coord].values,
                                                                               freq=resolution).size != 2 * window + 1):
+            # print(idx, 'skipped')
             continue
 
         # check if the value at idx is a peak (both neighbors must be smaller)
@@ -611,16 +631,29 @@ def mean_peak_timing(obs: DataArray,
             # define peak around idx as the max value inside of the window
             values = sim[idx - window:idx + window + 1]
             peak_sim = values[values.argmax()]
+            
+        # print(f'peak_sim = {peak_sim.values}')
 
         # get xarray object of qobs peak, for getting the date and calculating the datetime offset
         peak_obs = obs[idx]
+        
+        # print(f'peak_obs = {peak_obs.values}')
+        
+        # print(peak_sim.values, peak_obs.values)
+        # print(peak_obs.coords[datetime_coord].values)
+        # print(peak_sim.coords[datetime_coord].values, peak_obs.coords[datetime_coord].values)
 
         # calculate the time difference between the peaks
         delta = peak_obs.coords[datetime_coord] - peak_sim.coords[datetime_coord]
+        
+        # print(f'delta = {delta}')       
+        # print(f'delta = {np.abs(delta.values / pd.to_timedelta(resolution))}')
 
         timing_error = np.abs(delta.values / pd.to_timedelta(resolution))
 
         timing_errors.append(timing_error)
+        
+    # print(f'timing_errors = {timing_errors}')
 
     return np.mean(timing_errors) if len(timing_errors) > 0 else np.nan
 

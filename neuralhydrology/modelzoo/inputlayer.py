@@ -58,6 +58,10 @@ class InputLayer(nn.Module):
         else:
             dynamics_input_size = len(dynamic_inputs)
 
+        # # print('\n \n in inputlayer, dynamics_input_size is: ', dynamics_input_size)
+        # # for dyn in dynamic_inputs:
+        # #     print('in inputlayer, dynamic_inputs are: ', dyn, '\n\n')
+
         self._num_autoregression_inputs = 0
         if cfg.autoregressive_inputs:
             self._num_autoregression_inputs = len(cfg.autoregressive_inputs)
