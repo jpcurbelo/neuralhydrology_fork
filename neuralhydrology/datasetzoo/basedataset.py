@@ -368,7 +368,8 @@ class BaseDataset(Dataset):
                     date + pd.Timedelta(days=1, seconds=-1) for date in self.start_and_end_dates[basin]["end_dates"]
                 ]
 
-                native_frequency = utils.infer_frequency(df.index)
+                native_frequency = utils.infer_frequency(df.index)              
+                
                 if not self.frequencies:
                     self.frequencies = [native_frequency]  # use df's native resolution by default
 
@@ -401,6 +402,7 @@ class BaseDataset(Dataset):
                     # offsets has the warmup offset needed for each frequency; the overall warmup starts with the
                     # earliest date, i.e., the largest offset across all frequencies.
                     warmup_start_date = min(start_date - offset for offset in offsets)
+                         
                     df_sub = df[warmup_start_date:end_date]
 
                     # make sure the df covers the full date range from warmup_start_date to end_date, filling any gaps

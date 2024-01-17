@@ -158,8 +158,8 @@ class BaseTrainer(object):
 
         self.model = self._get_model().to(self.device)
 
-        print(f'in basetrainer, self.model is: ', self.model)
-        exit(0)    
+        # print(f'in basetrainer, self.model is: ', self.model)
+        # exit(0)    
 
         if self.cfg.checkpoint_path is not None:
             LOGGER.info(f"Starting training from Checkpoint {self.cfg.checkpoint_path}")

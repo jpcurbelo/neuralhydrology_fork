@@ -10,6 +10,8 @@ from pandas.tseries.frequencies import to_offset
 from xarray.core.dataarray import DataArray
 from xarray.core.dataset import Dataset
 
+import os
+
 
 def load_hydroatlas_attributes(data_dir: Path, basins: List[str] = []) -> pd.DataFrame:
     """Load HydroATLAS attributes into a pandas DataFrame
@@ -62,6 +64,7 @@ def load_basin_file(basin_file: Path) -> List[str]:
     ValueError
         In case of invalid basin names that would cause problems internally.
     """
+
     with basin_file.open('r') as fp:
         basins = sorted(basin.strip() for basin in fp if basin.strip())
 

@@ -8,6 +8,8 @@ import xarray
 from neuralhydrology.datasetzoo.basedataset import BaseDataset
 from neuralhydrology.utils.config import Config
 
+import os
+
 
 class CamelsUS(BaseDataset):
     """Data set class for the CAMELS US data set by [#]_ and [#]_.
@@ -165,9 +167,14 @@ def load_camels_us_forcings(data_dir: Path, basin: str, forcings: str) -> Tuple[
     int
         Catchment area (m2), specified in the header of the forcing file.
     """
-    forcing_path = data_dir / 'basin_mean_forcing' / forcings
+    forcing_path = data_dir / 'basin_mean_forcing' / forcings   
     if not forcing_path.is_dir():
         raise OSError(f"{forcing_path} does not exist")
+    
+    # # print(f"Loading forcing data from {forcing_path}")
+    # # print(f"Loading forcing data for basin {basin}")
+    # # # How many files in the forcing path?
+    # # print(f"Number of files in forcing path: {len(os.listdir(forcing_path))}")
 
     file_path = list(forcing_path.glob(f'**/{basin}_*_forcing_leap.txt'))
     if file_path:
