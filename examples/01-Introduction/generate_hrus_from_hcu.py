@@ -5,7 +5,7 @@ DATA_DIR = "../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_US/us
 # FORCINGS = ["daymet", "nldas", "maurer"]
 
 
-HCUS = ['01']
+HCUS = ['01', '03', '11', '17']
 
 
 if __name__ == "__main__":
