@@ -30,6 +30,7 @@ def get_optimizer(model: torch.nn.Module, cfg: Config) -> torch.optim.Optimizer:
     """
     if cfg.optimizer.lower() == "adam":
         optimizer = torch.optim.Adam(model.parameters(), lr=cfg.learning_rate[0])
+        # optimizer = torch.optim.Adam(model.parameters(), lr=cfg.learning_rate[0], weight_decay=1e-5)  #cfg.weight_decay
     else:
         raise NotImplementedError(f"{cfg.optimizer} not implemented or not linked in `get_optimizer()`")
 

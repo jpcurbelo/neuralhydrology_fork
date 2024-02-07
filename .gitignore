@@ -5,6 +5,7 @@
 !test/test_data/*.p
 *.swp
 .coverage
+.env
 
 # folder
 build/*
@@ -17,3 +18,5 @@ configs/*
 .ipynb_checkpoints/
 data/*
 docs/build/*
+venv-nh/
+

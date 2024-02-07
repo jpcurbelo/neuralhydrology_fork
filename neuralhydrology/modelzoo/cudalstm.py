@@ -33,6 +33,9 @@ class CudaLSTM(BaseModel):
         super(CudaLSTM, self).__init__(cfg=cfg)
 
         self.embedding_net = InputLayer(cfg)
+        
+        # # Add Batch Normalization layer
+        # self.batch_norm = nn.BatchNorm1d(self.embedding_net.output_size)
 
         self.lstm = nn.LSTM(input_size=self.embedding_net.output_size, hidden_size=cfg.hidden_size)
 
@@ -65,8 +68,12 @@ class CudaLSTM(BaseModel):
         """
         # possibly pass dynamic and static inputs through embedding layers, then concatenate them
         x_d = self.embedding_net(data)
-        lstm_output, (h_n, c_n) = self.lstm(input=x_d)
+        
+        # # Apply batch normalization before LSTM
+        # x_d = self.batch_norm(x_d.permute(1, 2, 0)).permute(2, 0, 1)
 
+        lstm_output, (h_n, c_n) = self.lstm(input=x_d)
+        
         # reshape to [batch_size, seq, n_hiddens]
         lstm_output = lstm_output.transpose(0, 1)
         h_n = h_n.transpose(0, 1)

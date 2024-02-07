@@ -190,6 +190,12 @@ class MaskedMSELoss(BaseLoss):
     def _get_loss(self, prediction: Dict[str, torch.Tensor], ground_truth: Dict[str, torch.Tensor], **kwargs):
         mask = ~torch.isnan(ground_truth['y'])
         loss = 0.5 * torch.mean((prediction['y_hat'][mask] - ground_truth['y'][mask])**2)
+        
+        # # # Regularization term
+        # # lambda_reg = kwargs.get('lambda_reg', 0.001)  # Regularization parameter, you can adjust this
+        # # regularization = 0.5 * lambda_reg * torch.sum(self.model.parameters()**2)  # L2 regularization
+        # # loss+= regularization       
+        
         return loss
 
 

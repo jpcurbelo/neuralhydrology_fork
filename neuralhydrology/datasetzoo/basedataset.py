@@ -323,6 +323,8 @@ class BaseDataset(Dataset):
             # make sure that even inputs that are used in multiple frequencies occur only once in the df
 
             keep_cols = list(sorted(set(keep_cols)))
+            
+            print('\n', keep_cols, '\n')
 
             if not self._disable_pbar:
                 LOGGER.info("Loading basin data into xarray data set.")
