@@ -1,12 +1,15 @@
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
-experiment_name: camels_spat_run
+experiment_name: 10_camels_spat_CAN
 
-# files to specify training, validation and test basins (relative to code root or absolute path)
-train_basin_file: 1_basin_camels_spat.txt
-validation_basin_file: 1_basin_camels_spat.txt
-test_basin_file: 1_basin_camels_spat.txt
+## files to specify training, validation and test basins (relative to code root or absolute path)
+# train_basin_file: 1_basin_camels_spat.txt
+# validation_basin_file: 1_basin_camels_spat.txt
+# test_basin_file: 1_basin_camels_spat.txt
+train_basin_file: 10_basin_camels_spat.txt
+validation_basin_file: 10_basin_camels_spat.txt
+test_basin_file: 10_basin_camels_spat.txt
 
 # training, validation and test time periods (format = 'dd/mm/yyyy')
 # train_start_date: "01/10/1999"
@@ -32,7 +35,7 @@ device: cuda:0
 validate_every: 3
 
 # specify how many random basins to use for validation
-validate_n_random_basins: 1
+validate_n_random_basins: 10
 
 # specify which metrics to calculate during validation (see neuralhydrology.evaluation.metrics)
 # this can either be a list or a dictionary. If a dictionary is used, the inner keys must match the name of the
