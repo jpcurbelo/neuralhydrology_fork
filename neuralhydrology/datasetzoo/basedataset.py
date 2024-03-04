@@ -324,7 +324,7 @@ class BaseDataset(Dataset):
 
             keep_cols = list(sorted(set(keep_cols)))
             
-            print('\n', keep_cols, '\n')
+            # print('\n', keep_cols, '\n')
 
             if not self._disable_pbar:
                 LOGGER.info("Loading basin data into xarray data set.")
