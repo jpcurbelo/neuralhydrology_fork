@@ -47,7 +47,7 @@ output_activation: linear
 
 # ----> General settings <----
 # Number of cell states of the LSTM
-hidden_size: 256
+hidden_size: 64
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
@@ -72,7 +72,7 @@ learning_rate:
 
 
 # Mini-batch size
-batch_size: 256
+batch_size: 128
 
 # Number of training epochs
 epochs: 30

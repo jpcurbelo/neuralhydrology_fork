@@ -6,9 +6,9 @@ hidden_size:
   - 256
   - 384
 
-n_stack_layers:
-  - 1
-  - 2
+# n_stack_layers:
+#   - 1
+#   - 2
 
 seq_length:
   - 180
@@ -29,4 +29,9 @@ batch_size:
   - 64
   - 128
   - 256
+
+loss:
+  - NSE
+  - MSE
+
 

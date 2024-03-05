@@ -7,7 +7,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.patches import Patch
 import yaml
+from pathlib import Path
+import torch
+import random
 
+from neuralhydrology.nh_run import (
+    start_run,
+    eval_run,
+)
+
+# Global variables
+generated_configs = set()
 
 ## Functions
 def validate_basin_data(basin, data_dir, start_date, end_date):
@@ -52,7 +62,6 @@ def validate_basin_data(basin, data_dir, start_date, end_date):
     else:
         return basin, False, None
 
-
 def plot_missing_data_heatmap(df, ds, start_year, end_year, countries_str):
     
     fig, ax = plt.subplots(figsize=(30, 16))
@@ -69,20 +78,90 @@ def plot_missing_data_heatmap(df, ds, start_year, end_year, countries_str):
     # Save the figure
     fig.savefig(f"missing_data_{ds[1]}_{start_year}-{end_year}_{countries_str}.png", dpi=300)
 
+def calculate_total_configs(config_dict):
+    """
+    Calculate the total number of possible configurations given a dictionary of parameters.
+    
+    Args:
+    - config_dict (dict): A dictionary containing parameter names as keys and lists of possible values as values.
+    
+    Returns:
+    int: The total number of possible configurations.
+    """
+    total_configs = 1
+    for values in config_dict.values():
+        total_configs *= len(values)
+    return total_configs
+
+def pick_random_config(config_dict):
+    '''
+    Function to pick a random configuration from a dictionary of parameters
+    
+    Args:
+    - config_dict (dict): A dictionary containing the parameters to be tuned
+    
+    Returns:
+    dict: A dictionary containing the randomly selected parameters
+    '''
+    global generated_configs
+    total_configs = calculate_total_configs(config_dict)
+    while len(generated_configs) < total_configs:
+        random_config = {key: random.choice(values) for key, values in config_dict.items()}
+        config_tuple = tuple(sorted(random_config.items()))
+        if config_tuple not in generated_configs:
+            generated_configs.add(config_tuple)
+            return random_config
+    return None  # All configurations have been explored
 
 def generate_config_file(params_dict):
     
-    # Create a ymal file with the parameters to be tuned
-    set = 1
-    fname = f'cudalstm_params2tune{set}.yml'
-    # If the file already exists, increment the set number
-    while os.path.exists(fname):
-        set += 1
-        fname = f'cudalstm_params2tune{set}.yml'
+    # # Create a ymal file with the parameters to be tuned
+    # set = 1
+    # fname = f'cudalstm_model2tune{set}.yml'
+    # # If the file already exists, increment the set number
+    # while os.path.exists(fname):
+    #     set += 1
+    #     fname = f'cudalstm_params2tune{set}.yml'
     
-    # with open('cudalstm_params2tune.yml', 'w') as ymlfile:
-    #     yaml.dump(params_dict, ymlfile, default_flow_style=False)
+    fname = f'cudalstm_model2tune.yml'
+    with open(fname, 'w') as ymlfile:
+        yaml.dump(params_dict, ymlfile, default_flow_style=False)
     
+    return fname
+
+def train_model(config_fname):
+    """
+    Train the model using CUDA if available, otherwise fallback to CPU-only mode.
+
+    Args:
+    - config_fname (str): Path to the configuration file.
+
+    Returns:
+    None
+    """
+    if torch.cuda.is_available():
+        start_run(config_file=Path(config_fname))
+    else:
+        start_run(config_file=Path(config_fname), gpu=-1)
+
+def test_model(run_config):
+    """
+    Test the model using the latest run file from the 'runs' directory.
+
+    Args:
+    - run_config (dict): Configuration for the model run.
+
+    Returns:
+    None
+    """
+    run_files = sorted(os.listdir("runs"))
+    exp_name = run_config["experiment_name"]
+    filtered_run_files = sorted([filename for filename in run_files if exp_name in filename])
+    if filtered_run_files:
+        run_file = filtered_run_files[-1]
+        run_dir = Path(f"runs/{run_file}")
+        eval_run(run_dir=run_dir, period="test")
+
 
 
 

@@ -1,19 +1,26 @@
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
-experiment_name: 426_camels_spat_USA
+# experiment_name: 426_camels_spat_USA
+experiment_name: 10_camels_spat_USA
 
-## files to specify training, validation and test basins (relative to code root or absolute path)
-train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
-validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
-test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+## file to specify training, validation and test basins (relative to code root or absolute path)
+# basin_id_file: 426_basin_camels_spat_1975-2019_usa.txt
+basin_id_file: 10_basin_camels_spat_1980-2008_usa.txt
 
 # training, validation and test time periods (format = 'dd/mm/yyyy')
-train_start_date: "01/10/1975"
-train_end_date: "30/09/1995"
-validation_start_date: "01/10/1995"
-validation_end_date: "30/09/2007"
-test_start_date: "01/10/2007"
+# train_start_date: "01/10/1975"
+# train_end_date: "30/09/1995"
+# validation_start_date: "01/10/1995"
+# validation_end_date: "30/09/2007"
+# test_start_date: "01/10/2007"
+# test_end_date: "30/09/2019"
+
+train_start_date: "01/10/1980"
+train_end_date: "30/09/2005"
+validation_start_date: "01/10/2005"
+validation_end_date: "30/09/2010"
+test_start_date: "01/10/2010"
 test_end_date: "30/09/2019"
 
 # which GPU (id) to use [in format of cuda:0, cuda:1 etc, or cpu or None]
@@ -32,6 +39,17 @@ validate_n_random_basins: 5
 # target_variable specified below. Using dicts allows for different metrics per target variable.
 metrics:
   - NSE
+  - Alpha-NSE
+  - Beta-NSE
+  - FHV
+  - FMS
+  - FLV
+  - KGE
+  - Beta-KG
+  - Peak-Timing
+  - Peak-MAPE
+  - Pearson-r
+
 
 # --- Model configuration --------------------------------------------------------------------------
 
@@ -46,36 +64,35 @@ head: regression
 output_activation: linear
 
 # ----> General settings <----
-# Number of cell states of the LSTM
-hidden_size: 256
+# # Number of cell states of the LSTM
+# hidden_size: 256
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
 
-# Dropout applied to the output of the LSTM
-output_dropout: 0.4
+# # # Dropout applied to the output of the LSTM
+# # output_dropout: 0.4
 
 # --- Training configuration -----------------------------------------------------------------------
 
 # specify optimizer [Adam]
 optimizer: Adam
 
-# specify loss [MSE, NSE, RMSE]
-# loss: MSE
-loss: NSE
+# # # specify loss [MSE, NSE, RMSE]
+# # # loss: MSE
+# # loss: NSE
 
-# specify learning rates to use starting at specific epochs (0 is the initial learning rate)
-learning_rate:
-  0: 1e-3
-  20: 5e-4
-  25: 1e-4
+# # # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
+# # learning_rate:
+# #   0: 1e-3
+# #   20: 5e-4
+# #   25: 1e-4
 
-
-# Mini-batch size
-batch_size: 256
+# # Mini-batch size
+# batch_size: 256
 
 # Number of training epochs
-epochs: 30
+epochs: 5
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -84,16 +101,15 @@ clip_gradient_norm: 1
 # If use_frequencies is used, this needs to be a dict mapping each frequency to a predict_last_n-value, else an int.
 predict_last_n: 1
 
-# Length of the input sequence
-# If use_frequencies is used, this needs to be a dict mapping each frequency to a seq_length, else an int.
-seq_length: 270
-# seq_length: 365
+# # Length of the input sequence
+# # If use_frequencies is used, this needs to be a dict mapping each frequency to a seq_length, else an int.
+# seq_length: 270
 
 # Number of parallel workers used in the data pipeline
 num_workers: 16
 
 # Log the training loss every n steps
-log_interval: 5
+log_interval: 2
 
 # If true, writes logging results into tensorboard file
 log_tensorboard: True
@@ -104,6 +120,7 @@ log_n_figures: 2
 # Save model weights every n epochs
 save_weights_every: 1
 
+
 # --- Data configurations --------------------------------------------------------------------------
 
 # which data set to use [camels_us, camels_gb, global, hourly_camels_us]
@@ -112,21 +129,7 @@ dataset: camels_spat
 # Path to data set root
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 
-# Forcing product [daymet, maurer, maurer_extended, nldas, nldas_extended, nldas_hourly]
-# can be either a list of forcings or a single forcing product
-forcings:
-  # - maurer
-  # - daymet
-  # - nldas
-
 dynamic_inputs:
-  # # - prcp(mm/day)_nldas
-  # # - prcp(mm/day)_maurer
-  # # - prcp(mm/day)_daymet
-  # # - srad(W/m2)_daymet
-  # # - tmax(C)_daymet
-  # # - tmin(C)_daymet
-  # # - vp(Pa)_daymet
 # # # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp
 - e           #Vapor pressure - Derived
 - mper        #Mean potential evaporation rate - ERA5
