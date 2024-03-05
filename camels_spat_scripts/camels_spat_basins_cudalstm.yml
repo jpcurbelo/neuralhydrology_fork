@@ -1,15 +1,12 @@
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
-experiment_name: 56_camels_spat_CAN
+experiment_name: 426_camels_spat_USA
 
 ## files to specify training, validation and test basins (relative to code root or absolute path)
-# train_basin_file: 1_basin_camels_spat.txt
-# validation_basin_file: 1_basin_camels_spat.txt
-# test_basin_file: 1_basin_camels_spat.txt
-train_basin_file: 56_basin_camels_spat.txt
-validation_basin_file: 56_basin_camels_spat.txt
-test_basin_file: 56_basin_camels_spat.txt
+train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 
 # training, validation and test time periods (format = 'dd/mm/yyyy')
 train_start_date: "01/10/1975"
@@ -49,9 +46,8 @@ head: regression
 output_activation: linear
 
 # ----> General settings <----
-
 # Number of cell states of the LSTM
-hidden_size: 20
+hidden_size: 256
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
@@ -65,24 +61,21 @@ output_dropout: 0.4
 optimizer: Adam
 
 # specify loss [MSE, NSE, RMSE]
-loss: MSE
+# loss: MSE
+loss: NSE
 
 # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
 learning_rate:
-  0: 1e-2
-  30: 5e-3
-  40: 1e-3
-  # 0: 1e-3
-  # 80: 5e-4
-  # 100: 1e-4
-  # 120: 5e-5
+  0: 1e-3
+  20: 5e-4
+  25: 1e-4
 
 
 # Mini-batch size
 batch_size: 256
 
 # Number of training epochs
-epochs: 50
+epochs: 30
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -93,10 +86,11 @@ predict_last_n: 1
 
 # Length of the input sequence
 # If use_frequencies is used, this needs to be a dict mapping each frequency to a seq_length, else an int.
+# seq_length: 270
 seq_length: 365
 
 # Number of parallel workers used in the data pipeline
-num_workers: 8
+num_workers: 16
 
 # Log the training loss every n steps
 log_interval: 5
@@ -105,7 +99,7 @@ log_interval: 5
 log_tensorboard: True
 
 # If a value and greater than 0, logs n random basins as figures during validation
-log_n_figures: 1
+log_n_figures: 2
 
 # Save model weights every n epochs
 save_weights_every: 1
@@ -126,24 +120,31 @@ forcings:
   # - nldas
 
 dynamic_inputs:
+  # # - prcp(mm/day)_nldas
+  # # - prcp(mm/day)_maurer
+  # # - prcp(mm/day)_daymet
+  # # - srad(W/m2)_daymet
+  # # - tmax(C)_daymet
+  # # - tmin(C)_daymet
+  # # - vp(Pa)_daymet
 # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp
-- e
-- mper
-- msdwlwrf
-- msdwswrf
-- msnlwrf
-- msnswrf
-- mtpr
-- q
-- rh
-- sp
-- t
-- u
-- v
-- w
-- phi
-- tmean
-- prcp
+- e           #Vapor pressure - Derived
+- mper        #Mean potential evaporation rate - ERA5
+- msdwlwrf    #Mean downward LONGtwave radiation at the surface - ERA5
+- msdwswrf    #Mean downward SHORTwave radiation at the surface - ERA5
+# - msnlwrf     #Net LONGwave radiation at the surface - ERA5
+# - msnswrf     #Net SHORTwave radiation at the surface - ERA5
+- mtpr        #Mean total precipitation rate - ERA5
+# - q           #Specific humidity - ERA5
+# - rh          #Relative humidity - Derived
+- sp          #Surface pressure - Derived
+# - t           #Temperature - ERA5
+# - u           #U-component of wind - ERA5
+# - v           #V-component of wind - ERA5
+# - w           #Wind speed (mean) - Derived
+# - phi         #Wind direction - Derived
+- tmean       #Temperature - EM-Earth
+- prcp        #Mean total precipitation rate - EM-Earth
 
 # which columns to use as target
 target_variables:

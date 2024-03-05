@@ -1,0 +1,90 @@
+# Description: Utility functions for the CAMELS-CL dataset
+
+## Import necessary libraries
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.patches import Patch
+import yaml
+
+
+## Functions
+def validate_basin_data(basin, data_dir, start_date, end_date):
+    '''
+    Function to validate the data for a given basin - if the data is present for the specified date range
+    Args:
+    - basin: str, name of the basin
+    - data_dir: str, path to the directory containing the basin data
+    - start_date: str, start date in the format 'YYYY-MM-DD'
+    - end_date: str, end date in the format 'YYYY-MM-DD'
+    Returns:
+    tuple: A tuple containing basin identifier, processing status, and presence of dates.
+        - basin: str, name of the basin
+        - valid: bool, True if the data is valid, False otherwise
+        - date_presence: pd.Series, series of 1s and 0s indicating the presence of data for each date in the specified range
+    '''
+    
+    df = pd.read_csv(os.path.join(data_dir, basin), index_col=0, parse_dates=True)   
+    if df.index[0] <= pd.to_datetime(start_date) and df.index[-1] >= pd.to_datetime(end_date):
+        
+        # Create a Series of dates between the start and end date: 1 if date is present, 0 if missing
+        date_range = pd.date_range(start=start_date, end=end_date, freq='D')
+        # Filter df.index to ensure it's within the specified range
+        filtered_index = df.index[(df.index >= start_date) & (df.index <= end_date)]
+        # Create present_dates series with index filtered to within the range
+        present_dates = pd.Series(1, index=filtered_index)
+        # Create missing_dates series with index filtered to within the range
+        missing_dates = pd.Series(0, index=date_range[~date_range.isin(filtered_index)])
+        # Concatenate present_dates and missing_dates and sort by index
+        date_presence = pd.concat([present_dates, missing_dates]).sort_index()
+         
+        # Check for missing days
+        if df.index.freq != 'D':
+            # Upsample to daily frequency
+            df_daily = df.resample('D').mean()
+            
+            # Check for NaN values
+            missing_days = df_daily.isnull().sum()
+            if missing_days.any() > 0:  # Use any() method to check for any True values
+                return basin, False, date_presence
+        return basin, True, date_presence
+    else:
+        return basin, False, None
+
+
+def plot_missing_data_heatmap(df, ds, start_year, end_year, countries_str):
+    
+    fig, ax = plt.subplots(figsize=(30, 16))
+    # Create a heatmap of the missing data with seaborn
+    cmap = sns.mpl_palette("Set2", 2)
+    sns.heatmap(df, cmap=cmap, cbar=False, ax=ax)
+    
+    legend_handles = [Patch(color=cmap[True], label='Non Missing Value'),  # red
+                    Patch(color=cmap[False], label='Missing Value')]  # green
+    plt.legend(handles=legend_handles, ncol=2, bbox_to_anchor=[0.5, 1.02], loc='lower center', fontsize=12, handlelength=1.2)
+    plt.tight_layout()
+    plt.show()
+
+    # Save the figure
+    fig.savefig(f"missing_data_{ds[1]}_{start_year}-{end_year}_{countries_str}.png", dpi=300)
+
+
+def generate_config_file(params_dict):
+    
+    # Create a ymal file with the parameters to be tuned
+    set = 1
+    fname = f'cudalstm_params2tune{set}.yml'
+    # If the file already exists, increment the set number
+    while os.path.exists(fname):
+        set += 1
+        fname = f'cudalstm_params2tune{set}.yml'
+    
+    # with open('cudalstm_params2tune.yml', 'w') as ymlfile:
+    #     yaml.dump(params_dict, ymlfile, default_flow_style=False)
+    
+
+
+
+if __name__ == '__main__':
+    pass
