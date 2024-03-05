@@ -36,19 +36,27 @@ class CudaLSTM(BaseModel):
         
         # # Add Batch Normalization layer
         # self.batch_norm = nn.BatchNorm1d(self.embedding_net.output_size)
+               
+        # Check if list
+        if isinstance(cfg.hidden_size, list):
+            self.n_layers = len(cfg.hidden_size)
+            self.n_neurons = cfg.hidden_size[0]
+        elif isinstance(cfg.hidden_size, int):
+            self.n_layers = 1
+            self.n_neurons = cfg.hidden_size
 
-        self.lstm = nn.LSTM(input_size=self.embedding_net.output_size, hidden_size=cfg.hidden_size)
+        self.lstm = nn.LSTM(input_size=self.embedding_net.output_size, hidden_size=self.n_neurons, num_layers=self.n_layers)
 
         self.dropout = nn.Dropout(p=cfg.output_dropout)
 
-        self.head = get_head(cfg=cfg, n_in=cfg.hidden_size, n_out=self.output_size)
+        self.head = get_head(cfg=cfg, n_in=self.n_neurons, n_out=self.output_size)
 
         self._reset_parameters()
 
     def _reset_parameters(self):
         """Special initialization of certain model weights."""
         if self.cfg.initial_forget_bias is not None:
-            self.lstm.bias_hh_l0.data[self.cfg.hidden_size:2 * self.cfg.hidden_size] = self.cfg.initial_forget_bias
+            self.lstm.bias_hh_l0.data[self.n_neurons:2 * self.n_neurons] = self.cfg.initial_forget_bias
 
     def forward(self, data: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         """Perform a forward pass on the CudaLSTM model.

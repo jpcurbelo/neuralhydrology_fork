@@ -19,6 +19,7 @@ from camels_spat_scripts.utils_camels_spat import (
 
 if __name__ == '__main__':
     
+    # config_fname = "cudalstm_model2tune.yml"
     config_fname = "426_basin_camels_spat.yml"
     with open(config_fname, "r") as f:
         run_config = yaml.safe_load(f)
