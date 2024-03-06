@@ -19,4 +19,5 @@ configs/*
 data/*
 docs/build/*
 venv-nh/
+camels_spat_scripts/experiment_scripts/runs/*
 
