@@ -1,4 +1,4 @@
-batch_size: 256
+batch_size: 128
 clip_gradient_norm: 1
 clip_targets_to_zero:
 - q_obs
@@ -24,13 +24,13 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 5
-experiment_name: 10_camels_spat_USA
+experiment_name: batch1_10_camels_spat_USA
 head: regression
-hidden_size: 
-  - 64
-  - 64
+hidden_size:
+- 64
+- 64
 initial_forget_bias: 3
-learning_rate: 1e-3
+learning_rate: 1e-4
 log_interval: 2
 log_n_figures: 2
 log_tensorboard: true
@@ -42,11 +42,16 @@ metrics:
 - FHV
 - FMS
 - FLV
+- KGE
+- Beta-KG
+- Peak-Timing
+- Peak-MAPE
+- Pearson-r
 model: cudalstm
 num_workers: 16
 optimizer: Adam
 output_activation: linear
-output_dropout: 0.0
+output_dropout: 0.6
 predict_last_n: 1
 save_weights_every: 1
 seq_length: 365

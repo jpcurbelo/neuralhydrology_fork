@@ -10,6 +10,7 @@ import yaml
 from pathlib import Path
 import torch
 import random
+import subprocess
 
 from neuralhydrology.nh_run import (
     start_run,
@@ -110,6 +111,9 @@ def pick_random_config(config_dict):
         config_tuple = tuple(sorted(random_config.items()))
         if config_tuple not in generated_configs:
             generated_configs.add(config_tuple)
+            
+            # print(len(generated_configs), "configurations generated")
+            
             return random_config
     return None  # All configurations have been explored
 
@@ -162,6 +166,21 @@ def test_model(run_config):
         run_dir = Path(f"runs/{run_file}")
         eval_run(run_dir=run_dir, period="test")
 
+def find_options_file(batch):
+    '''
+    Function to find the options file for a given batch number
+    
+    Args:
+    - batch_number (int): The batch number
+    Returns:
+    str: The path to the options file
+    '''
+    
+    options_file = f'cudalstm_params_options_{batch}.yml'
+    if os.path.exists(options_file):
+        return options_file
+    else:
+        raise FileNotFoundError(f"Options file for {batch} does not exist.")
 
 
 

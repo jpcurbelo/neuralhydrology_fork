@@ -2,9 +2,6 @@
 
 number_units:
   - 64
-  - 128
-  - 256
-  - 384
 
 n_stack_layers:
   - 1

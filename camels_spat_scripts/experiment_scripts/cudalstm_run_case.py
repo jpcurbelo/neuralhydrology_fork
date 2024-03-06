@@ -11,13 +11,15 @@ sys.path.append(root_dir)
 
 # sys.path.append('..')
 from camels_spat_scripts.utils_camels_spat import (
-    pick_random_config, 
-    generate_config_file,
+    setup_cudnn,
     train_model,
     test_model,
 )
 
 if __name__ == '__main__':
+    
+    # cudnn_version = "8.9.2.26"  # Replace A.B.C with the specific version number needed
+    # if setup_cudnn(cudnn_version):
     
     # config_fname = "cudalstm_model2tune.yml"
     config_fname = "426_basin_camels_spat.yml"

@@ -9,12 +9,19 @@ validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 
 # training, validation and test time periods (format = 'dd/mm/yyyy')
-train_start_date: "01/10/1975"
-train_end_date: "30/09/1995"
-validation_start_date: "01/10/1995"
-validation_end_date: "30/09/2007"
-test_start_date: "01/10/2007"
-test_end_date: "30/09/2019"
+# train_start_date: "01/10/1975"
+# train_end_date: "30/09/1995"
+# validation_start_date: "01/10/1995"
+# validation_end_date: "30/09/2007"
+# test_start_date: "01/10/2007"
+# test_end_date: "30/09/2019"
+
+train_start_date: "01/10/1999"
+train_end_date: "30/09/2008"
+validation_start_date: "01/10/1980"
+validation_end_date: "30/09/1989"
+test_start_date: "01/10/1989"
+test_end_date: "30/09/1999"
 
 # which GPU (id) to use [in format of cuda:0, cuda:1 etc, or cpu or None]
 device: cuda:0
@@ -47,9 +54,9 @@ output_activation: linear
 
 # ----> General settings <----
 # Number of cell states of the LSTM
-hidden_size: 
-  - 64
-  - 64
+hidden_size: 64
+  # - 64
+  # - 64
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
