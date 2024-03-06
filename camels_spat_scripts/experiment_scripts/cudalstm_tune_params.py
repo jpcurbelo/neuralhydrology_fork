@@ -74,6 +74,7 @@ if __name__ == '__main__':
     
     ## export LD_LIBRARY_PATH=/home/ame805/neuralhydrology_fork/venv-nh/lib/python3.8/site-packages/nvidia/cudnn/lib
     
+    # python cudalstm_tune_params.py --options_batch batch1
     parser = argparse.ArgumentParser(description='Process cudalstm_params_options file.')
     parser.add_argument('--options_batch', type=str, default=None,
                         help='Name of the cudalstm_params_options file without the batch number (e.g., "batchX")')

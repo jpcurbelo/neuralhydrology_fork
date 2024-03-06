@@ -1,3 +1,5 @@
+
+seed: 1111
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
@@ -45,7 +47,7 @@ metrics:
   - FMS
   - FLV
   - KGE
-  - Beta-KG
+  - Beta-KGE
   - Peak-Timing
   - Peak-MAPE
   - Pearson-r
@@ -127,7 +129,8 @@ save_weights_every: 1
 dataset: camels_spat
 
 # Path to data set root
-data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
+# data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
+data_dir: ../../../DATA/CAMELS_spat_NH
 
 dynamic_inputs:
 # # # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp
