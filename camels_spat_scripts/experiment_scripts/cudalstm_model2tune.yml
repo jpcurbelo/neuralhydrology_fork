@@ -56,14 +56,14 @@ seed: 1111
 seq_length: 270
 target_variables:
 - q_obs
-test_basin_file: 10_basin_camels_spat_1980-2008_usa.txt
+test_basin_file: 10_basin_camels_spat.txt
 test_end_date: 30/09/2019
 test_start_date: 01/10/2010
-train_basin_file: 10_basin_camels_spat_1980-2008_usa.txt
+train_basin_file: 10_basin_camels_spat.txt
 train_end_date: 30/09/2005
 train_start_date: 01/10/1980
 validate_every: 5
 validate_n_random_basins: 5
-validation_basin_file: 10_basin_camels_spat_1980-2008_usa.txt
+validation_basin_file: 10_basin_camels_spat.txt
 validation_end_date: 30/09/2010
 validation_start_date: 01/10/2005

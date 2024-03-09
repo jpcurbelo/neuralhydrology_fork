@@ -17,11 +17,16 @@ from camels_spat_scripts.utils_camels_spat import (
 
 if __name__ == '__main__':
     
-    # cudnn_version = "8.9.2.26"  # Replace A.B.C with the specific version number needed
-    # if setup_cudnn(cudnn_version):
+    ## export LD_LIBRARY_PATH=/home/ame805/neuralhydrology_fork/venv-nh/lib/python3.8/site-packages/nvidia/cudnn/lib
     
+<<<<<<< HEAD
     config_fname = "cudalstm_model2tune.yml"
     # config_fname = "426_basin_camels_spat.yml"
+=======
+    # config_fname = "cudalstm_model2tune.yml"
+    config_fname = "426_basin_camels_spat.yml"
+    # config_fname = "10_basin_camels_spat.yml"
+>>>>>>> 4f8b191... Added postprocessing - find best models and plot basins with neg NSE
     
     with open(config_fname, "r") as f:
         run_config = yaml.safe_load(f)

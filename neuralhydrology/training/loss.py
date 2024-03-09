@@ -260,6 +260,7 @@ class MaskedNSELoss(BaseLoss):
         squared_error = (y_hat - y)**2
         weights = 1 / (per_basin_target_stds + self.eps)**2
         scaled_loss = weights * squared_error
+        
         return torch.mean(scaled_loss)
 
     @staticmethod

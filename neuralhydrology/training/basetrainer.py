@@ -301,6 +301,8 @@ class BaseTrainer(object):
                     noise = self.noise_sampler_y.sample(data[key].shape)
                     # make sure we add near-zero noise to originally near-zero targets
                     data[key] += (data[key] + self._target_mean / self._target_std) * noise.to(self.device)
+                    
+            # aux = input('Press enter to continue: ')
 
             loss, all_losses = self.loss_obj(predictions, data)
 

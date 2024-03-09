@@ -8,7 +8,7 @@ experiment_name: 10_camels_spat_USA
 
 ## file to specify training, validation and test basins (relative to code root or absolute path)
 # basin_id_file: 426_basin_camels_spat_1975-2019_usa.txt
-basin_id_file: 10_basin_camels_spat_1980-2008_usa.txt
+basin_id_file: 10_basin_camels_spat.txt
 
 # training, validation and test time periods (format = 'dd/mm/yyyy')
 # train_start_date: "01/10/1975"
