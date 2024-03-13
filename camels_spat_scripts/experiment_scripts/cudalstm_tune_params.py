@@ -20,6 +20,15 @@ from camels_spat_scripts.utils_camels_spat import (
     calculate_total_configs,
 )
 
+from camels_spat_scripts.postprocessing_scripts.find_existing_combinations import (
+    params2look_at,
+    concatenate_parameters,
+    create_param_combinations_file
+)
+
+# param_combinations_file = os.path.join(root_dir, 'camels_spat_scripts', 
+#                                        'postprocessing_scripts', 'existing_param_combinations.txt')
+
 ## Functions
 def main(options_file='cudalstm_params_options.yml', batch=None):
     
@@ -42,6 +51,12 @@ def main(options_file='cudalstm_params_options.yml', batch=None):
     with open(options_file, 'r') as ymlfile:
         cudalstm_params = yaml.load(ymlfile, Loader=yaml.FullLoader)
         
+    # Create the parameter combinations file
+    create_param_combinations_file()
+    # Load existing combinationsof parameters already run - as a set
+    with open('existing_param_combinations.txt', 'r') as file:
+        existing_param_combinations = {line.strip() for line in file}
+        
     while True:
         random_config = pick_random_config(cudalstm_params)
         if random_config is not None:
@@ -55,15 +70,27 @@ def main(options_file='cudalstm_params_options.yml', batch=None):
             random_config.pop('number_units')
             random_config.pop('n_stack_layers')
             
-            # Create the configuration file with general parameters + the randomly selected parameters
-            run_config = {**general_config, **random_config}
-            config_fname = generate_config_file(run_config)
+            # Check if combination of parameters already exist in 'existing_param_combinations.txt'
+            parameters = concatenate_parameters(random_config, params2look_at)
             
-            ## Train the model
-            train_model(config_fname)   
+            if parameters not in existing_param_combinations:
+            
+                # Create the configuration file with general parameters + the randomly selected parameters
+                run_config = {**general_config, **random_config}
+                config_fname = generate_config_file(run_config)
                 
-            ## Test the model
-            test_model(run_config)
+                ## Train the model
+                train_model(config_fname)   
+                    
+                ## Test the model
+                test_model(run_config)
+                
+                # print(f'{parameters} is a new combination')
+                
+            else:
+                 print(f'{parameters} is AN EXISTING combination')
+                
+            
 
         else:
             total_configs = calculate_total_configs(cudalstm_params)
