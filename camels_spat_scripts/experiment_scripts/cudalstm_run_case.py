@@ -20,9 +20,9 @@ if __name__ == '__main__':
     ## export LD_LIBRARY_PATH=/home/ame805/neuralhydrology_fork/venv-nh/lib/python3.8/site-packages/nvidia/cudnn/lib
     
     # config_fname = "cudalstm_model2tune.yml"
-    # config_fname = "426_basin_camels_spat.yml"
+    config_fname = "426_basin_camels_spat.yml"
     # config_fname = "10_basin_camels_spat.yml"
-    config_fname = "1_basin_camels_spat.yml"
+    # config_fname = "1_basin_camels_spat.yml"
     
     with open(config_fname, "r") as f:
         run_config = yaml.safe_load(f)
