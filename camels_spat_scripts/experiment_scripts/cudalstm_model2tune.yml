@@ -23,8 +23,8 @@ dynamic_inputs:
 - phi
 - tmean
 - prcp
-epochs: 5
-experiment_name: batch1_10_camels_spat_USA
+epochs: 2
+experiment_name: 10_camels_spat_USA
 head: regression
 hidden_size: 64
 initial_forget_bias: 3
@@ -32,7 +32,7 @@ learning_rate: 1e-3
 log_interval: 2
 log_n_figures: 2
 log_tensorboard: true
-loss: NSE
+loss: MSE
 metrics:
 - NSE
 - Alpha-NSE
@@ -49,7 +49,11 @@ model: cudalstm
 num_workers: 16
 optimizer: Adam
 output_activation: linear
+<<<<<<< HEAD
 output_dropout: 0.4
+=======
+output_dropout: 0.0
+>>>>>>> 5b313ea... Added discharge normalization by area and updated the tining scripts
 predict_last_n: 1
 save_weights_every: 1
 seed: 1111

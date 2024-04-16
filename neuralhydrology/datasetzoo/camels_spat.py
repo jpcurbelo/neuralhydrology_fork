@@ -90,8 +90,10 @@ def load_camels_spat_forcings(data_dir: Path, basin: str) -> Tuple[pd.DataFrame,
         Catchment area (m2), specified in the header of the forcing file.
     """
     
-    # Extract country from basin name - 'CAN' or 'USA' 
-    country = basin.split("_")[0]
+    # # Extract country from basin name - 'CAN' or 'USA' 
+    # country = basin.split("_")[0]
+    # If letters in basin name, then country is CAN
+    country = "CAN" if any(c.isalpha() for c in basin) else "USA"
     
     forcing_path = data_dir / f'CAMELS_spat_{country}' 
     
@@ -113,5 +115,18 @@ def load_camels_spat_forcings(data_dir: Path, basin: str) -> Tuple[pd.DataFrame,
         # print("Columns:", df.columns)
         # print("Index:", df.index)
         
+    # print('Loaded forcing data for basin', basin)
+    # aux = input('Press Enter to continue...')
         
+    # Load the basin area
+    metadata_path = data_dir / 'camels_spat_metadata.csv'
+    # Load metadata and find area ('Basin_area_km2') for the basin
+    metadata = pd.read_csv(metadata_path)
+    area = metadata.loc[metadata['Station_id'] == basin, 'Basin_area_km2'].values[0]
+    
+    # # normalize discharge from cubic feet per second to mm per day
+    # # df.QObs = 28316846.592 * df.QObs * 86400 / (area * 10**6)
+    # normalize discharge from cubic meters per second to mm per day
+    df['q_obs'] = df['q_obs'] * 1000 * 86400 / (area * 10**6)
+       
     return df

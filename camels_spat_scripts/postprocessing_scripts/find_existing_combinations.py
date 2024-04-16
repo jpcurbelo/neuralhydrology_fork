@@ -28,9 +28,13 @@ def concatenate_parameters(config, params2look_at):
         parameter_values.append(str(value))
     return '-'.join(parameter_values)
 
-# Main function
-def main():
+# Function to create the parameter combinations file
+def create_param_combinations_file():
     parameters_list = []  # List to store parameters
+    
+    if not os.path.exists(RUN_DIR) or not os.path.isdir(RUN_DIR):
+        print(f"{RUN_DIR} does not exists")
+        return
 
     # List of folders in the run directory
     run_folders = sorted(os.listdir(RUN_DIR))
@@ -54,12 +58,16 @@ def main():
         # Concatenate parameters and add them to the list
         parameters = concatenate_parameters(config, params2look_at)
         parameters_list.append(parameters)
+        
+    # print('parameters_list:', parameters_list)
+    # aux = input('Press Enter to continue...')
 
     # Write parameters list to a file
     with open(OUTPUT_FILE, 'w') as output_file:
         for parameters in parameters_list:
+            print('Writing parameters:', parameters)
             output_file.write(parameters + '\n')
 
 ##################################################
 if __name__ == "__main__":
-    main()
+    create_param_combinations_file()

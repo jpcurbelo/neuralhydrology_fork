@@ -94,7 +94,7 @@ optimizer: Adam
 # batch_size: 256
 
 # Number of training epochs
-epochs: 5
+epochs: 2
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -129,8 +129,13 @@ save_weights_every: 1
 dataset: camels_spat
 
 # Path to data set root
+<<<<<<< HEAD
 # data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 data_dir: ../../../DATA/CAMELS_spat_NH
+=======
+data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
+# data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH_vOK
+>>>>>>> 5b313ea... Added discharge normalization by area and updated the tining scripts
 
 dynamic_inputs:
 # # # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp

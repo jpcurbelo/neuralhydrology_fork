@@ -3,12 +3,12 @@ seed: 1111
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
-experiment_name: 426_camels_spat_USA
+experiment_name: hcu01_camels_spat_USA
 
 ## files to specify training, validation and test basins (relative to code root or absolute path)
-train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
-validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
-test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+train_basin_file: basin_hcu_01.txt
+validation_basin_file: basin_hcu_01.txt
+test_basin_file: basin_hcu_01.txt
 
 # # training, validation and test time periods (format = 'dd/mm/yyyy')
 # train_start_date: "01/10/1975"
@@ -89,10 +89,10 @@ loss: NSE
 epochs: 30
 
 # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
-learning_rate: #1e-3
-  0: 1e-3
-  20: 5e-4
-  25: 1e-4
+learning_rate: 1e-3
+  # 0: 1e-3
+  # 20: 5e-4
+  # 25: 1e-4
 
 
 # Mini-batch size
@@ -107,8 +107,8 @@ predict_last_n: 1
 
 # Length of the input sequence
 # If use_frequencies is used, this needs to be a dict mapping each frequency to a seq_length, else an int.
-seq_length: 270
-# seq_length: 365
+# seq_length: 270
+seq_length: 365
 
 # Number of parallel workers used in the data pipeline
 num_workers: 16
@@ -131,13 +131,8 @@ save_weights_every: 2
 dataset: camels_spat
 
 # Path to data set root
-<<<<<<< HEAD
-# data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
-data_dir: ../../../DATA/CAMELS_spat_NH
-=======
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 # data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH_vOK
->>>>>>> 5b313ea... Added discharge normalization by area and updated the tining scripts
 
 # Forcing product [daymet, maurer, maurer_extended, nldas, nldas_extended, nldas_hourly]
 # can be either a list of forcings or a single forcing product
@@ -166,15 +161,11 @@ dynamic_inputs:
 - rh          #Relative humidity - Derived
 - sp          #Surface pressure - Derived
 - t           #Temperature - ERA5
-- t_min       #Temperature - ERA5
-- t_max       #Temperature - ERA5
 - u           #U-component of wind - ERA5
 - v           #V-component of wind - ERA5
 - w           #Wind speed (mean) - Derived
 - phi         #Wind direction - Derived
 - tmean       #Temperature - EM-Earth
-- tmean_min   #Temperature - EM-Earth
-- tmean_max   #Temperature - EM-Earth
 - prcp        #Mean total precipitation rate - EM-Earth
 
 

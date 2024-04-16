@@ -11,12 +11,19 @@ validation_basin_file: 1_basin_camels_spat.txt
 test_basin_file: 1_basin_camels_spat.txt
 
 # # training, validation and test time periods (format = 'dd/mm/yyyy')
-train_start_date: "01/10/1975"
-train_end_date: "30/09/2000"
-validation_start_date: "01/10/2000"
-validation_end_date: "30/09/2007"
-test_start_date: "01/10/2007"
-test_end_date: "30/09/2019"
+# train_start_date: "01/10/1975"
+# train_end_date: "30/09/2000"
+# validation_start_date: "01/10/2000"
+# validation_end_date: "30/09/2007"
+# test_start_date: "01/10/2007"
+# test_end_date: "30/09/2019"
+
+train_start_date: "01/10/1999"
+train_end_date: "30/09/2008"
+validation_start_date: "01/10/1980"
+validation_end_date: "30/09/1989"
+test_start_date: "01/10/1989"
+test_end_date: "30/09/1999"
 
 # which GPU (id) to use [in format of cuda:0, cuda:1 etc, or cpu or None]
 device: cuda:0
@@ -63,7 +70,7 @@ output_activation: linear
 hidden_size: 
   # - 20
   # - 20
-  - 32
+  # - 32
   # - 32
   # - 64
   # - 64
@@ -71,6 +78,7 @@ hidden_size:
   # - 128
   # - 128
   # - 128
+  - 256
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
@@ -90,8 +98,8 @@ loss: MSE
 # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
 learning_rate:
   0: 1e-3
-  20: 5e-4
-  25: 1e-4
+  # 20: 5e-4
+  # 25: 1e-4
   # 0: 1e-2
   # 20: 5e-3
   # 25: 1e-3
@@ -101,7 +109,7 @@ learning_rate:
 batch_size: 256
 
 # Number of training epochs
-epochs: 50
+epochs: 30
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -112,8 +120,8 @@ predict_last_n: 1
 
 # Length of the input sequence
 # If use_frequencies is used, this needs to be a dict mapping each frequency to a seq_length, else an int.
-# seq_length: 270
-seq_length: 365
+seq_length: 270
+# seq_length: 365
 
 # Number of parallel workers used in the data pipeline
 num_workers: 16

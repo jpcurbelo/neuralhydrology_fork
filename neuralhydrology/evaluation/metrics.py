@@ -469,7 +469,7 @@ def fdc_fhv(obs: DataArray, sim: DataArray, h: float = 0.02) -> float:
     return fhv * 100
 
 
-def fdc_flv(obs: DataArray, sim: DataArray, l: float = 0.3) -> float:
+def fdc_flv(obs: DataArray, sim: DataArray, l: float = 0.7) -> float:   ### Originally: l: float = 0.3 (changed to 0.7 for testing purposes)
     r"""Calculate the low flow bias of the flow duration curve [#]_
     
     .. math:: 
@@ -518,9 +518,15 @@ def fdc_flv(obs: DataArray, sim: DataArray, l: float = 0.3) -> float:
     # for numerical reasons change 0s to 1e-6. Simulations can still contain negatives, so also reset those.
     sim[sim <= 0] = 1e-6
     obs[obs == 0] = 1e-6
+    
+    # print(-np.round(l * len(obs)).astype(int), obs[:10], obs[-10:])
 
     obs = obs[-np.round(l * len(obs)).astype(int):]
     sim = sim[-np.round(l * len(sim)).astype(int):]
+    
+    # print(obs)
+    
+    # aux = input("Press Enter to continue...")
 
     # transform values to log scale
     obs = np.log(obs)

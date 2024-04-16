@@ -53,9 +53,17 @@ def main(options_file='cudalstm_params_options.yml', batch=None):
         
     # Create the parameter combinations file
     create_param_combinations_file()
+    # param_comb_file = os.path.join('../postprocessing_scripts', 'existing_param_combinations.txt')
+    param_comb_file = 'existing_param_combinations.txt'
     # Load existing combinationsof parameters already run - as a set
-    with open('existing_param_combinations.txt', 'r') as file:
-        existing_param_combinations = {line.strip() for line in file}
+    if os.path.exists(param_comb_file):
+        with open('existing_param_combinations.txt', 'r') as file:
+            existing_param_combinations = [line.strip() for line in file]
+    else:
+        existing_param_combinations = list()
+        
+    # print('existing_param_combinations', existing_param_combinations)
+    # aux = input('Press Enter to continue...')
         
     while True:
         random_config = pick_random_config(cudalstm_params)
@@ -72,6 +80,12 @@ def main(options_file='cudalstm_params_options.yml', batch=None):
             
             # Check if combination of parameters already exist in 'existing_param_combinations.txt'
             parameters = concatenate_parameters(random_config, params2look_at)
+            
+            if len(existing_param_combinations) > 0:
+                print('parameters', parameters)
+                print('existing_param_combinations[0]', existing_param_combinations[0])
+            else:
+                print('existing_param_combinations is empty')
             
             if parameters not in existing_param_combinations:
             
