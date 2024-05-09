@@ -24,11 +24,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-<<<<<<< HEAD
-experiment_name: 416_b2c_4444
-=======
-experiment_name: 416_b2c
->>>>>>> bbf0e66... Change experiment name in ensemble script
+experiment_name: 416_b2c_4444_6666
 forcings: null
 head: regression
 hidden_size:
@@ -57,13 +53,8 @@ optimizer: Adam
 output_activation: linear
 output_dropout: 0.6
 predict_last_n: 1
-<<<<<<< HEAD
-save_weights_every: 2
-seed: 4444
-=======
 save_weights_every: 5
-seed: 5555
->>>>>>> bbf0e66... Change experiment name in ensemble script
+seed: 6666
 seq_length: 365
 target_variables:
 - q_obs
