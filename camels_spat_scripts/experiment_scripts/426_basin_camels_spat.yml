@@ -136,12 +136,17 @@ dataset: camels_spat
 
 # Path to data set root
 <<<<<<< HEAD
+<<<<<<< HEAD
 # data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 data_dir: ../../../DATA/CAMELS_spat_NH
 =======
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 # data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH_vOK
 >>>>>>> 5b313ea... Added discharge normalization by area and updated the tining scripts
+=======
+# data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
+data_dir: ../../../DATA/CAMELS_spat_NH
+>>>>>>> 72ba5c5a77837d309ef3436192fb6583049cbdcc
 
 # Forcing product [daymet, maurer, maurer_extended, nldas, nldas_extended, nldas_hourly]
 # can be either a list of forcings or a single forcing product
