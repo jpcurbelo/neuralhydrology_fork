@@ -1,14 +1,32 @@
+
+seed: 1111
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
-experiment_name: test_run
+# experiment_name: 416_b3c
+experiment_name: 406_b3c
 
-# files to specify training, validation and test basins (relative to code root or absolute path)
-train_basin_file: 1_basin.txt
-validation_basin_file: 1_basin.txt
-test_basin_file: 1_basin.txt
+## files to specify training, validation and test basins (relative to code root or absolute path)
+# train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+# validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+# test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 
-# training, validation and test time periods (format = 'dd/mm/yyyy')
+# train_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+# validation_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+# test_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+
+train_basin_file: 406_basin_camels_spat_1975-2019_usa_best.txt
+validation_basin_file: 406_basin_camels_spat_1975-2019_usa_best.txt
+test_basin_file: 406_basin_camels_spat_1975-2019_usa_best.txt
+
+# # training, validation and test time periods (format = 'dd/mm/yyyy')
+train_start_date: "01/10/1975"
+train_end_date: "30/09/1995"
+validation_start_date: "01/10/1995"
+validation_end_date: "30/09/2007"
+test_start_date: "01/10/2007"
+test_end_date: "30/09/2019"
+
 # train_start_date: "01/10/1999"
 # train_end_date: "30/09/2008"
 # validation_start_date: "01/10/1980"
@@ -16,29 +34,32 @@ test_basin_file: 1_basin.txt
 # test_start_date: "01/10/1989"
 # test_end_date: "30/09/1999"
 
-train_start_date: "01/10/1980"
-train_end_date: "30/09/2005"
-validation_start_date: "01/10/2005"
-validation_end_date: "30/09/2010"
-test_start_date: "01/10/2010"
-test_end_date: "30/09/2019"
-
 # which GPU (id) to use [in format of cuda:0, cuda:1 etc, or cpu or None]
 device: cuda:0
 
 # --- Validation configuration ---------------------------------------------------------------------
 
 # specify after how many epochs to perform validation
-validate_every: 3
+validate_every: 5
 
 # specify how many random basins to use for validation
-validate_n_random_basins: 1
+validate_n_random_basins: 5
 
 # specify which metrics to calculate during validation (see neuralhydrology.evaluation.metrics)
 # this can either be a list or a dictionary. If a dictionary is used, the inner keys must match the name of the
 # target_variable specified below. Using dicts allows for different metrics per target variable.
 metrics:
   - NSE
+  - Alpha-NSE
+  - Beta-NSE
+  - FHV
+  - FMS
+  - FLV
+  - KGE
+  - Beta-KGE
+  - Peak-Timing
+  - Peak-MAPE
+  - Pearson-r
 
 # --- Model configuration --------------------------------------------------------------------------
 
@@ -53,15 +74,15 @@ head: regression
 output_activation: linear
 
 # ----> General settings <----
-
 # Number of cell states of the LSTM
-hidden_size: 20
+hidden_size: # 64
+  - 256
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
 
 # Dropout applied to the output of the LSTM
-output_dropout: 0.4
+output_dropout: 0.6
 
 # --- Training configuration -----------------------------------------------------------------------
 
@@ -69,24 +90,18 @@ output_dropout: 0.4
 optimizer: Adam
 
 # specify loss [MSE, NSE, RMSE]
-loss: MSE
+# loss: MSE
+loss: NSE
+
+# Number of training epochs
+epochs: 30
 
 # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
-learning_rate:
-  0: 1e-2
-  30: 5e-3
-  40: 1e-3
-  # 0: 1e-3
-  # 80: 5e-4
-  # 100: 1e-4
-  # 120: 5e-5
+learning_rate: 1e-4
 
 
 # Mini-batch size
-batch_size: 256
-
-# Number of training epochs
-epochs: 50
+batch_size: 128
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -97,10 +112,10 @@ predict_last_n: 1
 
 # Length of the input sequence
 # If use_frequencies is used, this needs to be a dict mapping each frequency to a seq_length, else an int.
-seq_length: 365
+seq_length: 270
 
 # Number of parallel workers used in the data pipeline
-num_workers: 8
+num_workers: 16
 
 # Log the training loss every n steps
 log_interval: 5
@@ -109,59 +124,50 @@ log_interval: 5
 log_tensorboard: True
 
 # If a value and greater than 0, logs n random basins as figures during validation
-log_n_figures: 1
+log_n_figures: 2
 
 # Save model weights every n epochs
-save_weights_every: 1
+save_weights_every: 2
 
 # --- Data configurations --------------------------------------------------------------------------
 
 # which data set to use [camels_us, camels_gb, global, hourly_camels_us]
-dataset: camels_us
-# dataset: summa_ca
+dataset: camels_spat
 
 # Path to data set root
-# data_dir: ../../data/CAMELS_US
-data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_US
-# data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/SUMMA_CA
+data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
+# data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH_vOK
 
 # Forcing product [daymet, maurer, maurer_extended, nldas, nldas_extended, nldas_hourly]
 # can be either a list of forcings or a single forcing product
 forcings:
   # - maurer
-  - daymet
+  # - daymet
   # - nldas
 
 dynamic_inputs:
-  # - PRCP(mm/day)_nldas
-  # - PRCP(mm/day)_maurer
-  # - prcp(mm/day)_daymet
-  # - srad(W/m2)_daymet
-  # - tmax(C)_daymet
-  # - tmin(C)_daymet
-  # - vp(Pa)_daymet
-
-  # - pptrate
-  # - airtemp_min
-  # - airtemp_max
-  # - SWRadAtm
-  # - airpres
-  # - LWRadAtm
-  # - spechum
-  # - windspd
-
-  - prcp(mm/day)
-  - tmin(C)
-  - tmax(C)
-  - srad(W/m2)
-  - vp(Pa)
+  - e
+  - mper
+  - msdwlwrf
+  - msdwswrf
+  - msnlwrf
+  - msnswrf
+  - mtpr
+  - q
+  - rh
+  - sp
+  - t
+  - u
+  - v
+  - w
+  - phi
+  - tmean
+  - prcp
 
 # which columns to use as target
 target_variables:
-  - QObs(mm/d)
-  # - averageRoutedRunoff
+  - q_obs
 
 # clip negative predictions to zero for all variables listed below. Should be a list, even for single variables.
 clip_targets_to_zero:
-  - QObs(mm/d)
-  # - averageRoutedRunoff
+  - q_obs

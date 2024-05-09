@@ -6,24 +6,28 @@ seed: 1111
 experiment_name: 426_camels_spat_USA
 
 ## files to specify training, validation and test basins (relative to code root or absolute path)
-train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
-validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
-test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+# train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+# validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+# test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
+
+train_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+validation_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+test_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
 
 # # training, validation and test time periods (format = 'dd/mm/yyyy')
-# train_start_date: "01/10/1975"
-# train_end_date: "30/09/1995"
-# validation_start_date: "01/10/1995"
-# validation_end_date: "30/09/2007"
-# test_start_date: "01/10/2007"
-# test_end_date: "30/09/2019"
+train_start_date: "01/10/1975"
+train_end_date: "30/09/1995"
+validation_start_date: "01/10/1995"
+validation_end_date: "30/09/2007"
+test_start_date: "01/10/2007"
+test_end_date: "30/09/2019"
 
-train_start_date: "01/10/1999"
-train_end_date: "30/09/2008"
-validation_start_date: "01/10/1980"
-validation_end_date: "30/09/1989"
-test_start_date: "01/10/1989"
-test_end_date: "30/09/1999"
+# train_start_date: "01/10/1999"
+# train_end_date: "30/09/2008"
+# validation_start_date: "01/10/1980"
+# validation_end_date: "30/09/1989"
+# test_start_date: "01/10/1989"
+# test_end_date: "30/09/1999"
 
 # which GPU (id) to use [in format of cuda:0, cuda:1 etc, or cpu or None]
 device: cuda:0
@@ -67,8 +71,8 @@ output_activation: linear
 # ----> General settings <----
 # Number of cell states of the LSTM
 hidden_size: # 64
-  - 256
-  # - 256
+  - 64
+  - 64
 
 # Initial bias value of the forget gate
 initial_forget_bias: 3
@@ -89,14 +93,14 @@ loss: NSE
 epochs: 30
 
 # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
-learning_rate: #1e-3
-  0: 1e-3
-  20: 5e-4
-  25: 1e-4
+learning_rate: 1e-4
+  # 0: 1e-3
+  # 20: 5e-4
+  # 25: 1e-4
 
 
 # Mini-batch size
-batch_size: 256
+batch_size: 128
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -147,47 +151,52 @@ forcings:
   # - nldas
 
 dynamic_inputs:
-  # # - prcp(mm/day)_nldas
-  # # - prcp(mm/day)_maurer
-  # # - prcp(mm/day)_daymet
-  # # - srad(W/m2)_daymet
-  # # - tmax(C)_daymet
-  # # - tmin(C)_daymet
-  # # - vp(Pa)_daymet
-# # # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp
-- e           #Vapor pressure - Derived
-- mper        #Mean potential evaporation rate - ERA5
-- msdwlwrf    #Mean downward LONGtwave radiation at the surface - ERA5
-- msdwswrf    #Mean downward SHORTwave radiation at the surface - ERA5
-- msnlwrf     #Net LONGwave radiation at the surface - ERA5
-- msnswrf     #Net SHORTwave radiation at the surface - ERA5
-- mtpr        #Mean total precipitation rate - ERA5
-- q           #Specific humidity - ERA5
-- rh          #Relative humidity - Derived
-- sp          #Surface pressure - Derived
-- t           #Temperature - ERA5
-- t_min       #Temperature - ERA5
-- t_max       #Temperature - ERA5
-- u           #U-component of wind - ERA5
-- v           #V-component of wind - ERA5
-- w           #Wind speed (mean) - Derived
-- phi         #Wind direction - Derived
-- tmean       #Temperature - EM-Earth
-- tmean_min   #Temperature - EM-Earth
-- tmean_max   #Temperature - EM-Earth
-- prcp        #Mean total precipitation rate - EM-Earth
-
-
+#   # # - prcp(mm/day)_nldas
+#   # # - prcp(mm/day)_maurer
+#   # # - prcp(mm/day)_daymet
+#   # # - srad(W/m2)_daymet
+#   # # - tmax(C)_daymet
+#   # # - tmin(C)_daymet
+#   # # - vp(Pa)_daymet
+# # # # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp
 # - e           #Vapor pressure - Derived
+# - mper        #Mean potential evaporation rate - ERA5
+# - msdwlwrf    #Mean downward LONGtwave radiation at the surface - ERA5
 # - msdwswrf    #Mean downward SHORTwave radiation at the surface - ERA5
+# # - msnlwrf     #Net LONGwave radiation at the surface - ERA5
 # # - msnswrf     #Net SHORTwave radiation at the surface - ERA5
 # - mtpr        #Mean total precipitation rate - ERA5
-# - t_min           #Temperature - ERA5
-# - t_max           #Temperature - ERA5
-# # # - sp          #Surface pressure - Derived
-# # - tmean_min      #Temperature - EM-Earth
-# # - tmean_max      #Temperature - EM-Earth
+# - q           #Specific humidity - ERA5
+# - rh          #Relative humidity - Derived
+# - sp          #Surface pressure - Derived
+# - t           #Temperature - ERA5
+# - t_min       #Temperature - ERA5
+# - t_max       #Temperature - ERA5
+# - u           #U-component of wind - ERA5
+# - v           #V-component of wind - ERA5
+# - w           #Wind speed (mean) - Derived
+# - phi         #Wind direction - Derived
+# # - tmean       #Temperature - EM-Earth
+# # - tmean_min   #Temperature - EM-Earth
+# # - tmean_max   #Temperature - EM-Earth
 # # - prcp        #Mean total precipitation rate - EM-Earth
+  - e
+  - mper
+  - msdwlwrf
+  - msdwswrf
+  - msnlwrf
+  - msnswrf
+  - mtpr
+  - q
+  - rh
+  - sp
+  - t
+  - u
+  - v
+  - w
+  - phi
+  - tmean
+  - prcp
 
 # which columns to use as target
 target_variables:

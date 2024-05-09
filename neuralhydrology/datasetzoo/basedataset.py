@@ -131,6 +131,9 @@ class BaseDataset(Dataset):
 
         # get the start and end date periods for each basin
         self._get_start_and_end_dates()
+        
+        # print('self.start_and_end_dates', self.start_and_end_dates)
+        # aux = input("Press Enter to continue...")
 
         # if additional features files are passed in the config, load those files
         if (not additional_features) and cfg.additional_feature_files:
@@ -308,6 +311,11 @@ class BaseDataset(Dataset):
         return
 
     def _load_or_create_xarray_dataset(self) -> xarray.Dataset:
+        
+        # print('self.cfg.train_data_file', self.cfg.train_data_file)
+        # print(self.cfg.train_data_file is None), (not self.is_train)
+        # aux = input("Press Enter to continue...")
+        
         # if no netCDF file is passed, data set is created from raw basin files
         if (self.cfg.train_data_file is None) or (not self.is_train):
             data_list = []
@@ -328,6 +336,11 @@ class BaseDataset(Dataset):
 
             if not self._disable_pbar:
                 LOGGER.info("Loading basin data into xarray data set.")
+                
+                
+            # print('self.basins', self.basins)
+            # aux = input("Press Enter to continue...")
+                
             for basin in tqdm(self.basins, disable=self._disable_pbar, file=sys.stdout):
                 df = self._load_basin_data(basin)
 
@@ -455,6 +468,8 @@ class BaseDataset(Dataset):
                 df = df.reindex(
                     pd.DatetimeIndex(data=pd.date_range(df.index[0], df.index[-1], freq=native_frequency),
                                      name=df.index.name))
+                
+                # print('df', df)
 
                 # Convert to xarray Dataset and add basin string as additional coordinate
                 xr = xarray.Dataset.from_dataframe(df.astype(np.float32))
@@ -477,10 +492,16 @@ class BaseDataset(Dataset):
         else:
             with self.cfg.train_data_file.open("rb") as fp:
                 d = pickle.load(fp)
+                
+            # print('d', d)
+            # aux = input("Press Enter to continue...")
+                
             xr = xarray.Dataset.from_dict(d)
             if not self.frequencies:
                 native_frequency = utils.infer_frequency(xr["date"].values)
                 self.frequencies = [native_frequency]
+                
+        
 
         return xr
 
@@ -717,8 +738,19 @@ class BaseDataset(Dataset):
 
         # performs normalization
         xr = (xr - self.scaler["xarray_feature_center"]) / self.scaler["xarray_feature_scale"]
+        
+        # print(xr)
 
         self._create_lookup_table(xr)
+        
+        # print('\n')
+        # print(self.is_train, self.lookup_table)
+        # print('\n')
+        
+        # aux = input("Press Enter to continue...")
+        
+        
+        
 
     def _setup_normalization(self, xr: xarray.Dataset):
         # default center and scale values are feature mean and std

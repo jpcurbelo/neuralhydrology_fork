@@ -63,7 +63,7 @@ class SummaCA(BaseDataset):
     def _load_basin_data(self, basin: str) -> pd.DataFrame:
         """Load input and output data from text files."""
         
-        print("Loading basin data for basin", basin)
+        # print("Loading basin data for basin", basin)
         
         # get forcings
         df = load_summa_ca_forcings(self.cfg.data_dir, basin)

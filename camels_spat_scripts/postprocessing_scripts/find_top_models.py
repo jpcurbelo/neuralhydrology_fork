@@ -7,8 +7,8 @@ from matplotlib.ticker import MultipleLocator
 
 # Constants
 RUN_DIR = '../experiment_scripts/runs'
-TOPN = 20
-BOTTOMN = 426
+TOPN = 50
+BOTTOMN = 20
 
 # Functions
 def main(top_n=TOPN, bottom_n=BOTTOMN):
@@ -18,45 +18,73 @@ def main(top_n=TOPN, bottom_n=BOTTOMN):
     # Initialize an empty DataFrame to store the results
     all_results = None
     
-    # Initialize a dictionary to track the count of NSE<0 for each basin
-    basin_nse_count = {}
+    # # Initialize a dictionary to track the count of NSE<0 for each basin
+    # basin_nse_count = {}
 
     # Loop through the run folders
     for run_folder in run_folders:
         results_df, basin_counts = extract_test_results(run_folder)
         
-        # Update basin_nse_count dictionary
-        if basin_counts is not None:
-            for basin, count in basin_counts.items():
-                basin_nse_count[basin] = basin_nse_count.get(basin, 0) + count
+        # # Update basin_nse_count dictionary
+        # if basin_counts is not None:
+        #     for basin, count in basin_counts.items():
+        #         basin_nse_count[basin] = basin_nse_count.get(basin, 0) + count
         
         if results_df is not None:
             if all_results is None:
                 all_results = results_df
             else:
                 all_results = pd.concat([all_results, results_df], ignore_index=True)
+                
+    if all_results is None:
+        print("No test results found.")
+        return None, None
+    
+    # Filter by unique results
+    unique_results = all_results.drop_duplicates(subset=all_results.columns.difference(['run_folder']))
     
     # Sort by 'NSE<0' in ascending order and 'NSE' in descending order
-    sorted_results = all_results.sort_values(by=['NSE<0', 'NSE'], ascending=[True, False])
+    sorted_results = unique_results.sort_values(by=['NSE<0', 'NSE'], ascending=[True, False])
     
     # Save the DataFrame with the top N results
     top_results = sorted_results.head(top_n)
     top_results.to_csv(f'top{top_n}_models.csv', index=False)
     
+    # # Sort the basin_nse_count dictionary by values in descending order
+    # sorted_basin_nse_count = dict(sorted(basin_nse_count.items(), key=lambda item: item[1], reverse=True))
+
+    # # Select the top N items
+    # worst_n_basins = dict(list(sorted_basin_nse_count.items())[:bottom_n])
+    # worst_n_basins_df = pd.DataFrame(worst_n_basins.items(), columns=['basin', 'count'])
+    # worst_n_basins_df.to_csv(f'worst{bottom_n}_basins.csv', index=False)
+    
+    # # Create histograms of the NSE<0 counts and save as images
+    # create_histogram(worst_n_basins_df, bottom_n)
+    
+    ## Worst basins among the top N models
+    # Initialize a dictionary to track the count of NSE<0 for each basin
+    basin_nse_count_best = {}
+    for run_folder in top_results['run_folder']:
+        results_df, basin_counts = extract_test_results(run_folder)
+        
+        # Update basin_nse_count dictionary
+        if basin_counts is not None:
+            for basin, count in basin_counts.items():
+                basin_nse_count_best[basin] = basin_nse_count_best.get(basin, 0) + count
+                
     # Sort the basin_nse_count dictionary by values in descending order
-    sorted_basin_nse_count = dict(sorted(basin_nse_count.items(), key=lambda item: item[1], reverse=True))
-
+    sorted_basin_nse_count_best = dict(sorted(basin_nse_count_best.items(), key=lambda item: item[1], reverse=True))
+    
     # Select the top N items
-    worst_n_basins = dict(list(sorted_basin_nse_count.items())[:bottom_n])
-    worst_n_basins_df = pd.DataFrame(worst_n_basins.items(), columns=['basin', 'count'])
-    worst_n_basins_df.to_csv(f'worst{bottom_n}_basins.csv', index=False)
-    
+    worst_n_basins_best = dict(list(sorted_basin_nse_count_best.items())[:bottom_n])
+    worst_n_basins_df_best = pd.DataFrame(worst_n_basins_best.items(), columns=['basin', 'count'])
+    worst_n_basins_df_best.to_csv(f'worst{bottom_n}_basins_best.csv', index=False)  
     # Create histograms of the NSE<0 counts and save as images
-    create_histogram(worst_n_basins_df, bottom_n)
+    create_histogram(worst_n_basins_df_best, bottom_n)
     
 
     
-    return sorted_results, worst_n_basins
+    return sorted_results, worst_n_basins_best
 
 def extract_test_results(run_folder):
     # Path to the test results file

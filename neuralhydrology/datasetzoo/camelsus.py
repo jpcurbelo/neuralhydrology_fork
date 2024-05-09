@@ -168,6 +168,10 @@ def load_camels_us_forcings(data_dir: Path, basin: str, forcings: str) -> Tuple[
     forcing_path = data_dir / 'basin_mean_forcing' / forcings
     if not forcing_path.is_dir():
         raise OSError(f"{forcing_path} does not exist")
+    
+    # print('basin:', basin)
+    # print('forcing_path:', forcing_path)
+    # aux = input('press enter to continue')
 
     file_path = list(forcing_path.glob(f'**/{basin}_*_forcing_leap.txt'))
     if file_path:

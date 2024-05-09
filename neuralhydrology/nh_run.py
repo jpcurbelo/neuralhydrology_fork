@@ -66,6 +66,13 @@ def start_run(config_file: Path, gpu: int = None):
     """
 
     config = Config(config_file)
+    
+    
+    
+    # print(config, config.verbose)
+    
+    # aux = input("Press Enter to continue...")
+    
 
     # check if a GPU has been specified as command line argument. If yes, overwrite config
     if gpu is not None and gpu >= 0:

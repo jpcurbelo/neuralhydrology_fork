@@ -146,6 +146,12 @@ class BaseTrainer(object):
 
         # Initialize dataset before the model is loaded.
         ds = self._get_dataset()
+        
+        # print(ds)
+        # aux = input('!!!!!!!!!!!!!Press enter to continue: ')    
+        
+        
+        
         if len(ds) == 0:
             raise ValueError("Dataset contains no samples.")
         self.loader = self._get_data_loader(ds=ds)
