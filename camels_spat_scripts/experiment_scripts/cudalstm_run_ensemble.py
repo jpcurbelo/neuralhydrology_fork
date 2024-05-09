@@ -32,7 +32,8 @@ if __name__ == '__main__':
     with open(config_fname, "r") as f:
         run_config = yaml.safe_load(f)
         
-    experiment_name = run_config['experiment_name']
+    # experiment_name = run_config['experiment_name']
+    experiment_name = "416_b2c"
         
     for seed in seed_list:
         
