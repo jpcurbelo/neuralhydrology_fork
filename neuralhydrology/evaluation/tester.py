@@ -387,7 +387,11 @@ class BaseTester(object):
         # save metrics any time this function is called, as long as they exist
         if self.cfg.metrics:
             df = metrics_to_dataframe(results, self.cfg.metrics)
-            metrics_file = parent_directory / f"{self.period}_metrics.csv"
+            # Check if seed in cfg
+            if hasattr(self.cfg, 'seed') and self.cfg.seed is not None:
+                metrics_file = parent_directory / f"{self.period}_metrics_seed{self.cfg.seed}.csv"
+            else:
+                metrics_file = parent_directory / f"{self.period}_metrics.csv"
             df.to_csv(metrics_file)
             LOGGER.info(f"Stored metrics at {metrics_file}")
 

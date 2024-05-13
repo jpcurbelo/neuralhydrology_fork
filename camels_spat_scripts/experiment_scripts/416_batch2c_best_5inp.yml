@@ -6,25 +6,13 @@ data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 dataset: camels_spat
 device: cuda:0
 dynamic_inputs:
-- e
-- mper
-- msdwlwrf
-- msdwswrf
-- msnlwrf
-- msnswrf
 - mtpr
-- q
-- rh
-- sp
-- t
-- u
-- v
-- w
-- phi
-- tmean
-- prcp
+- t_min
+- t_max
+- msdwswrf
+- e
 epochs: 30
-experiment_name: 416_b2c_8888
+experiment_name: 416_b2c_5inp_1111
 forcings: null
 head: regression
 hidden_size:
@@ -54,7 +42,7 @@ output_activation: linear
 output_dropout: 0.6
 predict_last_n: 1
 save_weights_every: 5
-seed: 8888
+seed: 1111
 seq_length: 365
 target_variables:
 - q_obs

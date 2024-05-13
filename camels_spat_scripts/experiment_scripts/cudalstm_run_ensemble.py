@@ -20,20 +20,26 @@ only_run_these = [
 ]
 
 seed_list = [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888]
+# seed_list = [7777, 8888]
 
 
 if __name__ == '__main__':
     
     ## export LD_LIBRARY_PATH=/home/ame805/neuralhydrology_fork/venv-nh/lib/python3.8/site-packages/nvidia/cudnn/lib
 
-    config_fname = "416_batch2c_best.yml"
+    # config_fname = "416_batch2c_best.yml"
+    # config_fname = "416_batch2c_best_5inp.yml"
+    # config_fname = "426_batch2c_best.yml"
+    config_fname = "426_batch2c_best_5inp.yml"
         
     print("Config file name:", config_fname)
     with open(config_fname, "r") as f:
         run_config = yaml.safe_load(f)
         
     # experiment_name = run_config['experiment_name']
-    experiment_name = "416_b2c"
+    # experiment_name = "426_b2c"
+    # experiment_name = "416_b2c_5inp"
+    experiment_name = "426_b2c_5inp"
         
     for seed in seed_list:
         

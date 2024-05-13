@@ -24,7 +24,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 416_b2c_8888
+experiment_name: 426_b2c_5inp_8888
 forcings: null
 head: regression
 hidden_size:
@@ -58,14 +58,14 @@ seed: 8888
 seq_length: 365
 target_variables:
 - q_obs
-test_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+test_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 test_end_date: 30/09/2019
 test_start_date: 01/10/2007
-train_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+train_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 train_end_date: 30/09/1995
 train_start_date: 01/10/1975
 validate_every: 5
 validate_n_random_basins: 5
-validation_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
+validation_basin_file: 426_basin_camels_spat_1975-2019_usa.txt
 validation_end_date: 30/09/2007
 validation_start_date: 01/10/1995
