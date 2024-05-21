@@ -1,0 +1,149 @@
+# Files directory
+data_dir: ../../../../../../gladwell/hydrology/SUMMA/summa-ml-models
+
+map_shape_file: CAMELS_US/basin_set_full_res/usa-states-census-2014.shp
+hm_catchment: CAMELS_US/basin_set_full_res/HCDN_nhru_final_671.shp
+
+metrics4plotting: 
+  - NSE 
+  - KGE
+metrics4table:
+  - NSE
+  - Alpha-NSE
+  - Beta-NSE
+  - FHV
+  - FMS
+  - FLV
+
+result_dir: runs_531_nh_paper
+result_file: 
+  test_ensemble_metrics.csv
+files4table:
+  - 1111.csv
+  - 2222.csv
+  - 3333.csv
+  - 4444.csv
+  - 5555.csv
+  - 6666.csv
+  - 7777.csv
+  - 8888.csv
+  - test_ensemble_metrics.csv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ## NH run on 531 CAMELS catchments with EA-LSTM/LSTM model
+# result_dir: 531_camels_ealstm
+# result_file: 
+#   # test_metrics_531camels_ealstm_seed111.csv
+#   # test_metrics_531camels_ealstm_seed111flv07.csv
+#   test_metrics_531camels_ealstm_seed111flv07valid.csv
+#   # test_metrics_531camels_lstm_seed111.csv
+# files4table:
+#   - test_metrics_531camels_ealstm_seed111.csv
+#   - test_metrics_531camels_ealstm_seed111flv07.csv
+#   - test_metrics_531camels_ealstm_seed111flv07valid.csv
+#   # - test_metrics_531camels_lstm_seed111.csv
+#   # - test_metrics_531camels_lstm_seed111flv07.csv
+
+
+# ## NH run on 426 CAMELS_spat catchments
+# result_dir: 426_camels_spat_usa
+# result_file: 
+#   test_metrics_cedar_batch1b_15inp.csv
+#   # test_metrics_cedar_batch3a.csv
+#   # test_metrics_cedar_batch1b.csv
+#   # test_metrics_cedar_batch1a.csv
+#   # test_metrics_norm-area_v0.csv
+#   # test_metrics_norm-area_v1.csv
+# files4table:
+#   - test_metrics_cedar_batch1b_15inp.csv
+#   - test_metrics_cedar_batch3a.csv
+#   - test_metrics_cedar_batch1b.csv
+#   - test_metrics_cedar_batch1a.csv
+#   - test_metrics_norm-area_v0.csv
+#   - test_metrics_norm-area_v1.csv
+
+
+# ## NH run on 416 CAMELS_spat catchments
+# result_dir: 416_camels_spat_usa
+# result_file: 
+#   test_metrics_17inp.csv
+# files4table:
+#   - test_metrics_17inp.csv
+
+
+# ## NH run on 416 CAMELS_spat catchments
+# result_dir: 416_camels_spat_usa
+# result_file: 
+#   test_metrics_cedar_batch2c.csv
+# files4table:
+#   - test_metrics_cedar_batch2c.csv
+
+
+# result_dir: EALSTM_PAPER_results_loss_NSE
+# result_file: 
+#   # test_metrics_531camels_ealstm_seed111.csv
+#   test_metrics_531camels_ealstm_ensemble.csv
+# files4table:
+#   - test_metrics_531camels_ealstm_seed111.csv
+#   - test_metrics_531camels_ealstm_seed222.csv
+#   - test_metrics_531camels_ealstm_seed333.csv
+#   - test_metrics_531camels_ealstm_seed444.csv
+#   - test_metrics_531camels_ealstm_seed555.csv
+#   - test_metrics_531camels_ealstm_seed666.csv
+#   - test_metrics_531camels_ealstm_seed777.csv
+#   - test_metrics_531camels_ealstm_seed888.csv
+#   - test_metrics_531camels_ealstm_ensemble.csv
+
+#   - test_metrics_531camels_lstm_seed111.csv
+#   - test_metrics_531camels_lstm_seed222.csv
+#   - test_metrics_531camels_lstm_seed333.csv
+#   - test_metrics_531camels_lstm_seed444.csv
+#   - test_metrics_531camels_lstm_seed555.csv
+#   - test_metrics_531camels_lstm_seed666.csv
+#   - test_metrics_531camels_lstm_seed777.csv
+#   - test_metrics_531camels_lstm_seed888.csv
+#   - test_metrics_531camels_lstm_ensemble.csv
+
+# result_dir: 426_camels_spat_usa
+# result_dir: 447_camels_ealstm
+# result_dir: 531_camels_ealstm
+# result_dir: EALSTM_PAPER_results_loss_MSE
+# result_dir: EALSTM_PAPER_results_loss_NSE
+
+# result_file:
+#   # test_metrics_531camels_ealstm.csv
+#   # test_metrics_531camels_lstm.csv
+#   # test_metrics_447camels_ealstm.csv
+#   # test_metrics_447camels_lstm.csv
+#   test_metrics_531camels_ealstm_seed111.csv
+#   # test_metrics_531camels_lstm_seed111.csv
+
+
+# files4table:
+#   # - test_metrics_447camels_ealstm.csv
+#   # - test_metrics_447camels_lstm.csv
+#   - test_metrics_531camels_ealstm_seed111.csv
+#   - test_metrics_531camels_lstm_seed111.csv
+
+# metrics4table:
+# # NSE,Alpha-NSE,Beta-NSE,FHV,FMS,FLV
+#   - NSE
+#   - Alpha-NSE
+#   - Beta-NSE
+#   - FHV
+#   - FMS
+#   - FLV
+
+

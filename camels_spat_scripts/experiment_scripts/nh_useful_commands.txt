@@ -1,0 +1,3 @@
+nh-results-ensemble --run-dirs * --output-dir .
+
+nh-run continue_training --run-dir runs/XXX --config-file runs/XXX/config_continue.yml   

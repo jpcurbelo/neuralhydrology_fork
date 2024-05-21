@@ -72,12 +72,12 @@ def plot_missing_data_heatmap(df, ds, start_year, end_year, countries_str):
     
     legend_handles = [Patch(color=cmap[True], label='Non Missing Value'),  # red
                     Patch(color=cmap[False], label='Missing Value')]  # green
-    plt.legend(handles=legend_handles, ncol=2, bbox_to_anchor=[0.5, 1.02], loc='lower center', fontsize=12, handlelength=1.2)
+    plt.legend(handles=legend_handles, ncol=2, bbox_to_anchor=[0.5, 1.02], loc='lower center', fontsize=20, handlelength=1.2)
     plt.tight_layout()
     plt.show()
 
     # Save the figure
-    fig.savefig(f"missing_data_{ds[1]}_{start_year}-{end_year}_{countries_str}.png", dpi=300)
+    fig.savefig(f"missing_data_{ds[1]}_{start_year}-{end_year}_{countries_str}.png", dpi=150)
 
 def calculate_total_configs(config_dict):
     """

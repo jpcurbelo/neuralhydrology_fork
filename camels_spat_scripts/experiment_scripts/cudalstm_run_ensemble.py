@@ -21,6 +21,7 @@ only_run_these = [
 
 seed_list = [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888]
 # seed_list = [7777, 8888]
+# seed_list = [1119, 2229]
 
 
 if __name__ == '__main__':
@@ -30,7 +31,10 @@ if __name__ == '__main__':
     # config_fname = "416_batch2c_best.yml"
     # config_fname = "416_batch2c_best_5inp.yml"
     # config_fname = "426_batch2c_best.yml"
-    config_fname = "426_batch2c_best_5inp.yml"
+    # config_fname = "426_batch2c_best_5inp.yml"
+    # config_fname = '531_nh_paper.yml'
+    # config_fname = '505_nh_paper_camelsspat.yml'
+    config_fname = '505_nh_paper_camelsspat_17inp.yml'
         
     print("Config file name:", config_fname)
     with open(config_fname, "r") as f:
@@ -39,7 +43,12 @@ if __name__ == '__main__':
     # experiment_name = run_config['experiment_name']
     # experiment_name = "426_b2c"
     # experiment_name = "416_b2c_5inp"
-    experiment_name = "426_b2c_5inp"
+    # experiment_name = "426_b2c_5inp"
+    # experiment_name = "426_b2c_16inp"
+    # experiment_name = "416_b2c_16inp"
+    # experiment_name = "531_nh_paper"
+    # experiment_name = "505_nh_paper_camelsspat"
+    experiment_name = "505_nh_paper_camelsspat_17inp"
         
     for seed in seed_list:
         

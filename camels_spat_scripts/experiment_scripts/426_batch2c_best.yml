@@ -7,7 +7,6 @@ dataset: camels_spat
 device: cuda:0
 dynamic_inputs:
 - e
-- mper
 - msdwlwrf
 - msdwswrf
 - msnlwrf
@@ -24,7 +23,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 426_b2c_5inp_8888
+experiment_name: 426_b2c_16inp_8888
 forcings: null
 head: regression
 hidden_size:

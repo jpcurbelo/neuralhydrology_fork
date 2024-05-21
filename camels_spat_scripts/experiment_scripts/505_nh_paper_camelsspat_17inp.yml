@@ -1,4 +1,4 @@
-batch_size: 128
+batch_size: 256
 clip_gradient_norm: 1
 clip_targets_to_zero:
 - q_obs
@@ -7,6 +7,7 @@ dataset: camels_spat
 device: cuda:1
 dynamic_inputs:
 - e
+- mper
 - msdwlwrf
 - msdwswrf
 - msnlwrf
@@ -23,13 +24,13 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 416_b2c_16inp_8888
+experiment_name: 505_nh_paper_camelsspat_17inp_2222
 forcings: null
 head: regression
 hidden_size:
-- 128
-initial_forget_bias: 3
-learning_rate: 1e-4
+- 256
+initial_forget_bias: 5
+learning_rate: 1e-3
 log_interval: 5
 log_n_figures: 2
 log_tensorboard: true
@@ -50,21 +51,21 @@ model: cudalstm
 num_workers: 16
 optimizer: Adam
 output_activation: linear
-output_dropout: 0.6
+output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 8888
-seq_length: 365
+seed: 2222
+seq_length: 270
 target_variables:
 - q_obs
-test_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
-test_end_date: 30/09/2019
-test_start_date: 01/10/2007
-train_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
-train_end_date: 30/09/1995
-train_start_date: 01/10/1975
+test_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
+test_end_date: 30/09/1999
+test_start_date: 01/10/1989
+train_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
+train_end_date: 30/09/2008
+train_start_date: 01/10/1999
 validate_every: 5
 validate_n_random_basins: 5
-validation_basin_file: 416_basin_camels_spat_1975-2019_usa_best.txt
-validation_end_date: 30/09/2007
-validation_start_date: 01/10/1995
+validation_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
+validation_end_date: 30/09/2015
+validation_start_date: 01/10/2008

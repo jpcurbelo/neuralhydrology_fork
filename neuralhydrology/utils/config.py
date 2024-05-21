@@ -265,7 +265,7 @@ class Config(object):
 
     @property
     def allow_subsequent_nan_losses(self) -> int:
-        return self._cfg.get("allow_subsequent_nan_losses", 0)
+        return self._cfg.get("allow_subsequent_nan_losses", 2)
 
     @property
     def autoregressive_inputs(self) -> Union[List[str], Dict[str, List[str]]]:
