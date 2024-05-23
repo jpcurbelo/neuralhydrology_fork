@@ -19,9 +19,12 @@ only_run_these = [
     "416_batch2c_best.yml"
 ]
 
-seed_list = [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888]
-# seed_list = [7777, 8888]
-# seed_list = [1119, 2229]
+seed_list = [111, 222]
+# seed_list = [333, 444]
+# seed_list = [555, 666, 777, 888]
+# seed_list = [666, 777, 888]
+# seed_list = [777, 888]
+# seed_list = [888]
 
 
 if __name__ == '__main__':
@@ -34,7 +37,9 @@ if __name__ == '__main__':
     # config_fname = "426_batch2c_best_5inp.yml"
     # config_fname = '531_nh_paper.yml'
     # config_fname = '505_nh_paper_camelsspat.yml'
-    config_fname = '505_nh_paper_camelsspat_17inp.yml'
+    # config_fname = '505_nh_paper_camelsspat_17inp.yml'
+    # config_fname = '505_nh_paper_camelsspat_emearth.yml'
+    config_fname = '531_nh_paper_ealstm.yml'
         
     print("Config file name:", config_fname)
     with open(config_fname, "r") as f:
@@ -48,7 +53,9 @@ if __name__ == '__main__':
     # experiment_name = "416_b2c_16inp"
     # experiment_name = "531_nh_paper"
     # experiment_name = "505_nh_paper_camelsspat"
-    experiment_name = "505_nh_paper_camelsspat_17inp"
+    # experiment_name = "505_nh_paper_camelsspat_17inp"
+    # experiment_name = "505_nh_paper_camelsspat_emearth"
+    experiment_name = "531_nh_paper_ealstm"
         
     for seed in seed_list:
         
@@ -58,7 +65,6 @@ if __name__ == '__main__':
         # Re-write the configuration file with the new seed
         with open(config_fname, 'w') as ymlfile:
             yaml.dump(run_config, ymlfile, default_flow_style=False)
-        
         
         ## Train the model
         train_model(config_fname)   

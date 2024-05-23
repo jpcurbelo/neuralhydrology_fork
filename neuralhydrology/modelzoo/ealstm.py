@@ -37,17 +37,22 @@ class EALSTM(BaseModel):
 
     def __init__(self, cfg: Config):
         super(EALSTM, self).__init__(cfg=cfg)
-        self._hidden_size = cfg.hidden_size
 
         self.embedding_net = InputLayer(cfg)
 
-        self.input_gate = nn.Linear(self.embedding_net.statics_output_size, cfg.hidden_size)
+        # Check if hidden_size is a list or int and handle accordingly
+        if isinstance(cfg.hidden_size, list):
+            self._hidden_size = cfg.hidden_size[0]
+        elif isinstance(cfg.hidden_size, int):
+            self._hidden_size = cfg.hidden_size
+
+        self.input_gate = nn.Linear(self.embedding_net.statics_output_size, self._hidden_size)
 
         # create tensors of learnable parameters
-        self.dynamic_gates = _DynamicGates(cfg=cfg, input_size=self.embedding_net.dynamics_output_size)
+        self.dynamic_gates = _DynamicGates(cfg=cfg, input_size=self.embedding_net.dynamics_output_size, hidden_size=self._hidden_size)
         self.dropout = nn.Dropout(p=cfg.output_dropout)
 
-        self.head = get_head(cfg=cfg, n_in=cfg.hidden_size, n_out=self.output_size)
+        self.head = get_head(cfg=cfg, n_in=self._hidden_size, n_out=self.output_size)
 
     def _cell(self, x: torch.Tensor, i: torch.Tensor, states: Tuple[torch.Tensor,
                                                                     torch.Tensor]) -> Tuple[torch.Tensor, torch.Tensor]:
@@ -117,12 +122,13 @@ class EALSTM(BaseModel):
 class _DynamicGates(nn.Module):
     """Internal class to wrap the dynamic gate parameters into a dedicated PyTorch Module"""
 
-    def __init__(self, cfg: Config, input_size: int):
+    def __init__(self, cfg: Config, input_size: int, hidden_size: int = None):
         super(_DynamicGates, self).__init__()
         self.cfg = cfg
-        self.weight_ih = nn.Parameter(torch.FloatTensor(input_size, 3 * cfg.hidden_size))
-        self.weight_hh = nn.Parameter(torch.FloatTensor(cfg.hidden_size, 3 * cfg.hidden_size))
-        self.bias = nn.Parameter(torch.FloatTensor(3 * cfg.hidden_size))
+        self.hidden_size = hidden_size if hidden_size is not None else cfg.hidden_size
+        self.weight_ih = nn.Parameter(torch.FloatTensor(input_size, 3 * self.hidden_size))
+        self.weight_hh = nn.Parameter(torch.FloatTensor(self.hidden_size, 3 * self.hidden_size))
+        self.bias = nn.Parameter(torch.FloatTensor(3 * self.hidden_size))
 
         # initialize parameters
         self._reset_parameters()
@@ -131,14 +137,14 @@ class _DynamicGates(nn.Module):
         """Special initialization of certain model weights."""
         nn.init.orthogonal_(self.weight_ih.data)
 
-        weight_hh_data = torch.eye(self.cfg.hidden_size)
+        weight_hh_data = torch.eye(self.hidden_size)
         weight_hh_data = weight_hh_data.repeat(1, 3)
         self.weight_hh.data = weight_hh_data
 
         nn.init.constant_(self.bias.data, val=0)
 
         if self.cfg.initial_forget_bias is not None:
-            self.bias.data[:self.cfg.hidden_size] = self.cfg.initial_forget_bias
+            self.bias.data[:self.hidden_size] = self.cfg.initial_forget_bias
 
     def forward(self, h: torch.Tensor, x_d: torch.Tensor):
         gates = h @ self.weight_hh + x_d @ self.weight_ih + self.bias

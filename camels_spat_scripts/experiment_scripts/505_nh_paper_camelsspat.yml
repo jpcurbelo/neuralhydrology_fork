@@ -4,7 +4,7 @@ clip_targets_to_zero:
 - q_obs
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 dataset: camels_spat
-device: cuda:1
+device: cuda:0
 dynamic_inputs:
 - mtpr
 - t_min
@@ -12,13 +12,16 @@ dynamic_inputs:
 - msdwswrf
 - e
 epochs: 30
-experiment_name: 505_nh_paper_camelsspat_2222
+experiment_name: 505_nh_paper_camelsspat_666
 forcings: null
 head: regression
 hidden_size:
 - 256
 initial_forget_bias: 5
-learning_rate: 1e-3
+learning_rate:
+  0: 1e-3
+  11: 5e-4
+  21: 1e-5
 log_interval: 5
 log_n_figures: 2
 log_tensorboard: true
@@ -42,7 +45,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 2222
+seed: 666
 seq_length: 270
 target_variables:
 - q_obs
@@ -52,8 +55,8 @@ test_start_date: 01/10/1989
 train_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
 train_end_date: 30/09/2008
 train_start_date: 01/10/1999
-validate_every: 5
+validate_every: 50
 validate_n_random_basins: 5
 validation_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
-validation_end_date: 30/09/2015
-validation_start_date: 01/10/2008
+validation_end_date: 30/09/1999
+validation_start_date: 01/10/1989

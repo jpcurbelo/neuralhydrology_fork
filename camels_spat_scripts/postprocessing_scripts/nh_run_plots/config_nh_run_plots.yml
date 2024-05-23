@@ -15,19 +15,37 @@ metrics4table:
   - FMS
   - FLV
 
-result_dir: runs_531_nh_paper
+# result_dir: runs_531_nh_paper
+# result_dir: runs_505_nh_paper_camelsspat
+result_dir: runs_505_nh_paper_camelsspat_17inp
 result_file: 
   test_ensemble_metrics.csv
 files4table:
-  - 1111.csv
-  - 2222.csv
-  - 3333.csv
-  - 4444.csv
-  - 5555.csv
-  - 6666.csv
-  - 7777.csv
-  - 8888.csv
+  - 111.csv
+  - 222.csv
+  - 333.csv
+  - 444.csv
+  - 555.csv
+  - 666.csv
+  - 777.csv
+  - 888.csv
   - test_ensemble_metrics.csv
+
+
+# # result_dir: runs_531_nh_paper_1900
+# result_dir: runs_b2c_416_ensemble_long_17inp
+# result_file: 
+#   test_ensemble_metrics.csv
+# files4table:
+#   - 1111.csv
+#   - 2222.csv
+#   - 3333.csv
+#   - 4444.csv
+#   - 5555.csv
+#   - 6666.csv
+#   - 7777.csv
+#   - 8888.csv
+#   - test_ensemble_metrics.csv
 
 
 

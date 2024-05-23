@@ -9,7 +9,14 @@ current_dir = Path(__file__).resolve().parent
 root_dir = Path(current_dir).resolve().parents[2]
 sys.path.append(root_dir)
 
-JOBS_FOLDER = 'runs_531_nh_paper'
+
+# JOBS_FOLDER = 'runs_531_nh_paper_1900'
+# JOBS_FOLDER = 'runs_b2c_416_ensemble_long_17inp'
+
+# JOBS_FOLDER = 'runs_531_nh_paper'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat'
+JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_17inp'
+
 EPOCH = 30
 
 # EPOCH to 3 places string with leading zeros
@@ -34,11 +41,18 @@ def main():
     # Get list of subdirectories and process them
     for item in os.listdir(jobs_path):
         item_path = jobs_path / item
-        if item_path.is_dir() and item.startswith('531_nh_paper'):
+        if item_path.is_dir():  # and item.startswith('531_nh_paper'):
             # Extract the seed from the directory name
-            seed = item.split('_')[-3]
+            item_split = item.split('_')
+            if len(item_split) == 1:
+                seed = item_split[0]
+            else:
+                seed = item.split('_')[-3]
             # Define the source file path for the test metrics
-            metrics_file = item_path / 'test' / f'model_epoch{epoch_str}' / f'test_metrics_seed{seed}.csv'
+            if len(item_split) == 1:
+                metrics_file = item_path / 'test' / f'model_epoch{epoch_str}' / 'test_metrics.csv'
+            else:
+                metrics_file = item_path / 'test' / f'model_epoch{epoch_str}' / f'test_metrics_seed{seed}.csv'
             if metrics_file.exists():
                 # Define the destination file path in the new folder
                 dest_seed_file = jobs_folder_new / f'{seed}.csv'
