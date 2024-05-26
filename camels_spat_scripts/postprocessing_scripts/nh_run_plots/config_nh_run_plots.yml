@@ -37,30 +37,30 @@ files4table:
 
 folders4cdf_dir:
   - directory: runs_531_nh_paper
-    experiment: 'E0a (LSTM: 531/5)'
-    color: red
+    experiment: 'E0a (LSTM: 5)$^*$'
+    color: 'tab:red'
     marker: o
-    linestyle: '--'
+    linestyle: '-.'
   - directory: runs_505_nh_paper_camelsspat_emearth
-    experiment: 'E0b (LSTM: 505/5)'
-    color: blue
-    marker: o
-    linestyle: '--'
+    experiment: 'E0b (LSTM: 5)$^\dagger$'
+    color: 'tab:purple'
+    marker: null
+    linestyle: '-.'
   - directory: runs_505_nh_paper_camelsspat_17inp
-    experiment: 'E0c (LSTM: 505/17)'
-    color: green
-    marker: o
-    linestyle: '--'
+    experiment: 'E0c (LSTM: 17)$^\dagger$'
+    color: 'tab:orange'
+    marker: null 
+    linestyle: '-.'
   - directory: runs_531_nh_paper_ealstm
-    experiment: 'E1a (EA-LSTM: 531/5+27)'
-    color: purple
-    marker: s
-    linestyle: '-'
+    experiment: 'E1a (EA-LSTM: 5+27)$^*$'
+    color: 'tab:blue'
+    marker: X
+    linestyle: '--'
   - directory: runs_505_nh_paper_camelsspat_ealstm15static
-    experiment: 'Eab (EA-LSTM: 505/5+15)'
-    color: orange
-    marker: s 
-    linestyle: '-'
+    experiment: 'Eab (EA-LSTM: 5+15)$^\dagger$'
+    color: 'tab:green'
+    marker: null 
+    linestyle: '--'
 
 
 
