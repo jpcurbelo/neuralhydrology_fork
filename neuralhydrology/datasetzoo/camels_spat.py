@@ -70,6 +70,34 @@ class CamelsSpat(BaseDataset):
 
         return df
 
+
+    def _load_attributes(self) -> pd.DataFrame:
+        return load_camels_spat_attributes(self.cfg.data_dir, basins=self.basins)
+
+
+def load_camels_spat_attributes(data_dir: Path, basins: List[str] = []) -> pd.DataFrame:
+
+    attributes_path = Path(data_dir) / 'camels_spat_attributes_to_nh.csv'
+
+    if not attributes_path.exists():
+        raise RuntimeError(f"Attribute folder not found at {attributes_path}")
+    
+    df_attr = pd.read_csv(attributes_path)
+
+    # Filter by basins
+    if basins:
+        df_attr = df_attr[df_attr['basin'].isin(basins)]
+
+    # Set basin as index
+    df_attr = df_attr.set_index('basin')
+
+    # print(df_attr.head())
+    # print(df_attr.shape)
+    # aux = input('Press Enter to continue...')
+
+    return df_attr
+
+
 def load_camels_spat_forcings(data_dir: Path, basin: str) -> Tuple[pd.DataFrame, int]:
     """Load the forcing data for a basin of the CamelsSpat data set.
 

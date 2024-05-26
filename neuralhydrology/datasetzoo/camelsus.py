@@ -140,6 +140,10 @@ def load_camels_us_attributes(data_dir: Path, basins: List[str] = []) -> pd.Data
             raise ValueError('Some basins are missing static attributes.')
         df = df.loc[basins]
 
+    # print(df.head())
+    # print(df.shape)
+    # aux = input('Press Enter to continue...')
+
     return df
 
 

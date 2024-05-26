@@ -17,7 +17,11 @@ metrics4table:
 
 # result_dir: runs_531_nh_paper
 # result_dir: runs_505_nh_paper_camelsspat
-result_dir: runs_505_nh_paper_camelsspat_17inp
+# result_dir: runs_505_nh_paper_camelsspat_17inp
+# result_dir: runs_505_nh_paper_camelsspat_emearth
+# result_dir: runs_531_nh_paper_ealstm
+# result_dir: runs_505_nh_paper_camelsspat_14inp
+result_dir: runs_505_nh_paper_camelsspat_ealstm15static
 result_file: 
   test_ensemble_metrics.csv
 files4table:
@@ -30,6 +34,34 @@ files4table:
   - 777.csv
   - 888.csv
   - test_ensemble_metrics.csv
+
+folders4cdf_dir:
+  - directory: runs_531_nh_paper
+    experiment: 'E0a (LSTM: 531/5)'
+    color: red
+    marker: o
+    linestyle: '--'
+  - directory: runs_505_nh_paper_camelsspat_emearth
+    experiment: 'E0b (LSTM: 505/5)'
+    color: blue
+    marker: o
+    linestyle: '--'
+  - directory: runs_505_nh_paper_camelsspat_17inp
+    experiment: 'E0c (LSTM: 505/17)'
+    color: green
+    marker: o
+    linestyle: '--'
+  - directory: runs_531_nh_paper_ealstm
+    experiment: 'E1a (EA-LSTM: 531/5+27)'
+    color: purple
+    marker: s
+    linestyle: '-'
+  - directory: runs_505_nh_paper_camelsspat_ealstm15static
+    experiment: 'Eab (EA-LSTM: 505/5+15)'
+    color: orange
+    marker: s 
+    linestyle: '-'
+
 
 
 # # result_dir: runs_531_nh_paper_1900

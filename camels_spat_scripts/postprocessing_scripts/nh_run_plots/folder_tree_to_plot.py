@@ -15,7 +15,11 @@ sys.path.append(root_dir)
 
 # JOBS_FOLDER = 'runs_531_nh_paper'
 # JOBS_FOLDER = 'runs_505_nh_paper_camelsspat'
-JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_17inp'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_17inp'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_emearth'
+# JOBS_FOLDER = 'runs_531_nh_paper_ealstm'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_14inp'
+JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm15static'
 
 EPOCH = 30
 
