@@ -36,7 +36,14 @@ def validate_basin_data(basin, data_dir, start_date, end_date):
         - date_presence: pd.Series, series of 1s and 0s indicating the presence of data for each date in the specified range
     '''
     
-    df = pd.read_csv(os.path.join(data_dir, basin), index_col=0, parse_dates=True)   
+    df = pd.read_csv(os.path.join(data_dir, basin), index_col=0, parse_dates=True)  
+
+    # print("Basin:", basin)
+    # print("Dates in period:", df.index[0] <= pd.to_datetime(start_date) and df.index[-1] >= pd.to_datetime(end_date))
+    # display(df.head())
+    # aux = input("Press Enter to continue...")
+
+
     if df.index[0] <= pd.to_datetime(start_date) and df.index[-1] >= pd.to_datetime(end_date):
         
         # Create a Series of dates between the start and end date: 1 if date is present, 0 if missing

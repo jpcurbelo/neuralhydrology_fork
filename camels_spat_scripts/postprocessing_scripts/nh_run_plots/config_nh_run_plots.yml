@@ -21,7 +21,8 @@ metrics4table:
 # result_dir: runs_505_nh_paper_camelsspat_emearth
 # result_dir: runs_531_nh_paper_ealstm
 # result_dir: runs_505_nh_paper_camelsspat_14inp
-result_dir: runs_505_nh_paper_camelsspat_ealstm15static
+# result_dir: runs_505_nh_paper_camelsspat_ealstm19static
+result_dir: runs_505_nh_paper_camelsspat_ealstm19static17inp
 result_file: 
   test_ensemble_metrics.csv
 files4table:
@@ -54,13 +55,23 @@ folders4cdf_dir:
   - directory: runs_531_nh_paper_ealstm
     experiment: 'E1a (EA-LSTM: 5+27)$^*$'
     color: 'tab:blue'
-    marker: X
+    marker: o
     linestyle: '--'
-  - directory: runs_505_nh_paper_camelsspat_ealstm15static
-    experiment: 'Eab (EA-LSTM: 5+15)$^\dagger$'
+  - directory: runs_505_nh_paper_camelsspat_ealstm19static
+    experiment: 'E1b (EA-LSTM: 5+19)$^\dagger$'
     color: 'tab:green'
     marker: null 
     linestyle: '--'
+  - directory: runs_505_nh_paper_camelsspat_ealstm19static17inp
+    experiment: 'E1c (EA-LSTM: 17+19)$^\dagger$'
+    color: 'tab:cyan'
+    marker: null 
+    linestyle: '--'
+  - directory: runs_928_cyril_camelsspat
+    experiment: 'E2 (LSTM: 17)$^\diamond$'
+    color: 'tab:olive'
+    marker: o 
+    linestyle: '-'
 
 
 

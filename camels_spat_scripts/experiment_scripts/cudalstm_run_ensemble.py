@@ -23,10 +23,9 @@ only_run_these = [
 # seed_list = [111, 222]
 # seed_list = [333, 444]
 # seed_list = [555, 666]
-# seed_list = [666, 777, 888]
-# seed_list = [777, 888]
+seed_list = [777, 888]
 # seed_list = [777]
-seed_list = [888]
+# seed_list = [888]
 
 
 if __name__ == '__main__':
@@ -44,7 +43,8 @@ if __name__ == '__main__':
     # config_fname = '505_nh_paper_camelsspat_emearth.yml'
     # config_fname = '531_nh_paper_ealstm.yml'
     # config_fname = "505_nh_paper_camelsspat_ealstm15static.yml"
-    config_fname = "505_nh_paper_camelsspat_ealstm15static17inp.yml"
+    # config_fname = "505_nh_paper_camelsspat_ealstm15static17inp.yml"
+    config_fname = "928_cyril_camelsspat.yml"
         
     print("Config file name:", config_fname)
     with open(config_fname, "r") as f:
@@ -63,7 +63,8 @@ if __name__ == '__main__':
     # experiment_name = "505_nh_paper_camelsspat_emearth"
     # experiment_name = "531_nh_paper_ealstm"
     # experiment_name = "505_nh_paper_camelsspat_ealstm15static"
-    experiment_name = "505_nh_paper_camelsspat_ealstm15static17inp"
+    # experiment_name = "505_nh_paper_camelsspat_ealstm15static17inp"
+    experiment_name = "928_cyril_camelsspat"
         
     for seed in seed_list:
         

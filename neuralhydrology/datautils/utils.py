@@ -168,6 +168,25 @@ def infer_frequency(index: Union[pd.DatetimeIndex, np.ndarray]) -> str:
         If the frequency cannot be inferred from the index or is zero.
     """
     native_frequency = pd.infer_freq(index)
+
+    if native_frequency is None:
+        full_range = pd.date_range(start=index.min(), end=index.max(), freq='D')
+        missing_dates = full_range.difference(index)
+        diffs = index.to_series().diff().dropna().unique()
+
+        # print("Missing dates:", missing_dates)
+        # print("Unique intervals:", diffs)
+
+        if len(diffs) == 1:
+            native_frequency = f'{diffs[0].days}D'
+        else:
+            # Fill missing dates with NaN values
+            filled_index = index.union(missing_dates).sort_values()
+            native_frequency = pd.infer_freq(filled_index)
+            if native_frequency is None:
+                raise ValueError(f'Cannot infer a legal frequency from dataset after filling missing dates. Intervals: {diffs}')
+    
+
     if native_frequency is None:
         raise ValueError(f'Cannot infer a legal frequency from dataset: {native_frequency}.')
     if native_frequency[0] not in '0123456789':  # add a value to the unit so to_timedelta works
