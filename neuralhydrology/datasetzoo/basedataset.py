@@ -691,6 +691,7 @@ class BaseDataset(Dataset):
             dfs.append(self._load_hydroatlas_attributes())
 
         if dfs:
+
             # combine all attributes into a single dataframe
             df = pd.concat(dfs, axis=1)
 
@@ -718,11 +719,17 @@ class BaseDataset(Dataset):
                 df = (df - self.scaler['attribute_means']) / self.scaler["attribute_stds"]
 
             # preprocess each basin feature vector as pytorch tensor
-            for basin in self.basins:
-                attributes = df.loc[df.index == basin].values.flatten()
-                self._attributes[basin] = torch.from_numpy(attributes.astype(np.float32))
+            for basin in self.basins.copy():
+                if basin in df.index:
+                    attributes = df.loc[df.index == basin].values.flatten()
+                    self._attributes[basin] = torch.from_numpy(attributes.astype(np.float32))
+                else:
+                    # If the attributes are not available for a basin, we will remove the basin from self.basins
+                    LOGGER.warning(f"Attributes for basin {basin} are not available. Removing basin from dataset.")
+                    self.basins.remove(basin)
 
     def _load_data(self):
+        
         # load attributes first to sanity-check those features before doing the compute expensive time series loading
         self._load_combined_attributes()
 
@@ -841,7 +848,13 @@ class BaseDataset(Dataset):
                 batch[feature] = np.stack([sample[feature] for sample in samples], axis=0)
             else:
                 # Everything else is a torch.Tensor
-                batch[feature] = torch.stack([sample[feature] for sample in samples], dim=0)
+                tensor_shapes = [sample[feature].shape for sample in samples]
+
+                try:
+                    batch[feature] = torch.stack([sample[feature] for sample in samples], dim=0)
+                except RuntimeError as e:
+                    print(f"Error stacking feature {feature}: {e}")
+                    raise e
         return batch
 
 

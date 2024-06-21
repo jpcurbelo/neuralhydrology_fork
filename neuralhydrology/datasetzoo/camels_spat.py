@@ -93,7 +93,13 @@ def load_camels_spat_attributes(data_dir: Path, basins: List[str] = []) -> pd.Da
 
     # print(df_attr.head())
     # print(df_attr.shape)
+
+    # # Check for missing values
+    # print(f'Missing values in attributes: {df_attr.isnull().sum().sum()}')
+
     # aux = input('Press Enter to continue...')
+
+
 
     return df_attr
 
