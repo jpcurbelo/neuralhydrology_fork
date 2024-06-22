@@ -54,10 +54,8 @@ output_activation: linear
 output_dropout: 0.4
 =======
 output_dropout: 0.0
->>>>>>> 5b313ea... Added discharge normalization by area and updated the tining scripts
 =======
 output_dropout: 0.4
->>>>>>> 72ba5c5a77837d309ef3436192fb6583049cbdcc
 predict_last_n: 1
 save_weights_every: 1
 seed: 1111
