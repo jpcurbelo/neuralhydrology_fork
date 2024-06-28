@@ -19,11 +19,11 @@ only_run_these = [
     "416_batch2c_best.yml"
 ]
 
-# seed_list = [111, 222, 333, 444, 555, 666, 777, 888]
+seed_list = [111, 222, 333, 444, 555, 666, 777, 888]
 # seed_list = [111, 222]
 # seed_list = [333, 444]
 # seed_list = [555, 666]
-seed_list = [777, 888]
+# seed_list = [777, 888]
 # seed_list = [
 # seed_list = [888]
 
@@ -44,9 +44,11 @@ if __name__ == '__main__':
     # config_fname = '531_nh_paper_ealstm.yml'
     # config_fname = "505_nh_paper_camelsspat_ealstm19static.yml"
     # config_fname = "505_nh_paper_camelsspat_ealstm19static17inp.yml"
+    config_fname = "505_nh_paper_camelsspat_ealstm24static17inp.yml"
     # config_fname = "928_cyril_camelsspat.yml"
+    # config_fname = "512_nh_paper_camelsspat_ealstm19static17inp.yml"
 
-    config_fname = "928_cyril_camelsspat19static17inp.yml"
+    # config_fname = "928_cyril_camelsspat19static17inp.yml"
     # config_fname = "928_cyril_camelsspat19static17inp_testing1.yml"
         
     print("Config file name:", config_fname)
@@ -65,17 +67,19 @@ if __name__ == '__main__':
     # experiment_name = "505_nh_paper_camelsspat_14inp"
     # experiment_name = "505_nh_paper_camelsspat_emearth"
     # experiment_name = "531_nh_paper_ealstm"
-    # experiment_name = "505_nh_paper_camelsspat_ealstm15static"
-    # experiment_name = "505_nh_paper_camelsspat_ealstm15static17inp"
+    # experiment_name = "505_nh_paper_camelsspat_ealstm19static"
+    # experiment_name = "505_nh_paper_camelsspat_ealstm19static17inp"
+    experiment_name = "505_nh_paper_camelsspat_ealstm24static17inp"
+    # experiment_name = "512_nh_paper_camelsspat_ealstm19static17inp"
     # experiment_name = "928_cyril_camelsspat"
-    experiment_name = "928_cyril_camelsspat19static17inp"
+    # experiment_name = "928_cyril_camelsspat19static17inp"
         
     for seed in seed_list:
         
         run_config['seed'] = seed
         run_config['experiment_name'] = experiment_name + f"_{seed}"
 
-        run_config['device'] = "cuda:1"
+        run_config['device'] = "cuda:0"
         
         # Re-write the configuration file with the new seed
         with open(config_fname, 'w') as ymlfile:

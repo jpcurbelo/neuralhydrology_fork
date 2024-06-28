@@ -4,7 +4,7 @@ clip_targets_to_zero:
 - q_obs
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 dataset: camels_spat
-device: cuda:1
+device: cuda:0
 dynamic_inputs:
 - e
 - mper
@@ -24,7 +24,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 928_cyril_camelsspat19static17inp_222
+experiment_name: 512_nh_paper_camelsspat_ealstm19static17inp_444
 forcings: null
 head: regression
 hidden_size:
@@ -57,7 +57,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 222
+seed: 444
 seq_length: 270
 static_attributes:
 - aridity1_mean
@@ -81,14 +81,14 @@ static_attributes:
 - clay_layer_mean
 target_variables:
 - q_obs
-test_basin_file: 928_cyril_basins_can_usa.txt
+test_basin_file: 512_basin_camels_spat_1989-2008_usa.txt
 test_end_date: 30/09/1999
 test_start_date: 01/10/1989
-train_basin_file: 928_cyril_basins_can_usa.txt
+train_basin_file: 512_basin_camels_spat_1989-2008_usa.txt
 train_end_date: 30/09/2008
 train_start_date: 01/10/1999
 validate_every: 50
 validate_n_random_basins: 5
-validation_basin_file: 928_cyril_basins_can_usa.txt
+validation_basin_file: 512_basin_camels_spat_1989-2008_usa.txt
 validation_end_date: 30/09/1999
 validation_start_date: 01/10/1989
