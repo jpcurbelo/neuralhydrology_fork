@@ -24,7 +24,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 928_cyril_camelsspat19static17inp_222
+experiment_name: 928_cyril_camelsspat24static17inp_222
 forcings: null
 head: regression
 hidden_size:
@@ -61,9 +61,12 @@ seed: 222
 seq_length: 270
 static_attributes:
 - aridity1_mean
+- aridity2_mean
 - fracsnow1_mean
 - seasonality1_mean
+- seasonality2_mean
 - low_prec_dur_mean
+- low_prec_dur_median
 - high_prec_freq
 - high_prec_dur_mean
 - prec_mean
@@ -79,6 +82,8 @@ static_attributes:
 - sand_layer_mean
 - silt_layer_mean
 - clay_layer_mean
+- forest_frac_lc1
+- forest_frac_lc2
 target_variables:
 - q_obs
 test_basin_file: 928_cyril_basins_can_usa.txt

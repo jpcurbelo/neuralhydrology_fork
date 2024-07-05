@@ -4,7 +4,7 @@ clip_targets_to_zero:
 - q_obs
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
 dataset: camels_spat
-device: cuda:0
+device: cuda:1
 dynamic_inputs:
 - e
 - mper
@@ -24,7 +24,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 505_nh_paper_camelsspat_ealstm24static17inp_111
+experiment_name: 505_nh_paper_camelsspat_ealstm24static17inp_888
 forcings: null
 head: regression
 hidden_size:
@@ -57,7 +57,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 111
+seed: 888
 seq_length: 270
 static_attributes:
 - aridity1_mean

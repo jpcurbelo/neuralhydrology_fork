@@ -23,7 +23,8 @@ metrics4table:
 # result_dir: runs_505_nh_paper_camelsspat_14inp
 # result_dir: runs_505_nh_paper_camelsspat_ealstm19static
 # result_dir: runs_505_nh_paper_camelsspat_ealstm19static17inp
-result_dir: runs_512_nh_paper_camelsspat_ealstm19static17inp
+# result_dir: runs_512_nh_paper_camelsspat_ealstm19static17inp
+result_dir: runs_505_nh_paper_camelsspat_ealstm24static17inp
 result_file: 
   test_ensemble_metrics.csv
 files4table:
@@ -68,11 +69,16 @@ folders4cdf_dir:
     color: 'tab:cyan'
     marker: null 
     linestyle: '--'
-  - directory: runs_512_nh_paper_camelsspat_ealstm19static17inp
-    experiment: 'E1d (LSTM: 17+19)$^{\dagger\dagger}$'
-    color: 'blue'
-    marker: null 
+  - directory: runs_505_nh_paper_camelsspat_ealstm24static17inp
+    experiment: 'E1d (EA-LSTM: 17+24)$^{\dagger\dagger}$'
+    color: 'tab:gray'
+    marker: null
     linestyle: '--'
+  # - directory: runs_512_nh_paper_camelsspat_ealstm19static17inp
+  #   experiment: 'E1d (LSTM: 17+19)$^{\dagger\dagger}$'
+  #   color: 'blue'
+  #   marker: null 
+  #   linestyle: '--'
   - directory: runs_928_cyril_camelsspat
     experiment: 'E2a (LSTM: 17)$^\diamond$'
     color: 'tab:olive'
