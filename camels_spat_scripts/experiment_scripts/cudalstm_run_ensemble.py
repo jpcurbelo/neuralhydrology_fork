@@ -23,8 +23,9 @@ only_run_these = [
 # seed_list = [333, 444]
 # seed_list = [555, 666]
 seed_list = [777, 888]
-# seed_list = [
+# seed_list = [777]
 # seed_list = [888]
+# seed_list = [111, 222, 333, 444, 555, 666, 777, 888]
 
 
 if __name__ == '__main__':
@@ -48,7 +49,11 @@ if __name__ == '__main__':
     # config_fname = "512_nh_paper_camelsspat_ealstm19static17inp.yml"
 
     # config_fname = "928_cyril_camelsspat19static17inp.yml"
-    config_fname = "928_cyril_camelsspat24static17inp.yml"
+    # config_fname = "928_cyril_camelsspat24static17inp.yml"
+
+    # config_fname = "569_cluster2of17_10f_ealstm.yml"
+    # config_fname = "569_cluster2of17_20f_ealstm.yml"
+    config_fname = "569_basins_camels_ealstm.yml"
         
     print("Config file name:", config_fname)
     with open(config_fname, "r") as f:
@@ -72,7 +77,10 @@ if __name__ == '__main__':
     # experiment_name = "512_nh_paper_camelsspat_ealstm19static17inp"
     # experiment_name = "928_cyril_camelsspat"
     # experiment_name = "928_cyril_camelsspat19static17inp"
-    experiment_name = "928_cyril_camelsspat24static17inp"
+    # experiment_name = "928_cyril_camelsspat24static17inp"
+
+    # experiment_name = "569_cluster2of17_20f_ealstm"
+    experiment_name = "569_basins_camels_ealstm"
         
     for seed in seed_list:
         

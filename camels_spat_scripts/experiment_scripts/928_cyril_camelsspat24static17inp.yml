@@ -24,7 +24,7 @@ dynamic_inputs:
 - tmean
 - prcp
 epochs: 30
-experiment_name: 928_cyril_camelsspat24static17inp_777
+experiment_name: 928_cyril_camelsspat24static17inp_888
 forcings: null
 head: regression
 hidden_size:
@@ -57,7 +57,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 777
+seed: 888
 seq_length: 270
 static_attributes:
 - aridity1_mean
