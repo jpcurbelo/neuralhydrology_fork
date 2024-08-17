@@ -379,13 +379,15 @@ class BaseTrainer(object):
             hour = f"{now.hour}".zfill(2)
             minute = f"{now.minute}".zfill(2)
             second = f"{now.second}".zfill(2)
-            run_name = f'{self.cfg.experiment_name}_{day}{month}_{hour}{minute}{second}'
-            # year = f"{now.year}".zfill(4)
-            # run_name = f"{self.cfg.experiment_name}_{year}-{month}-{day}_{hour}{minute}{second}"
+            # run_name = f'{self.cfg.experiment_name}_{day}{month}_{hour}{minute}{second}'
+            # Format the year to the last two digits
+            year = f"{now.year % 100:02}"
+            run_name = f"{self.cfg.experiment_name}_{year}{month}{day}_{hour}{minute}{second}"
 
             # if no directory for the runs is specified, a 'runs' folder will be created in the current working dir
             if self.cfg.run_dir is None:
-                self.cfg.run_dir = Path().cwd() / "runs" / run_name
+                # self.cfg.run_dir = Path().cwd() / "runs" / run_name
+                self.cfg.run_dir = Path().cwd() / self.cfg.run_folder_name / run_name
             else:
                 self.cfg.run_dir = self.cfg.run_dir / run_name
 

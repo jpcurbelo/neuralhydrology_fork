@@ -51,6 +51,11 @@ class Config(object):
         if not (self._cfg.get('dev_mode', False) or dev_mode):
             Config._check_cfg_keys(self._cfg)
 
+        # print("experiment_name" in self._cfg)
+        # if "experiment_name" in self._cfg:
+        #     print(self._cfg["experiment_name"])
+        # aux = input("Press Enter to continue...")
+
         # Adjust experiment name
         if "experiment_name" in self._cfg and self._cfg["experiment_name"]:
             # 1. Replace curly-bracketed entries
@@ -76,6 +81,8 @@ class Config(object):
             new_name = re.sub(' ', '', new_name)
 
             self._cfg["experiment_name"] = new_name
+
+            # print(f"Experiment name: {new_name}")
 
     def as_dict(self) -> dict:
         """Return run configuration as dictionary.
@@ -376,6 +383,10 @@ class Config(object):
             return "run"
         else:
             return self._cfg["experiment_name"]
+
+    @property
+    def run_folder_name(self) -> str:
+        return self._cfg.get("run_folder_name", "runs")
 
     @property
     def finetune_modules(self) -> Union[List[str], Dict[str, str]]:

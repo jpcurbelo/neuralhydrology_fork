@@ -165,12 +165,17 @@ def test_model(run_config):
     Returns:
     None
     """
-    run_files = sorted(os.listdir("runs"))
+
+    if "run_folder_name" in run_config:
+        run_folder = run_config["run_folder_name"]
+    else:
+        run_folder = "runs"
+    run_files = sorted(os.listdir(run_folder))
     exp_name = run_config["experiment_name"]
     filtered_run_files = sorted([filename for filename in run_files if exp_name in filename])
     if filtered_run_files:
         run_file = filtered_run_files[-1]
-        run_dir = Path(f"runs/{run_file}")
+        run_dir = Path(f"{run_folder}/{run_file}")
         eval_run(run_dir=run_dir, period="test")
 
 def find_options_file(batch):
