@@ -4,7 +4,7 @@ clip_targets_to_zero:
 - QObs(mm/d)
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_US
 dataset: camels_us
-device: cuda:1
+device: cuda:0
 dynamic_inputs:
 - prcp(mm/day)
 - tmin(C)
@@ -46,7 +46,7 @@ output_dropout: 0.4
 predict_last_n: 1
 run_folder_name: runs_569_basins_lstm_single
 save_weights_every: 50
-# seed: 888
+seed: 888
 seq_length: 365
 target_variables:
 - QObs(mm/d)

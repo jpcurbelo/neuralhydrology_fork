@@ -1,0 +1,58 @@
+dynamic_inputs:
+  # Precipitation rate
+  - prcp_em_earth         #EM_Earth
+  - mtpr                  #EM_Earth
+  - RDRS_v2.1_A_PR0_SFC   #RDRS
+  - prcp_daymet           #Daymet
+  # Air temperature
+  - tmean                 #EM_Earth
+  - t                     #ERA5
+  - RDRS_v2.1_P_TT_1.5m   #RDRS
+  # Minimum daily air temperature
+  - tmean_min             #EM_Earth
+  - t_min_era5            #ERA5
+  - tmin                  #Daymet
+  # Maximum daily air temperature
+  - tmean_max             #EM_Earth
+  - t_max_era5            #ERA5
+  - tmax                  #Daymet
+  # Downward longwave radiation
+  - msdwlwrf              #ERA5
+  - RDRS_v2.1_P_FI_SFC    #RDRS
+  # Downward shortwave radiation
+  - msdwswrf              #ERA5
+  - srad                  #Daymet
+  - RDRS_v2.1_P_FB_SFC    #RDRS
+  # Net surface shortwave radiation
+  - msnswrf               #ERA5
+  # Net surface longwave radiation
+  - msnlwrf               #ERA5
+  # Potential evapotranspiration rate
+  - mper                  #ERA5
+  - pet_rdrs              #RDRS
+  - pet_daymet            #Daymet
+  # Air pressure
+  - sp                    #ERA5
+  - RDRS_v2.1_P_P0_SFC    #RDRS
+  # Specific humidity
+  - q                     #ERA5
+  - RDRS_v2.1_P_HU_1.5m   #RDRS
+  # Relative humidity
+  - rh                    #ERA5
+  - RDRS_v2.1_P_HR_1.5m   #RDRS
+  # Vapor pressure
+  - vp                    #Daymet
+  - e_era5                #ERA5
+  - e_rdrs                #RDRS
+  # Wind speed (U-direction)
+  - u                     #ERA5
+  - RDRS_v2.1_P_UUC_10m   #RDRS
+  # Wind speed (V-direction)
+  - v                     #ERA5
+  - RDRS_v2.1_P_VVC_10m   #RDRS
+  # Wind speed (mean)
+  - w                     #ERA5
+  - RDRS_v2.1_P_UVC_10m   #RDRS
+  # Wind direction
+  - phi_era5              #ERA5
+  - phi_rdrs              #RDRS

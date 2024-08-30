@@ -18,7 +18,7 @@ from camels_spat_scripts.utils_camels_spat import (
 ALL_BASINS_FILE = "569_basin_file.txt"
 CONFIG_FNAME = "569_basins_camels_lstm_single.yml"
 
-DEVICE = "cuda:1"
+DEVICE = "cuda:0"
 
 if __name__ == '__main__':
 
@@ -42,7 +42,7 @@ if __name__ == '__main__':
             run_config["run_folder_name"] = run_folder + "_random-seed"
 
     # Loop through each basin
-    for basin in all_basins[400:]:
+    for basin in all_basins[:]:
 
         print(f"Training and testing model for basin {basin}")
 

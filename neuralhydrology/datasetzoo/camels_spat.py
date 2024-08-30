@@ -126,12 +126,17 @@ def load_camels_spat_forcings(data_dir: Path, basin: str) -> Tuple[pd.DataFrame,
     # If letters in basin name, then country is CAN
     country = "CAN" if any(c.isalpha() for c in basin) else "USA"
     
-    forcing_path = data_dir / f'CAMELS_spat_{country}' 
+    # forcing_path = data_dir / f'CAMELS_spat_{country}' 
+    forcing_path = data_dir / f'CAMELS_spat_{country}_4sources'
     
     try:
         file_path = forcing_path / f'{basin}.csv'
     except:
         raise FileNotFoundError(f'No file for Basin {basin} at {file_path}')
+    
+    # print("Loading forcing data for basin", basin)
+    # print("Forcing path:", forcing_path)
+    # print("File path:", file_path)
 
     with open(file_path, 'r') as fp:
         # load the dataframe from the rest of the stream
@@ -146,7 +151,9 @@ def load_camels_spat_forcings(data_dir: Path, basin: str) -> Tuple[pd.DataFrame,
         # print("Columns:", df.columns)
         # print("Index:", df.index)
         
-    # print('Loaded forcing data for basin', basin)
+    # # Print number of columns
+    # print(f'Number of columns: {len(df.columns)}')
+    # print(df.head())
     # aux = input('Press Enter to continue...')
         
     # Load the basin area

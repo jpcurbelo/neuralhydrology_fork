@@ -23,4 +23,5 @@ camels_spat_scripts/experiment_scripts/runs/*
 camels_spat_scripts/preprocessing_scripts/*.png
 camels_spat_scripts/postprocessing_scripts/*.csv
 camels_spat_scripts/postprocessing_scripts/*.png
+camels_spat_scripts/postprocessing_scripts/nh_plots/ensembleSingle_*/
 
