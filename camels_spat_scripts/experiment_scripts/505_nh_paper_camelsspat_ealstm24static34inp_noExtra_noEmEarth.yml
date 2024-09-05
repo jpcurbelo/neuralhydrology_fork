@@ -1,0 +1,116 @@
+batch_size: 256
+clip_gradient_norm: 1
+clip_targets_to_zero:
+- q_obs
+data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_spat_NH
+dataset: camels_spat
+device: cuda:1
+dynamic_inputs:
+- mtpr
+- RDRS_v2.1_A_PR0_SFC
+- prcp_daymet
+- t
+- RDRS_v2.1_P_TT_1.5m
+- tmin
+- tmax
+- msdwlwrf
+- RDRS_v2.1_P_FI_SFC
+- msdwswrf
+- srad
+- RDRS_v2.1_P_FB_SFC
+- msnswrf
+- msnlwrf
+- mper
+- pet_rdrs
+- pet_daymet
+- sp
+- RDRS_v2.1_P_P0_SFC
+- q
+- RDRS_v2.1_P_HU_1.5m
+- rh
+- RDRS_v2.1_P_HR_1.5m
+- vp
+- e_era5
+- e_rdrs
+- u
+- RDRS_v2.1_P_UUC_10m
+- v
+- RDRS_v2.1_P_VVC_10m
+- w
+- RDRS_v2.1_P_UVC_10m
+- phi_era5
+- phi_rdrs
+epochs: 30
+experiment_name: 505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth_777
+forcings: null
+head: regression
+hidden_size:
+- 256
+initial_forget_bias: 5
+learning_rate:
+  0: 1e-3
+  11: 5e-4
+  21: 1e-5
+log_interval: 5
+log_n_figures: 2
+log_tensorboard: true
+loss: NSE
+metrics:
+- NSE
+- Alpha-NSE
+- Beta-NSE
+- FHV
+- FMS
+- FLV
+- KGE
+- Beta-KGE
+- Peak-Timing
+- Peak-MAPE
+- Pearson-r
+model: ealstm
+num_workers: 16
+optimizer: Adam
+output_activation: linear
+output_dropout: 0.4
+predict_last_n: 1
+save_weights_every: 5
+seed: 777
+seq_length: 270
+static_attributes:
+- aridity1_mean
+- aridity2_mean
+- fracsnow1_mean
+- seasonality1_mean
+- seasonality2_mean
+- low_prec_dur_mean
+- low_prec_dur_median
+- high_prec_freq
+- high_prec_dur_mean
+- prec_mean
+- pet_mean
+- basin_area
+- elev_mean
+- slope_mean
+- soil_thickness_mean
+- porosity_mean
+- log_permeability_mean
+- lai_mean_month_max
+- lai_mean_month_diff
+- sand_layer_mean
+- silt_layer_mean
+- clay_layer_mean
+- forest_frac_lc1
+- forest_frac_lc2
+target_variables:
+- q_obs
+test_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
+test_end_date: 30/09/1999
+test_start_date: 01/10/1989
+train_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
+train_end_date: 30/09/2008
+train_start_date: 01/10/1999
+validate_every: 50
+validate_n_random_basins: 5
+validation_basin_file: 505_basin_camels_spat_1989-2008_usa.txt
+validation_end_date: 30/09/1999
+validation_start_date: 01/10/1989

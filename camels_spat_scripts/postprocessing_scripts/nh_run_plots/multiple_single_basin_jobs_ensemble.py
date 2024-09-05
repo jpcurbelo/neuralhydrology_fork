@@ -27,9 +27,25 @@ def main():
         basins = f.readlines()
         basins = [basin.strip() for basin in basins]
 
-    df_metrics = pd.DataFrame()
+    output_file = os.path.join(OUTPUT_DIR, 'test_all-single_ensemble_8seeds.csv')
+
+    # Check if the output file already exists
+    if os.path.exists(output_file):
+        # Load the existing file
+        df_metrics = pd.read_csv(output_file)
+        # List of basins already processed
+        basins_processed = df_metrics['basin'].unique()
+    else:
+        df_metrics = pd.DataFrame()
+        basins_processed = []
+
 
     for basin in basins:
+
+        if basin in basins_processed:
+            print(f"Basin '{basin}' already processed. Skipping...")
+            continue
+
         # Create a temporary folder for the job (only if it doesn't already exist)
         temp_folder = f'ensembleSingle_{basin}'
 
@@ -78,12 +94,12 @@ def main():
         # Remove the temporary folder and its contents
         shutil.rmtree(temp_folder)
 
-    # Save the metrics dataframe to a CSV file
-    # Create the output directory if it doesn't exist
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
-    
-    output_file = os.path.join(OUTPUT_DIR, 'test_all-single_ensemble_8seeds.csv')
+        # Save the metrics dataframe to a CSV file
+        # Create the output directory if it doesn't exist
+        if not os.path.exists(OUTPUT_DIR):
+            os.makedirs(OUTPUT_DIR)
+
+        df_metrics.to_csv(output_file, index=False)
 
 
 

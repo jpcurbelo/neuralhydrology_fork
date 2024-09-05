@@ -47,7 +47,11 @@ if __name__ == '__main__':
     # config_fname = "505_nh_paper_camelsspat_ealstm24static17inp.yml"
     # config_fname = "928_cyril_camelsspat.yml"
     # config_fname = "512_nh_paper_camelsspat_ealstm19static17inp.yml"
-    config_fname = "505_nh_paper_camelsspat_ealstm24static37inp.yml"
+
+    # config_fname = "505_nh_paper_camelsspat_ealstm24static40inp_extraMinMaxT.yml"
+    # config_fname = "505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth.yml"
+    # config_fname = "505_nh_paper_camelsspat_ealstm24static36inp_noExtra.yml"
+    config_fname = "505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth.yml"
 
     # config_fname = "928_cyril_camelsspat19static17inp.yml"
     # config_fname = "928_cyril_camelsspat24static17inp.yml"
@@ -75,7 +79,6 @@ if __name__ == '__main__':
     # experiment_name = "505_nh_paper_camelsspat_ealstm19static"
     # experiment_name = "505_nh_paper_camelsspat_ealstm19static17inp"
     # experiment_name = "505_nh_paper_camelsspat_ealstm24static17inp"
-    experiment_name = "505_nh_paper_camelsspat_ealstm24static37inp"
     # experiment_name = "512_nh_paper_camelsspat_ealstm19static17inp"
     # experiment_name = "928_cyril_camelsspat"
     # experiment_name = "928_cyril_camelsspat19static17inp"
@@ -83,13 +86,18 @@ if __name__ == '__main__':
 
     # experiment_name = "569_cluster2of17_20f_ealstm"
     # experiment_name = "569_basins_camels_ealstm"
+
+    # experiment_name = "505_nh_paper_camelsspat_ealstm24static40_extraMinMaxTinp"
+    # experiment_name = "505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth"
+    # experiment_name = "505_nh_paper_camelsspat_ealstm24static36inp_noExtra"
+    experiment_name = "505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth"
         
     for seed in seed_list:
         
         run_config['seed'] = seed
         run_config['experiment_name'] = experiment_name + f"_{seed}"
 
-        run_config['device'] = "cuda:0"
+        run_config['device'] = "cuda:1"
         
         # Re-write the configuration file with the new seed
         with open(config_fname, 'w') as ymlfile:

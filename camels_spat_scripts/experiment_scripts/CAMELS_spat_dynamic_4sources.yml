@@ -1,7 +1,7 @@
 dynamic_inputs:
   # Precipitation rate
   - prcp_em_earth         #EM_Earth
-  - mtpr                  #EM_Earth
+  - mtpr                  #ERA5
   - RDRS_v2.1_A_PR0_SFC   #RDRS
   - prcp_daymet           #Daymet
   # Air temperature
