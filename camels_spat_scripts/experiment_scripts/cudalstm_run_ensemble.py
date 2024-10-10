@@ -20,9 +20,9 @@ only_run_these = [
 ]
 
 # seed_list = [111, 222]
-# seed_list = [333, 444]
+seed_list = [333, 444]
 # seed_list = [555, 666]
-seed_list = [777, 888]
+# seed_list = [777, 888]
 # seed_list = [777]
 # seed_list = [888]
 # seed_list = [111, 222, 333, 444, 555, 666, 777, 888]
@@ -97,7 +97,7 @@ if __name__ == '__main__':
         run_config['seed'] = seed
         run_config['experiment_name'] = experiment_name + f"_{seed}"
 
-        run_config['device'] = "cuda:1"
+        run_config['device'] = "cuda:0"
         
         # Re-write the configuration file with the new seed
         with open(config_fname, 'w') as ymlfile:

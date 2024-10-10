@@ -31,7 +31,7 @@ def contains_cyrils_data(folder4cdf_dir_list):
     # If no Cyril's data is found
     return False
 
-def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=None):
+def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zoom_ranges_y=None):
     """
     Function to generate CDF plots with both the main plot and optional zoomed-in subplots.
     
@@ -41,10 +41,16 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
     - zoom_ranges_y: List of y-axis ranges for zoomed-in subplots.
     - plot_basins_flag: Boolean flag to include or exclude 928 basins in the legend.
     - output_file_main: Filename to save the main plot.
+    - output_metrics_file: Path to the CSV file to store all the metrics.
     - output_file_zoomed: Filename to save the plot with zoomed-in subplots.
     """
 
     # # output_file_main="cdf_nse_usa.png", output_file_zoomed="cdf_nse_zoomed_usa.png"
+
+    metric = metric.upper()
+
+    # Create a DataFrame to store all metrics
+    all_metrics_df = pd.DataFrame()
 
     # Step 1: Create and save the main plot without zoomed-in subplots
     fig, ax_main = plt.subplots(figsize=(10, 8))
@@ -59,6 +65,7 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
         folder_color = folder['color']
         folder_marker = folder['marker']
         folder_line = folder['linestyle']
+        folder_colname = folder['colname']
 
         # Load the result dataframe
         if os.path.exists(folder_dir / 'test_ensemble_metrics.csv'):
@@ -68,12 +75,17 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
             df = pd.read_csv(folder_dir / csv_files[0])
 
         # Make negative NSE values zero
-        df['NSE'] = df['NSE'].apply(lambda x: 0 if x < 0 else x)
+        df[metric] = df[metric].apply(lambda x: 0 if x < 0 else x)
 
         # Select basin and NSE columns
-        df = df[['basin', 'NSE']].copy()
+        df = df[['basin', metric]].copy()
+
+        # Merge into the overall DataFrame for all metrics
+        all_metrics_df = pd.merge(all_metrics_df, df.set_index('basin').rename(columns={metric: folder_colname}),
+                                how='outer', left_index=True, right_index=True)
+
         # Sort NSE values
-        nse_values = np.sort(df['NSE'])
+        nse_values = np.sort(df[metric])
         # Calculate cumulative probabilities
         cdf = np.arange(1, len(nse_values) + 1) / len(nse_values)
 
@@ -92,16 +104,17 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
     ax_main.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
 
     if contains_cyrils_data(folder4cdf_dir_list):
-        ax_main.plot([], [], ' ', label=r'$^{\star\star}$ 928 basins (CAMELS-SPAT)')
-        output_file_main = 'cdf_nse_usa-can.png'
+        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
+        ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
+        output_file_main = f'cdf_{metric.lower()}_usa-can.png'
     else:
-        output_file_main = 'cdf_nse_usa.png'
+        output_file_main = f'cdf_{metric.lower()}_usa.png'
 
 
     # Set labels and limits for the main plot
     ax_main.set_xlim(0, 1)
     ax_main.set_ylim(0, 1)
-    ax_main.set_xlabel('NSE', fontsize=14)
+    ax_main.set_xlabel(metric, fontsize=14)
     ax_main.set_ylabel('CDF', fontsize=14)
     ax_main.grid(True)
     ax_main.legend(fontsize=12)
@@ -113,8 +126,49 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
     # Show the main plot (optional, you can remove this if not needed)
     plt.show()
 
+    # Save the DataFrame with all metrics
+    output_metrics_file = f'basin_metrics_{metric.lower()}_validation.csv'
+    all_metrics_df.to_csv(output_metrics_file, index_label='basin')
+
+    # # test
+    # # Load the saved metrics file
+    # output_metrics_file = f'basin_metrics_{metric.lower()}_validation.csv'
+    # all_metrics_df = pd.read_csv(output_metrics_file, index_col='basin')
+
+    # # Create a plot for all columns
+    # plt.figure(figsize=(10, 8))
+
+    # # Loop through each column in the DataFrame
+    # for column_to_plot in all_metrics_df.columns:
+    #     # Drop NaN values for the current column
+    #     values = all_metrics_df[column_to_plot].dropna()
+
+    #     # Sort the values
+    #     sorted_values = np.sort(values)
+
+    #     # Calculate cumulative probabilities
+    #     cdf = np.arange(1, len(sorted_values) + 1) / len(sorted_values)
+
+    #     # Plot the CDF for this column
+    #     plt.plot(sorted_values, cdf, label=f"CDF of {column_to_plot}")
+
+    # # Add labels and legend
+    # plt.xlabel(f'{metric}')
+    # plt.ylabel('CDF')
+    # plt.title('CFD CAMELS/CAMELS-SPAT')
+    # plt.grid(True)
+    # plt.legend()
+    # plt.tight_layout()
+
+    # # Show the plot
+    # plt.show()
+
+
+    ###################################################################
     # Check if zoom ranges are provided for the zoomed-in subplots
     if zoom_ranges_x is None or zoom_ranges_y is None:
+
+
         return
 
     # Step 2: Create and save the zoomed-in subplot version
@@ -151,12 +205,12 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
             df = pd.read_csv(folder_dir / csv_files[0])
 
         # Make negative NSE values zero
-        df['NSE'] = df['NSE'].apply(lambda x: 0 if x < 0 else x)
+        df[metric] = df[metric].apply(lambda x: 0 if x < 0 else x)
 
         # Select basin and NSE columns
-        df = df[['basin', 'NSE']].copy()
+        df = df[['basin', metric]].copy()
         # Sort NSE values
-        nse_values = np.sort(df['NSE'])
+        nse_values = np.sort(df[metric])
         # Calculate cumulative probabilities
         cdf = np.arange(1, len(nse_values) + 1) / len(nse_values)
 
@@ -190,15 +244,16 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, zoom_ranges_x=None, zoom_ranges_y=No
     ax_main_zoomed.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
 
     if contains_cyrils_data(folder4cdf_dir_list):
-        ax_main_zoomed.plot([], [], ' ', label=r'$^{\star\star}$ 928 basins (CAMELS-SPAT)')
-        output_file_zoomed = 'cdf_nse_zoomed_usa-can.png'
+        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
+        ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
+        output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa-can.png'
     else:
-        output_file_zoomed = 'cdf_nse_zoomed_usa.png'
+        output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa.png'
 
     # Set labels and limits for the main plot
     ax_main_zoomed.set_xlim(0, 1)
     ax_main_zoomed.set_ylim(0, 1)
-    ax_main_zoomed.set_xlabel('NSE', fontsize=14)
+    ax_main_zoomed.set_xlabel(metric, fontsize=14)
     ax_main_zoomed.set_ylabel('CDF', fontsize=14)
     ax_main_zoomed.grid(True)
     ax_main_zoomed.legend(fontsize=12)

@@ -30,7 +30,9 @@ sys.path.append(root_dir)
 # JOBS_FOLDER = 'runs_569_cluster2of17_20f_ealstm'
 # JOBS_FOLDER = 'runs_569_basins_camels_ealstm'
 # JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static40inp_extraMinMaxT'
-JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static36inp_extra_noEra5'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static36inp_noExtra'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth'
+JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth'
 
 EPOCH = 30
 

@@ -43,7 +43,7 @@ dynamic_inputs:
 - phi_era5
 - phi_rdrs
 epochs: 30
-experiment_name: 505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth_777
+experiment_name: 505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth_666
 forcings: null
 head: regression
 hidden_size:
@@ -76,7 +76,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 777
+seed: 666
 seq_length: 270
 static_attributes:
 - aridity1_mean
