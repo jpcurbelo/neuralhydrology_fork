@@ -47,7 +47,7 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zo
 
     # # output_file_main="cdf_nse_usa.png", output_file_zoomed="cdf_nse_zoomed_usa.png"
 
-    metric = metric.upper()
+    # metric = metric.upper()
 
     # Create a DataFrame to store all metrics
     all_metrics_df = pd.DataFrame()

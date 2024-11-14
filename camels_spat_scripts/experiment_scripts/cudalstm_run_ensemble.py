@@ -20,12 +20,12 @@ only_run_these = [
 ]
 
 # seed_list = [111, 222]
-seed_list = [333, 444]
+# seed_list = [333, 444]
 # seed_list = [555, 666]
-# seed_list = [777, 888]
-# seed_list = [777]
-# seed_list = [888]
+seed_list = [777, 888]
 # seed_list = [111, 222, 333, 444, 555, 666, 777, 888]
+# seed_list = [111, 222, 333, 444]
+# seed_list = [555, 666, 777, 888]
 
 
 if __name__ == '__main__':
@@ -51,10 +51,13 @@ if __name__ == '__main__':
     # config_fname = "505_nh_paper_camelsspat_ealstm24static40inp_extraMinMaxT.yml"
     # config_fname = "505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth.yml"
     # config_fname = "505_nh_paper_camelsspat_ealstm24static36inp_noExtra.yml"
-    config_fname = "505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth.yml"
+    # config_fname = "505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth.yml"
 
     # config_fname = "928_cyril_camelsspat19static17inp.yml"
     # config_fname = "928_cyril_camelsspat24static17inp.yml"
+    # config_fname = "559_cyril_camelsus_lstm.yml"
+    config_fname = "559_cyril_camelsus_lstm_lrok.yml"
+    # config_fname = "559_cyril_camelsus_ealstm.yml"
 
     # config_fname = "569_cluster2of17_10f_ealstm.yml"
     # config_fname = "569_cluster2of17_20f_ealstm.yml"
@@ -83,6 +86,10 @@ if __name__ == '__main__':
     # experiment_name = "928_cyril_camelsspat"
     # experiment_name = "928_cyril_camelsspat19static17inp"
     # experiment_name = "928_cyril_camelsspat24static17inp"
+    # experiment_name = "559_cyril_camelsus_lstm"
+    experiment_name = "559_cyril_camelsus_lstm_lrok"
+    # experiment_name = "559_cyril_camelsus_lstm_50ep"
+    # experiment_name = "559_cyril_camelsus_ealstm"
 
     # experiment_name = "569_cluster2of17_20f_ealstm"
     # experiment_name = "569_basins_camels_ealstm"
@@ -90,14 +97,14 @@ if __name__ == '__main__':
     # experiment_name = "505_nh_paper_camelsspat_ealstm24static40_extraMinMaxTinp"
     # experiment_name = "505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth"
     # experiment_name = "505_nh_paper_camelsspat_ealstm24static36inp_noExtra"
-    experiment_name = "505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth"
+    # experiment_name = "505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth"
         
     for seed in seed_list:
         
         run_config['seed'] = seed
         run_config['experiment_name'] = experiment_name + f"_{seed}"
 
-        run_config['device'] = "cuda:0"
+        run_config['device'] = "cuda:1"
         
         # Re-write the configuration file with the new seed
         with open(config_fname, 'w') as ymlfile:

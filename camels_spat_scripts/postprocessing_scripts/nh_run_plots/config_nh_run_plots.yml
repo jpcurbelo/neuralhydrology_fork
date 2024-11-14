@@ -7,6 +7,8 @@ hm_catchment: CAMELS_US/basin_set_full_res/HCDN_nhru_final_671.shp
 metrics4plotting: 
   - NSE 
   - KGE
+  # - NSEinv
+  # - KGEinv
 metrics4table:
   - NSE
   - Alpha-NSE
@@ -32,15 +34,21 @@ metrics4table:
 # result_dir: runs_569_basins_camels_ealstm
 # result_dir: runs_569_basins_lstm_single_random-seed
 # result_dir: runs_569_basins_lstm_single_111
-result_dir: runs_569_basins_lstm_single_ensemble_8seeds
+# result_dir: runs_569_basins_lstm_single_ensemble_8seeds
 # result_dir: M100_results_569basins_1980_2010_BS3_julia_150ep_lr4
 
+# result_dir: runs_559_cyril_camelsus_lstm
+# result_dir: runs_559_cyril_camelsus_lstm_50ep
+# result_dir: runs_559_cyril_camelsus_ealstm
+result_dir: runs_559_cyril_camelsus_lstm_lrok
+
+
 result_file: 
-  # test_ensemble_metrics.csv
+  test_ensemble_metrics.csv
   # test_metrics_seed111.csv
   # test_all-single_random-seed.csv
   # test_all-single_111.csv
-  test_all-single_ensemble_8seeds.csv
+  # test_all-single_ensemble_8seeds.csv
   # metrics_test.csv
 files4table:
   - 111.csv
@@ -54,73 +62,98 @@ files4table:
   - test_ensemble_metrics.csv
 
 folders4cdf_dir:
-  - directory: runs_531_nh_paper
-    experiment: 'E0a (LSTM: 5)$^*$'
-    color: 'tab:red'
-    marker: o
-    linestyle: '-.'
-    colname: 'camels_5dyn'
-  - directory: runs_505_nh_paper_camelsspat_emearth
-    experiment: 'E0b (LSTM: 5)$^\dagger$'
-    color: 'tab:purple'
-    marker: null
-    linestyle: '-.'
-    colname: 'camels_spat_5dyn'
-  - directory: runs_505_nh_paper_camelsspat_17inp
-    experiment: 'E0c (LSTM: 17)$^\dagger$'
-    color: 'tab:orange'
-    marker: null 
-    linestyle: '-.'
-    colname: 'camels_spat_17dyn'
-  - directory: runs_531_nh_paper_ealstm
-    experiment: 'E1a (EA-LSTM: 5+27)$^*$'
-    color: 'tab:blue'
-    marker: o
-    linestyle: '--'
-    colname: 'camels_5dyn_27stat'
-  - directory: runs_505_nh_paper_camelsspat_ealstm19static
-    experiment: 'E1b (EA-LSTM: 5+19)$^\dagger$'
-    color: 'tab:green'
-    marker: null 
-    linestyle: '--'
-    colname: 'camels_spat_5dyn_19stat'
-  - directory: runs_505_nh_paper_camelsspat_ealstm19static17inp
-    experiment: 'E1c (EA-LSTM: 17+19)$^\dagger$'
-    color: 'tab:cyan'
-    marker: null 
-    linestyle: '--'
-    colname: 'camels_spat_17dyn_19stat'
-  - directory: runs_505_nh_paper_camelsspat_ealstm24static17inp
-    experiment: 'E1d (EA-LSTM: 17+24)$^{\dagger}$'
-    color: 'tab:gray'
-    marker: null
-    linestyle: '--'
-    colname: 'camels_spat_17dyn_24stat'
-  - directory: runs_505_nh_paper_camelsspat_ealstm24static40inp_extraMinMaxT
-    experiment: 'E1e (EA-LSTM: 40+24)$^{\dagger}$'
-    color: 'k'
-    marker: null
-    linestyle: '--'
-    colname: 'camels_spat_40dyn_24stat'
-  - directory: runs_505_nh_paper_camelsspat_ealstm24static36inp_noExtra
-    experiment: 'E1f (EA-LSTM: 36+24 - no extra)$^{\dagger}$'
-    color: 'tab:brown'
-    marker: null
-    linestyle: '--'
-    colname: 'camels_spat_36dyn_24stat'
-  - directory: runs_505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth
-    experiment: 'E1g (EA-LSTM: 36+24 - no em-earth)$^{\dagger}$'
-    color: 'tab:olive'
-    marker: null
-    linestyle: '--'
-    colname: 'camels_spat_36dyn_24stat_noEmEarth'
-  - directory: runs_505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth
-    experiment: 'E1h (EA-LSTM: 34+24 - no extra, no em-earth)$^{\dagger}$'
-    color: 'tab:purple'
-    marker: null
-    linestyle: '--'
-    colname: 'camels_spat_34dyn_24stat_noExtra_noEmEarth'
+  # - directory: runs_531_nh_paper
+  #   experiment: 'E0a (LSTM: 5)$^*$'
+  #   color: 'tab:red'
+  #   marker: o
+  #   linestyle: '-.'
+  #   colname: 'camels_5dyn'
+  # - directory: runs_505_nh_paper_camelsspat_emearth
+  #   experiment: 'E0b (LSTM: 5)$^\dagger$'
+  #   color: 'tab:purple'
+  #   marker: null
+  #   linestyle: '-.'
+  #   colname: 'camels_spat_5dyn'
+  # - directory: runs_505_nh_paper_camelsspat_17inp
+  #   experiment: 'E0c (LSTM: 17)$^\dagger$'
+  #   color: 'tab:orange'
+  #   marker: null 
+  #   linestyle: '-.'
+  #   colname: 'camels_spat_17dyn'
+  # - directory: runs_531_nh_paper_ealstm
+  #   experiment: 'E1a (EA-LSTM: 5+27)$^*$'
+  #   color: 'tab:blue'
+  #   marker: o
+  #   linestyle: '--'
+  #   colname: 'camels_5dyn_27stat'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm19static
+  #   experiment: 'E1b (EA-LSTM: 5+19)$^\dagger$'
+  #   color: 'tab:green'
+  #   marker: null 
+  #   linestyle: '--'
+  #   colname: 'camels_spat_5dyn_19stat'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm19static17inp
+  #   experiment: 'E1c (EA-LSTM: 17+19)$^\dagger$'
+  #   color: 'tab:cyan'
+  #   marker: null 
+  #   linestyle: '--'
+  #   colname: 'camels_spat_17dyn_19stat'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm24static17inp
+  #   experiment: 'E1d (EA-LSTM: 17+24)$^{\dagger}$'
+  #   color: 'tab:gray'
+  #   marker: null
+  #   linestyle: '--'
+  #   colname: 'camels_spat_17dyn_24stat'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm24static40inp_extraMinMaxT
+  #   experiment: 'E1e (EA-LSTM: 40+24)$^{\dagger}$'
+  #   color: 'k'
+  #   marker: null
+  #   linestyle: '--'
+  #   colname: 'camels_spat_40dyn_24stat'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm24static36inp_noExtra
+  #   experiment: 'E1f (EA-LSTM: 36+24 - no extra)$^{\dagger}$'
+  #   color: 'tab:brown'
+  #   marker: null
+  #   linestyle: '--'
+  #   colname: 'camels_spat_36dyn_24stat'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth
+  #   experiment: 'E1g (EA-LSTM: 36+24 - no em-earth)$^{\dagger}$'
+  #   color: 'tab:olive'
+  #   marker: null
+  #   linestyle: '--'
+  #   colname: 'camels_spat_36dyn_24stat_noEmEarth'
+  # - directory: runs_505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth
+  #   experiment: 'E1h (EA-LSTM: 34+24 - no extra, no em-earth)$^{\dagger}$'
+  #   color: 'tab:purple'
+  #   marker: null
+  #   linestyle: '--'
+  #   colname: 'camels_spat_34dyn_24stat_noExtra_noEmEarth'
 
+
+  - directory: runs_559_cyril_camelsus_lstm
+    experiment: 'Za (LSTM)'
+    color: 'tab:olive'
+    marker: x
+    linestyle: '-'
+    colname: 'cyril_camelsus_lstm'
+  - directory: runs_559_cyril_camelsus_lstm_50ep
+    experiment: 'Zb (LSTM - 50ep)'
+    color: 'tab:brown'
+    marker: x
+    linestyle: '-'
+    colname: 'cyril_camelsus_lstm_50ep'
+  - directory: runs_559_cyril_camelsus_lstm_lrok
+    experiment: 'Zc (LSTM - 50ep - lrok)'
+    color: 'tab:purple'
+    marker: x
+    linestyle: '-'
+    colname: 'cyril_camelsus_lstm_lrok'
+  - directory: runs_559_cyril_camelsus_ealstm
+    experiment: 'Zd (EA-LSTM)'
+    color: 'tab:blue'
+    marker: x
+    linestyle: '-'
+    colname: 'cyril_camelsus_ealstm'
 
 
 

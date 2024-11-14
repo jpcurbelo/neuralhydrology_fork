@@ -32,9 +32,13 @@ sys.path.append(root_dir)
 # JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static40inp_extraMinMaxT'
 # JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static36inp_noExtra'
 # JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth'
-JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth'
+# JOBS_FOLDER = 'runs_505_nh_paper_camelsspat_ealstm24static34inp_noExtra_noEmEarth'
+# JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm'
+# JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_50ep'
+JOBS_FOLDER = 'runs_559_cyril_camelsus_ealstm'
+# JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_lrok'
 
-EPOCH = 30
+EPOCH = 30   #30
 
 # EPOCH to 3 places string with leading zeros
 epoch_str = f"{EPOCH:03d}"

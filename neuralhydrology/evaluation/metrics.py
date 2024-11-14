@@ -49,7 +49,7 @@ def _get_fdc(da: DataArray) -> np.ndarray:
     return da.sortby(da, ascending=False).values
 
 
-def nse(obs: DataArray, sim: DataArray) -> float:
+def nse(obs: DataArray, sim: DataArray, inverse:bool=False) -> float:
     r"""Calculate Nash-Sutcliffe Efficiency [#]_
     
     Nash-Sutcliffe Efficiency is the R-square between observed and simulated discharge.
@@ -64,6 +64,8 @@ def nse(obs: DataArray, sim: DataArray) -> float:
         Observed time series.
     sim : DataArray
         Simulated time series.
+    inverse : bool, optional
+        If True, calculate NSE using the inverse of observed and simulated values, by default False.
 
     Returns
     -------
@@ -83,13 +85,19 @@ def nse(obs: DataArray, sim: DataArray) -> float:
     # get time series with only valid observations
     obs, sim = _mask_valid(obs, sim)
 
+    # Apply inverse if specified, handling zeroes with a small epsilon
+    if inverse:
+        epsilon_obs = obs.mean() / 100
+        epsilon_sim = sim.mean() / 100
+        obs = obs.where(obs != 0, epsilon_obs).pipe(lambda x: 1 / x)
+        sim = sim.where(sim != 0, epsilon_sim).pipe(lambda x: 1 / x)
+
     denominator = ((obs - obs.mean())**2).sum()
     numerator = ((sim - obs)**2).sum()
 
     value = 1 - numerator / denominator
 
     return float(value)
-
 
 def mse(obs: DataArray, sim: DataArray) -> float:
     r"""Calculate mean squared error.
@@ -263,7 +271,8 @@ def beta_kge(obs: DataArray, sim: DataArray) -> float:
     return float(sim.mean() / obs.mean())
 
 
-def kge(obs: DataArray, sim: DataArray, weights: List[float] = [1., 1., 1.]) -> float:
+def kge(obs: DataArray, sim: DataArray, weights: List[float] = [1., 1., 1.],
+        inverse:bool=False) -> float:
     r"""Calculate the Kling-Gupta Efficieny [#]_
     
     .. math:: 
@@ -282,6 +291,8 @@ def kge(obs: DataArray, sim: DataArray, weights: List[float] = [1., 1., 1.]) -> 
         Simulated time series.
     weights : List[float]
         Weighting factors of the 3 KGE parts, by default each part has a weight of 1.
+    inverse : bool, optional
+        If True, calculate KGE using the inverse of observed and simulated values, by default False.
 
     Returns
     -------
@@ -304,10 +315,27 @@ def kge(obs: DataArray, sim: DataArray, weights: List[float] = [1., 1., 1.]) -> 
     # get time series with only valid observations
     obs, sim = _mask_valid(obs, sim)
 
+    # print('0000000000type(obs):', type(obs))
+    # print('0000000000type(sim):', type(sim))
+
     if len(obs) < 2:
         return np.nan
+    
+    # Apply inverse if specified, handling zeroes with a small epsilon
+    if inverse:
+        epsilon_obs = obs.mean() / 100
+        epsilon_sim = sim.mean() / 100
+        obs = obs.where(obs != 0, epsilon_obs).pipe(lambda x: 1 / x)
+        sim = sim.where(sim != 0, epsilon_sim).pipe(lambda x: 1 / x)
 
-    r, _ = stats.pearsonr(obs.values, sim.values)
+    # print('1111111111type(obs):', type(obs))
+    # print('1111111111type(sim):', type(sim))
+
+    # Calculate components for KGE
+    try:
+        r, _ = stats.pearsonr(obs.values, sim.values)
+    except ValueError:
+        return np.nan  # Return NaN if correlation cannot be calculated
 
     alpha = sim.std() / obs.std()
     beta = sim.mean() / obs.mean()
@@ -848,12 +876,16 @@ def calculate_metrics(obs: DataArray,
     for metric in metrics:
         if metric.lower() == "nse":
             values["NSE"] = nse(obs, sim)
+        elif metric.lower() == "nseinv":
+            values["NSEinv"] = nse(obs, sim, inverse=True)
         elif metric.lower() == "mse":
             values["MSE"] = mse(obs, sim)
         elif metric.lower() == "rmse":
             values["RMSE"] = rmse(obs, sim)
         elif metric.lower() == "kge":
             values["KGE"] = kge(obs, sim)
+        elif metric.lower() == "kgeinv":
+            values["KGEinv"] = kge(obs, sim, inverse=True)
         elif metric.lower() == "alpha-nse":
             values["Alpha-NSE"] = alpha_nse(obs, sim)
         elif metric.lower() == "beta-kge":
