@@ -452,10 +452,10 @@ Data settings
 
 -  ``dataset``: Defines which data set will be used. Currently supported
    are ``camels_us`` (`CAMELS (US) data set by Newman et al. <https://hess.copernicus.org/articles/19/209/2015/>`__), 
-   ``camels_gb`` (`CAMELS-GB by Coxon et al. <https://essd.copernicus.org/articles/12/2459/2020/>`__), 
+   ``camels_gb`` (`CAMELS_GB by Coxon et al. <https://essd.copernicus.org/articles/12/2459/2020/>`__), 
    ``camels_cl`` (`CAMELS-CL by Alvarez-Garreton et al. <https://hess.copernicus.org/articles/22/5817/2018/>`__), 
    ``camels_br`` (`CAMELS-BR by Chagas et al. <https://essd.copernicus.org/articles/12/2075/2020>`__),
-   ``camels_aus`` (`CAMELS-AUS by Fowler et al. <https://essd.copernicus.org/articles/13/3847/2021/>`__),  
+   ``camels_aus`` (`CAMELS_AUS by Fowler et al. <https://essd.copernicus.org/articles/13/3847/2021/>`__),  
    ``lamah_{a,b,c}`` (`LamaH-CE by Klingler et al. <https://essd.copernicus.org/articles/13/4529/2021/>`__), 
    ``hourly_camels_us`` (hourly forcing and streamflow data for 516 CAMELS (US) basins, published 
    by `Gauch et al. <https://hess.copernicus.org/articles/25/2045/2021/>`__), 

@@ -3,7 +3,9 @@
 # Global variables
 RUNS_PATH="runs"
 # NAME_PATTERN="559_cyril_camelsus_ealstm_*"  # Updated to include wildcard
-NAME_PATTERN="559_cyril_camelsus_lstm_lrok_*"  # Updated to include wildcard
+# NAME_PATTERN="559_cyril_camelsus_lstm_lrok_*"  
+NAME_PATTERN="1_camels_spat_USA_*"  
+
 
 # Function to get the list of folders that match the pattern, sorted alphabetically
 get_matched_folders() {

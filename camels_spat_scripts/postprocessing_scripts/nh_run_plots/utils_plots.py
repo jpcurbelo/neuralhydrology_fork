@@ -99,9 +99,9 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zo
                      linestyle=folder_line,
                      label=folder_exp)
 
-    # Add footnotes for basins based on the flag
-    ax_main.plot([], [], ' ', label=r'$^*$ 531 basins (CAMELS-US)')
-    ax_main.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
+    # # Add footnotes for basins based on the flag
+    # ax_main.plot([], [], ' ', label=r'$^*$ 531 basins (CAMELS-US)')
+    # ax_main.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
 
     if contains_cyrils_data(folder4cdf_dir_list):
         ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
@@ -239,9 +239,9 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zo
                         ms=5,
                         linestyle=folder_line)
 
-    # Add footnotes for basins based on the flag in zoomed version
-    ax_main_zoomed.plot([], [], ' ', label=r'$^*$ 531 basins (CAMELS-US)')
-    ax_main_zoomed.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
+    # # Add footnotes for basins based on the flag in zoomed version
+    # ax_main_zoomed.plot([], [], ' ', label=r'$^*$ 531 basins (CAMELS-US)')
+    # ax_main_zoomed.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
 
     if contains_cyrils_data(folder4cdf_dir_list):
         ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')

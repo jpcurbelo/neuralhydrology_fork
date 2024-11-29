@@ -12,7 +12,7 @@ dynamic_inputs:
 - srad(W/m2)
 - vp(Pa)
 epochs: 30
-experiment_name: 559_cyril_camelsus_lstm_lrok_newInv_888
+experiment_name: 10_cyril_camelsus_lstm_nseinv
 forcings: daymet
 head: regression
 hidden_size:
@@ -23,9 +23,9 @@ learning_rate:
   11: 5e-4
   21: 1e-4
 log_interval: 5
-log_n_figures: 2
+log_n_figures: 5
 log_tensorboard: true
-loss: NSE
+loss: MSEinv
 metrics:
 - NSE
 - NSEinv
@@ -79,14 +79,14 @@ static_attributes:
 - p_seasonality
 target_variables:
 - QObs(mm/d)
-test_basin_file: 559_cyril_basins_usa.txt
+test_basin_file: 10_cyril_basins_usa_test.txt
 test_end_date: 31/12/2009
 test_start_date: 01/10/1999
-train_basin_file: 559_cyril_basins_usa.txt
+train_basin_file: 10_cyril_basins_usa_test.txt
 train_end_date: 31/12/1998
 train_start_date: 01/01/1989
-validate_every: 50
-validate_n_random_basins: 5
-validation_basin_file: 559_cyril_basins_usa.txt
+validate_every: 5
+validate_n_random_basins: 10
+validation_basin_file: 10_cyril_basins_usa_test.txt
 validation_end_date: 31/12/2009
 validation_start_date: 01/01/1999

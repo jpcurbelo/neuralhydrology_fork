@@ -11,9 +11,9 @@ from neuralhydrology.utils.config import Config
 
 
 class CamelsAUS(BaseDataset):
-    """Data set class for the CAMELS-AUS dataset by [#]_.
+    """Data set class for the CAMELS_AUS dataset by [#]_.
 
-    For more efficient data loading during model training/evaluating, this dataset class expects the CAMELS-AUS dataset
+    For more efficient data loading during model training/evaluating, this dataset class expects the CAMELS_AUS dataset
     in a processed format. Specifically, this dataset class works with per-basin csv files that contain all 
     timeseries data combined. Use the :func:`preprocess_camels_aus_dataset` function to process the original dataset 
     layout into this format.
@@ -45,7 +45,7 @@ class CamelsAUS(BaseDataset):
 
     References
     ----------
-    .. [#] Fowler, K. J. A., Acharya, S. C., Addor, N., Chou, C., and Peel, M. C.: CAMELS-AUS: hydrometeorological time
+    .. [#] Fowler, K. J. A., Acharya, S. C., Addor, N., Chou, C., and Peel, M. C.: CAMELS_AUS: hydrometeorological time
         series and landscape attributes for 222 catchments in Australia, Earth Syst. Sci. Data, 13, 3847-3867, 
         https://doi.org/10.5194/essd-13-3847-2021, 2021. 
     """
@@ -76,12 +76,12 @@ class CamelsAUS(BaseDataset):
 
 
 def load_camels_aus_timeseries(data_dir: Path, basin: str) -> pd.DataFrame:
-    """Load the time series data for one basin of the CAMELS-AUS data set.
+    """Load the time series data for one basin of the CAMELS_AUS data set.
 
     Parameters
     ----------
     data_dir : Path
-        Path to the CAMELS-AUS directory. This folder must contain a folder called 'preprocessed' containing the 
+        Path to the CAMELS_AUS directory. This folder must contain a folder called 'preprocessed' containing the 
         per-basin csv files created by :func:`preprocess_camels_aus_dataset`.
     basin : str
         Basin identifier as string.
@@ -94,13 +94,13 @@ def load_camels_aus_timeseries(data_dir: Path, basin: str) -> pd.DataFrame:
     Raises
     ------
     FileNotFoundError
-        If no sub-folder called 'preprocessed' exists within the root directory of the CAMELS-AUS dataset.
+        If no sub-folder called 'preprocessed' exists within the root directory of the CAMELS_AUS dataset.
     """
     preprocessed_dir = data_dir / "preprocessed"
     if not preprocessed_dir.is_dir():
         msg = [
             f"No preprocessed data directory found at {preprocessed_dir}. Use preprocessed_camels_aus_dataset in ",
-            "neuralhydrology.datasetzoo.camelsaus to preprocess the CAMELS-AUS data set once into per-basin files."
+            "neuralhydrology.datasetzoo.camelsaus to preprocess the CAMELS_AUS data set once into per-basin files."
         ]
         raise FileNotFoundError("".join(msg))
     basin_file = preprocessed_dir / f"{basin}.csv"
@@ -109,12 +109,12 @@ def load_camels_aus_timeseries(data_dir: Path, basin: str) -> pd.DataFrame:
 
 
 def load_camels_aus_attributes(data_dir: Path, basins: List[str] = []) -> pd.DataFrame:
-    """Load CAMELS-AUS attributes.
+    """Load CAMELS_AUS attributes.
 
     Parameters
     ----------
     data_dir : Path
-        Path to the CAMELS-AUS directory. Assumes that CAMELS_AUS_Attributes&Indices_MasterTable.csv is located in the
+        Path to the CAMELS_AUS directory. Assumes that CAMELS_AUS_Attributes&Indices_MasterTable.csv is located in the
         data directory root folder.
     basins : List[str], optional
         If passed, return only attributes for the basins specified in this list. Otherwise, the attributes of all basins
@@ -145,7 +145,7 @@ def load_camels_aus_attributes(data_dir: Path, basins: List[str] = []) -> pd.Dat
 
 
 def preprocess_camels_aus_dataset(data_dir: Path):
-    """Preprocess CAMELS-AUS data set and create per-basin files for more flexible and faster data loading.
+    """Preprocess CAMELS_AUS data set and create per-basin files for more flexible and faster data loading.
     
     This function will read-in all time series text files and create per-basin csv files in a new subfolder called
     "preprocessed".
@@ -153,7 +153,7 @@ def preprocess_camels_aus_dataset(data_dir: Path):
     Parameters
     ----------
     data_dir : Path
-        Path to the CAMELS-AUS data set. Expects different subfolders with the original names, specifically
+        Path to the CAMELS_AUS data set. Expects different subfolders with the original names, specifically
         '05_hydrometeorology' and '03_streamflow'.
 
     Raises
@@ -198,4 +198,4 @@ def preprocess_camels_aus_dataset(data_dir: Path):
         df = pd.DataFrame(data)
         df.to_csv(dst_dir / f"{basin}.csv")
 
-    print(f"Finished processing the CAMELS-AUS data set. Resulting per-basin csv files have been stored at {dst_dir}")
+    print(f"Finished processing the CAMELS_AUS data set. Resulting per-basin csv files have been stored at {dst_dir}")

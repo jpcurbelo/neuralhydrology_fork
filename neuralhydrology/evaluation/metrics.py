@@ -89,11 +89,11 @@ def nse(obs: DataArray, sim: DataArray, inverse:bool=False) -> float:
     if inverse:
         epsilon_obs = obs.mean() / 100
         epsilon_sim = sim.mean() / 100
-        obs = obs.where(obs != 0, epsilon_obs).pipe(lambda x: 1 / x)
-        sim = sim.where(sim != 0, epsilon_sim).pipe(lambda x: 1 / x)
+        obs = 1.0 / (obs + epsilon_obs)
+        sim = 1.0 / (sim + epsilon_sim)
 
     denominator = ((obs - obs.mean())**2).sum()
-    numerator = ((sim - obs)**2).sum()
+    numerator   = ((sim - obs)**2).sum()
 
     value = 1 - numerator / denominator
 
@@ -327,9 +327,6 @@ def kge(obs: DataArray, sim: DataArray, weights: List[float] = [1., 1., 1.],
         epsilon_sim = sim.mean() / 100
         obs = obs.where(obs != 0, epsilon_obs).pipe(lambda x: 1 / x)
         sim = sim.where(sim != 0, epsilon_sim).pipe(lambda x: 1 / x)
-
-    # print('1111111111type(obs):', type(obs))
-    # print('1111111111type(sim):', type(sim))
 
     # Calculate components for KGE
     try:

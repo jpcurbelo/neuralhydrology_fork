@@ -3,7 +3,8 @@ seed: 1111
 # --- Experiment configurations --------------------------------------------------------------------
 
 # experiment name, used as folder name
-experiment_name: 1_camels_spat_USA
+# experiment_name: 1_camels_spat_USA
+experiment_name: 1_camels_spat_USA_nseinv_150ep
 
 ## files to specify training, validation and test basins (relative to code root or absolute path)
 train_basin_file: 1_basin_camels_spat.txt
@@ -31,7 +32,7 @@ device: cuda:0
 # --- Validation configuration ---------------------------------------------------------------------
 
 # specify after how many epochs to perform validation
-validate_every: 2
+validate_every: 10
 
 # specify how many random basins to use for validation
 validate_n_random_basins: 5
@@ -41,12 +42,14 @@ validate_n_random_basins: 5
 # target_variable specified below. Using dicts allows for different metrics per target variable.
 metrics:
   - NSE
+  - NSEinv
+  - KGE
+  - KGEinv
   - Alpha-NSE
   - Beta-NSE
   - FHV
   - FMS
   - FLV
-  - KGE
   - Beta-KGE
   - Peak-Timing
   - Peak-MAPE
@@ -92,24 +95,28 @@ output_dropout: 0.4
 optimizer: Adam
 
 # specify loss [MSE, NSE, RMSE]
-loss: MSE
+# loss: MSE
 # loss: NSE
+loss: NSEinv
 
 # specify learning rates to use starting at specific epochs (0 is the initial learning rate)
 learning_rate:
-  0: 1e-3
-  # 20: 5e-4
-  # 25: 1e-4
+  # 0: 1e-3
+  # # 20: 5e-4
+  # # 25: 1e-4
   # 0: 1e-2
   # 20: 5e-3
   # 25: 1e-3
+  0: 1e-3
+  # 50: 5e-4
+  # 100: 1e-4
 
 
 # Mini-batch size
 batch_size: 256
 
 # Number of training epochs
-epochs: 30
+epochs: 150
 
 # If a value, clips the gradients during training to that norm.
 clip_gradient_norm: 1
@@ -163,7 +170,7 @@ dynamic_inputs:
   # # - tmin(C)_daymet
   # # - vp(Pa)_daymet
 # # # e,mper,msdwlwrf,msdwswrf,msnlwrf,msnswrf,mtpr,q,rh,sp,t,u,v,w,phi,tmean,prcp
-- e           #Vapor pressure - Derived
+- e_era5           #Vapor pressure - Derived
 - mper        #Mean potential evaporation rate - ERA5
 - msdwlwrf    #Mean downward LONGtwave radiation at the surface - ERA5
 - msdwswrf    #Mean downward SHORTwave radiation at the surface - ERA5
@@ -177,9 +184,10 @@ dynamic_inputs:
 - u           #U-component of wind - ERA5
 - v           #V-component of wind - ERA5
 - w           #Wind speed (mean) - Derived
-- phi         #Wind direction - Derived
+- phi_era5         #Wind direction - Derived
 - tmean       #Temperature - EM-Earth
-- prcp        #Mean total precipitation rate - EM-Earth
+- prcp_daymet        #Mean total precipitation rate - EM-Earth
+
 
 # which columns to use as target
 target_variables:

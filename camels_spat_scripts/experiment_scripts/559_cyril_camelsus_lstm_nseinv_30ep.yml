@@ -12,7 +12,7 @@ dynamic_inputs:
 - srad(W/m2)
 - vp(Pa)
 epochs: 30
-experiment_name: 559_cyril_camelsus_lstm_lrok_newInv_888
+experiment_name: 559_cyril_camelsus_lstm_nseinv_30ep_v2_777
 forcings: daymet
 head: regression
 hidden_size:
@@ -25,7 +25,7 @@ learning_rate:
 log_interval: 5
 log_n_figures: 2
 log_tensorboard: true
-loss: NSE
+loss: NSEinv
 metrics:
 - NSE
 - NSEinv
@@ -47,7 +47,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 888
+seed: 777
 seq_length: 270
 static_attributes:
 - elev_mean

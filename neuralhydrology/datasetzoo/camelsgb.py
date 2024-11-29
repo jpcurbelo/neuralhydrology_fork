@@ -39,7 +39,7 @@ class CamelsGB(BaseDataset):
     References
     ----------
     .. [#] Coxon, G., Addor, N., Bloomfield, J. P., Freer, J., Fry, M., Hannaford, J., Howden, N. J. K., Lane, R., 
-        Lewis, M., Robinson, E. L., Wagener, T., and Woods, R.: CAMELS-GB: Hydrometeorological time series and landscape 
+        Lewis, M., Robinson, E. L., Wagener, T., and Woods, R.: CAMELS_GB: Hydrometeorological time series and landscape 
         attributes for 671 catchments in Great Britain, Earth Syst. Sci. Data Discuss., 
         https://doi.org/10.5194/essd-2020-49, in review, 2020. 
     """
@@ -95,11 +95,11 @@ def load_camels_gb_attributes(data_dir: Path, basins: List[str] = []) -> pd.Data
     References
     ----------
     .. [#] Coxon, G., Addor, N., Bloomfield, J. P., Freer, J., Fry, M., Hannaford, J., Howden, N. J. K., Lane, R., 
-        Lewis, M., Robinson, E. L., Wagener, T., and Woods, R.: CAMELS-GB: Hydrometeorological time series and landscape 
+        Lewis, M., Robinson, E. L., Wagener, T., and Woods, R.: CAMELS_GB: Hydrometeorological time series and landscape 
         attributes for 671 catchments in Great Britain, Earth Syst. Sci. Data Discuss., 
         https://doi.org/10.5194/essd-2020-49,  in review, 2020. 
     """
-    attributes_path = data_dir / 'attributes'
+    attributes_path = data_dir / 'data' / 'attributes'
 
     if not attributes_path.exists():
         raise FileNotFoundError(f"Attribute folder not found at {attributes_path}")
@@ -140,7 +140,7 @@ def load_camels_gb_timeseries(data_dir: Path, basin: str) -> pd.DataFrame:
     pd.DataFrame
         Time-indexed DataFrame, containing the time series data (forcings + discharge) data.
     """
-    forcing_path = data_dir / 'timeseries'
+    forcing_path = data_dir / 'data' / 'timeseries'
     if not forcing_path.is_dir():
         raise OSError(f"{forcing_path} does not exist")
 

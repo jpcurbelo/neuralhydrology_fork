@@ -193,13 +193,12 @@ class BaseDataset(Dataset):
                 else:
                     torch.concatenate([sample[f'x_h{freq_suffix}'], self.hindcast_counter], dim=-1)
                     torch.concatenate([sample[f'x_f{freq_suffix}'], self.forecast_counter], dim=-1)
-
+        
         if self._per_basin_target_stds:
             sample['per_basin_target_stds'] = self._per_basin_target_stds[basin]
         if self.id_to_int:
             sample['x_one_hot'] = torch.nn.functional.one_hot(torch.tensor(self.id_to_int[basin]),
                                                               num_classes=len(self.id_to_int)).to(torch.float32)
-
         return sample
 
     def _load_basin_data(self, basin: str) -> pd.DataFrame:
@@ -523,6 +522,7 @@ class BaseDataset(Dataset):
         for basin in tqdm(self.basins, file=sys.stdout, disable=self._disable_pbar):
 
             obs = xr.sel(basin=basin)[self.cfg.target_variables].to_array().values
+
             if np.sum(~np.isnan(obs)) > 1:
                 # calculate std for each target
                 per_basin_target_stds = torch.tensor(np.expand_dims(np.nanstd(obs, axis=1), 0), dtype=torch.float32)
@@ -716,6 +716,7 @@ class BaseDataset(Dataset):
                 # Here we assume that only camels attributes are used
                 df = (df - self.scaler['camels_attr_means']) / self.scaler["camels_attr_stds"]
             else:
+                
                 df = (df - self.scaler['attribute_means']) / self.scaler["attribute_stds"]
 
             # preprocess each basin feature vector as pytorch tensor
@@ -735,7 +736,7 @@ class BaseDataset(Dataset):
 
         xr = self._load_or_create_xarray_dataset()
 
-        if self.cfg.loss.lower() in ['nse', 'weightednse']:
+        if self.cfg.loss.lower() in ['nse', 'nseinv', 'weightednse']:
             # get the std of the discharge for each basin, which is needed for the (weighted) NSE loss.
             self._calculate_per_basin_std(xr)
 

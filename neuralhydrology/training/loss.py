@@ -91,6 +91,9 @@ class BaseLoss(torch.nn.Module):
         Dict[str, torch.Tensor]
             The individual components of the loss (e.g., regularization terms). 'total_loss' contains the overall loss.
         """
+
+
+        
         # unpack loss-specific additional arguments
         kwargs = {key: data[key] for key in self._additional_data}
 
@@ -184,13 +187,27 @@ class MaskedMSELoss(BaseLoss):
         The run configuration.
     """
 
-    def __init__(self, cfg: Config):
+    def __init__(self, cfg: Config, inverse: bool = False):
         super(MaskedMSELoss, self).__init__(cfg, prediction_keys=['y_hat'], ground_truth_keys=['y'])
 
+        self.inverse = inverse
+
     def _get_loss(self, prediction: Dict[str, torch.Tensor], ground_truth: Dict[str, torch.Tensor], **kwargs):
+
         mask = ~torch.isnan(ground_truth['y'])
-        loss = 0.5 * torch.mean((prediction['y_hat'][mask] - ground_truth['y'][mask])**2)
-        
+        y = ground_truth['y'][mask]
+        y_hat = prediction['y_hat'][mask]
+
+        if self.inverse:
+            epsilon_y = torch.abs(y.mean()).item() / 100 if y.mean().item() != 0 else 1e-7
+            epsilon_y_hat = torch.abs(y_hat.mean()).item() / 100 if y_hat.mean().item() != 0 else 1e-7
+            y = 1 / (y + epsilon_y)
+            y_hat = 1 / (y_hat + epsilon_y_hat)
+            
+
+        # loss = 0.5 * torch.mean((prediction['y_hat'][mask] - ground_truth['y'][mask])**2)
+        loss = 0.5 * torch.mean((y_hat - y)**2)
+
         # # # Regularization term
         # # lambda_reg = kwargs.get('lambda_reg', 0.001)  # Regularization parameter, you can adjust this
         # # regularization = 0.5 * lambda_reg * torch.sum(self.model.parameters()**2)  # L2 regularization
@@ -242,20 +259,48 @@ class MaskedNSELoss(BaseLoss):
        *Hydrology and Earth System Sciences*, 2019, 23, 5089-5110, doi:10.5194/hess-23-5089-2019
     """
 
-    def __init__(self, cfg: Config, eps: float = 0.1):
+    def __init__(self, cfg: Config, eps: float = 0.1, inverse: bool = False):
         super(MaskedNSELoss, self).__init__(cfg,
                                             prediction_keys=['y_hat'],
                                             ground_truth_keys=['y'],
                                             additional_data=['per_basin_target_stds'])
         self.eps = eps
+        self.inverse = inverse
 
     def _get_loss(self, prediction: Dict[str, torch.Tensor], ground_truth: Dict[str, torch.Tensor], **kwargs):
+
         mask = ~torch.isnan(ground_truth['y'])
         y_hat = prediction['y_hat'][mask]
         y = ground_truth['y'][mask]
         per_basin_target_stds = kwargs['per_basin_target_stds']
+
         # expand dimension 1 to predict_last_n
         per_basin_target_stds = per_basin_target_stds.expand_as(prediction['y_hat'])[mask]
+
+        # Apply inverse if specified, handling zeroes with a small epsilon
+        if self.inverse:
+            epsilon_y = torch.abs(y.mean()).item() / 100 if y.mean().item() != 0 else 1e-7
+            epsilon_y_hat = torch.abs(y_hat.mean()).item() / 100 if y_hat.mean().item() != 0 else 1e-7
+
+            y = 1 / (y + epsilon_y)
+            y_hat = 1 / (y_hat + epsilon_y_hat)
+
+            # # classic NSE
+            # num = (y_hat - y)**2
+            # den = (y - y.mean())**2
+            # scaled_loss = 1 - torch.sum(num) / torch.sum(den)
+            
+
+
+        # else:
+        #     squared_error = (y_hat - y)**2
+        #     weights = 1 / (per_basin_target_stds + self.eps)**2
+        #     scaled_loss = weights * squared_error
+
+        #     # # classic NSE
+        #     # num = (y_hat - y)**2
+        #     # den = (y - y.mean())**2
+        #     # scaled_loss = 1 - torch.sum(num) / torch.sum(den)
 
         squared_error = (y_hat - y)**2
         weights = 1 / (per_basin_target_stds + self.eps)**2

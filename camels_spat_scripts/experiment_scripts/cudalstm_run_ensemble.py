@@ -19,10 +19,10 @@ only_run_these = [
     "416_batch2c_best.yml"
 ]
 
-# seed_list = [111, 222]
+seed_list = [111, 222]
 # seed_list = [333, 444]
 # seed_list = [555, 666]
-seed_list = [777, 888]
+# seed_list = [777, 888]
 # seed_list = [111, 222, 333, 444, 555, 666, 777, 888]
 # seed_list = [111, 222, 333, 444]
 # seed_list = [555, 666, 777, 888]
@@ -56,12 +56,17 @@ if __name__ == '__main__':
     # config_fname = "928_cyril_camelsspat19static17inp.yml"
     # config_fname = "928_cyril_camelsspat24static17inp.yml"
     # config_fname = "559_cyril_camelsus_lstm.yml"
-    config_fname = "559_cyril_camelsus_lstm_lrok.yml"
+    # config_fname = "559_cyril_camelsus_lstm_lrok.yml"
     # config_fname = "559_cyril_camelsus_ealstm.yml"
+    # config_fname = "559_cyril_camelsus_lstm_nseinv_30ep.yml"
+    # config_fname = "559_cyril_camelsus_lstm_nseinv_50ep.yml"
 
     # config_fname = "569_cluster2of17_10f_ealstm.yml"
     # config_fname = "569_cluster2of17_20f_ealstm.yml"
     # config_fname = "569_basins_camels_ealstm.yml"
+    # config_fname = "569_basins_camels_lstm_multi.yml"
+    # config_fname = "671_basins_camels_lstm_multi.yml"
+    config_fname = "222_basins_camels-aus_lstm_multi.yml"
         
     print("Config file name:", config_fname)
     with open(config_fname, "r") as f:
@@ -87,12 +92,19 @@ if __name__ == '__main__':
     # experiment_name = "928_cyril_camelsspat19static17inp"
     # experiment_name = "928_cyril_camelsspat24static17inp"
     # experiment_name = "559_cyril_camelsus_lstm"
-    experiment_name = "559_cyril_camelsus_lstm_lrok"
+    # experiment_name = "559_cyril_camelsus_lstm_lrok_newInv"
     # experiment_name = "559_cyril_camelsus_lstm_50ep"
     # experiment_name = "559_cyril_camelsus_ealstm"
+    # experiment_name = "559_cyril_camelsus_lstm_nseinv_30ep_v2"
+    # experiment_name = "559_cyril_camelsus_lstm_nseinv_50ep"
+    
+
 
     # experiment_name = "569_cluster2of17_20f_ealstm"
     # experiment_name = "569_basins_camels_ealstm"
+    # experiment_name = "569_hoge22_lstm_multi"
+    # experiment_name = "671_feng22_lstm_multi"
+    experiment_name = "222_kapoor23_lstm_multi"
 
     # experiment_name = "505_nh_paper_camelsspat_ealstm24static40_extraMinMaxTinp"
     # experiment_name = "505_nh_paper_camelsspat_ealstm24static36inp_extra_noEmEarth"
@@ -104,7 +116,7 @@ if __name__ == '__main__':
         run_config['seed'] = seed
         run_config['experiment_name'] = experiment_name + f"_{seed}"
 
-        run_config['device'] = "cuda:1"
+        run_config['device'] = "cuda:0"
         
         # Re-write the configuration file with the new seed
         with open(config_fname, 'w') as ymlfile:

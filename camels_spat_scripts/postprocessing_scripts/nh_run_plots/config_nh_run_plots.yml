@@ -40,7 +40,10 @@ metrics4table:
 # result_dir: runs_559_cyril_camelsus_lstm
 # result_dir: runs_559_cyril_camelsus_lstm_50ep
 # result_dir: runs_559_cyril_camelsus_ealstm
-result_dir: runs_559_cyril_camelsus_lstm_lrok
+# result_dir: runs_559_cyril_camelsus_lstm_lrok
+result_dir: runs_559_cyril_camelsus_lstm_lrok_newInv
+# result_dir: runs_559_cyril_camelsus_lstm_nseinv_30ep
+# result_dir: runs_559_cyril_camelsus_lstm_nseinv_50ep
 
 
 result_file: 
@@ -130,30 +133,48 @@ folders4cdf_dir:
   #   colname: 'camels_spat_34dyn_24stat_noExtra_noEmEarth'
 
 
-  - directory: runs_559_cyril_camelsus_lstm
-    experiment: 'Za (LSTM)'
-    color: 'tab:olive'
-    marker: x
-    linestyle: '-'
-    colname: 'cyril_camelsus_lstm'
-  - directory: runs_559_cyril_camelsus_lstm_50ep
-    experiment: 'Zb (LSTM - 50ep)'
-    color: 'tab:brown'
-    marker: x
-    linestyle: '-'
-    colname: 'cyril_camelsus_lstm_50ep'
+  # - directory: runs_559_cyril_camelsus_lstm
+  #   experiment: 'Za (LSTM)'
+  #   color: 'tab:olive'
+  #   marker: x
+  #   linestyle: '-'
+  #   colname: 'cyril_camelsus_lstm'
+  # - directory: runs_559_cyril_camelsus_lstm_50ep
+  #   experiment: 'Zb (LSTM - 50ep)'
+  #   color: 'tab:brown'
+  #   marker: x
+  #   linestyle: '-'
+  #   colname: 'cyril_camelsus_lstm_50ep'
   - directory: runs_559_cyril_camelsus_lstm_lrok
-    experiment: 'Zc (LSTM - 50ep - lrok)'
+    experiment: 'CyrilA (LSTM - 30ep - lrok)'
     color: 'tab:purple'
     marker: x
     linestyle: '-'
     colname: 'cyril_camelsus_lstm_lrok'
   - directory: runs_559_cyril_camelsus_ealstm
-    experiment: 'Zd (EA-LSTM)'
+    experiment: 'CyrilB (EA-LSTM - 30ep)'
     color: 'tab:blue'
     marker: x
     linestyle: '-'
     colname: 'cyril_camelsus_ealstm'
+  - directory: runs_559_cyril_camelsus_lstm_lrok_newInv
+    experiment: 'CyrilC (LSTM - 30ep - newInv)'
+    color: 'tab:red'
+    marker: x
+    linestyle: '-'
+    colname: 'cyril_camelsus_lstm_lrok_newInv'
+  # # - directory: runs_559_cyril_camelsus_lstm_nseinv_30ep
+  # #   experiment: 'CyrilC (LSTM - 30ep - NSEinv)'
+  # #   color: 'tab:red'
+  # #   marker: x
+  # #   linestyle: '-'
+  # #   colname: 'cyril_camelsus_lstm_nseinv_30ep'
+  # # - directory: runs_559_cyril_camelsus_lstm_nseinv_50ep
+  # #   experiment: 'CyrilD (LSTM - 50ep - NSEinv)'
+  # #   color: 'tab:orange'
+  # #   marker: x
+  # #   linestyle: '-'
+  # #   colname: 'cyril_camelsus_lstm_nseinv_50ep'
 
 
 

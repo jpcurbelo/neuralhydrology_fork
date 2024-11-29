@@ -4,7 +4,7 @@ clip_targets_to_zero:
 - QObs(mm/d)
 data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_US
 dataset: camels_us
-device: cuda:1
+device: cuda:0
 dynamic_inputs:
 - prcp(mm/day)
 - tmin(C)
@@ -12,7 +12,7 @@ dynamic_inputs:
 - srad(W/m2)
 - vp(Pa)
 epochs: 30
-experiment_name: 559_cyril_camelsus_lstm_lrok_newInv_888
+experiment_name: 569_hoge22_lstm_multi_222
 forcings: daymet
 head: regression
 hidden_size:
@@ -21,21 +21,19 @@ initial_forget_bias: 5
 learning_rate:
   0: 1e-3
   11: 5e-4
-  21: 1e-4
+  21: 1e-5
 log_interval: 5
 log_n_figures: 2
 log_tensorboard: true
 loss: NSE
 metrics:
 - NSE
-- NSEinv
 - Alpha-NSE
 - Beta-NSE
 - FHV
 - FMS
 - FLV
 - KGE
-- KGEinv
 - Beta-KGE
 - Peak-Timing
 - Peak-MAPE
@@ -47,7 +45,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 888
+seed: 222
 seq_length: 270
 static_attributes:
 - elev_mean
@@ -79,14 +77,14 @@ static_attributes:
 - p_seasonality
 target_variables:
 - QObs(mm/d)
-test_basin_file: 559_cyril_basins_usa.txt
-test_end_date: 31/12/2009
-test_start_date: 01/10/1999
-train_basin_file: 559_cyril_basins_usa.txt
-train_end_date: 31/12/1998
-train_start_date: 01/01/1989
-validate_every: 50
+test_basin_file: 569_basin_file.txt
+test_end_date: 30/09/2010
+test_start_date: 01/10/2000
+train_basin_file: 569_basin_file.txt
+train_end_date: 30/09/2000
+train_start_date: 01/10/1980
+validate_every: 5
 validate_n_random_basins: 5
-validation_basin_file: 559_cyril_basins_usa.txt
-validation_end_date: 31/12/2009
-validation_start_date: 01/01/1999
+validation_basin_file: 569_basin_file.txt
+validation_end_date: 30/09/2010
+validation_start_date: 01/10/2000

@@ -9,6 +9,7 @@ import pandas as pd
 from pandas.tseries.frequencies import to_offset
 from xarray.core.dataarray import DataArray
 from xarray.core.dataset import Dataset
+import warnings
 
 
 def load_hydroatlas_attributes(data_dir: Path, basins: List[str] = []) -> pd.DataFrame:
@@ -94,12 +95,21 @@ def attributes_sanity_check(df: pd.DataFrame):
     RuntimeError
         If one or more attributes have a standard deviation of zero or any attribute for any basin is NaN.
     """
-    # Check for NaNs in standard deviation of attributes.
+    # Check for NaNs or zero std in attributes
     attributes = []
+
+    # Use a general approach to iterate over Series items
+    if hasattr(pd.Series, "iteritems"):
+        iterator = df.std().iteritems()
+    else:
+        iterator = df.std().items()
+
     if any(df.std() == 0.0) or any(df.std().isnull()):
-        for k, v in df.std().iteritems():
+        for k, v in iterator:
             if (v == 0) or (np.isnan(v)):
                 attributes.append(k)
+
+    # Raise error if attributes have a std of zero or NaN
     if attributes:
         msg = [
             "The following attributes have a std of zero or NaN, which results in NaN's ",
@@ -107,20 +117,6 @@ def attributes_sanity_check(df: pd.DataFrame):
             "and restart the run. \n", f"Attributes: {attributes}"
         ]
         raise RuntimeError("".join(msg))
-
-    # Check for NaNs in any attribute of any basin
-    nan_df = df[df.isnull().any(axis=1)]
-    if len(nan_df) > 0:
-        failure_cases = defaultdict(list)
-        for basin, row in nan_df.iterrows():
-            for feature, value in row.iteritems():
-                if np.isnan(value):
-                    failure_cases[basin].append(feature)
-        # create verbose error message
-        msg = ["The following basins/attributes are NaN, which can't be used as input:"]
-        for basin, features in failure_cases.items():
-            msg.append(f"{basin}: {features}")
-        raise RuntimeError("\n".join(msg))
 
 
 def sort_frequencies(frequencies: List[str]) -> List[str]:

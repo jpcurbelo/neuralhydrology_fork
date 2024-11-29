@@ -106,7 +106,7 @@ def load_camels_br_timeseries(data_dir: Path, basin: str) -> pd.DataFrame:
     Raises
     ------
     FileNotFoundError
-        If no sub-folder called 'preprocessed' exists within the root directory of the CAMELS-AUS dataset.
+        If no sub-folder called 'preprocessed' exists within the root directory of the CAMELS_AUS dataset.
     """
     preprocessed_dir = data_dir / "preprocessed"
     if not preprocessed_dir.is_dir():
