@@ -12,7 +12,7 @@ dynamic_inputs:
 - solarrad_AWAP
 - vprp_AWAP
 epochs: 30
-experiment_name: 222_kapoor23_lstm_multi_111
+experiment_name: 222_kapoor23_lstm_multi_222
 head: regression
 hidden_size:
 - 256
@@ -44,7 +44,7 @@ output_activation: linear
 output_dropout: 0.4
 predict_last_n: 1
 save_weights_every: 5
-seed: 111
+seed: 222
 seq_length: 270
 static_attributes:
 - elev_mean

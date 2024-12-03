@@ -1,0 +1,92 @@
+batch_size: 256
+clip_gradient_norm: 1
+clip_targets_to_zero:
+- discharge_spec
+commit_hash: 81cfe11
+data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_GB
+dataset: camels_gb
+device: cuda:1
+dynamic_inputs:
+- precipitation
+- temperature
+- pet
+- shortwave_rad
+epochs: 30
+experiment_name: 663_espinoza22_lstm_multi_3dyn22static_555
+head: regression
+hidden_size:
+- 256
+img_log_dir: 
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/663_espinoza22_lstm_multi_3dyn22static_555_241202_213210/img_log
+initial_forget_bias: 5
+learning_rate:
+  0: 0.001
+  11: 0.0005
+  21: 1e-05
+log_interval: 5
+log_n_figures: 2
+log_tensorboard: true
+loss: NSE
+metrics:
+- NSE
+- Alpha-NSE
+- Beta-NSE
+- FHV
+- FMS
+- FLV
+- KGE
+- Beta-KGE
+- Peak-Timing
+- Peak-MAPE
+- Pearson-r
+model: cudalstm
+num_workers: 16
+number_of_basins: 663
+optimizer: Adam
+output_activation: linear
+output_dropout: 0.4
+package_version: 1.9.1
+predict_last_n: 1
+run_dir: 
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/663_espinoza22_lstm_multi_3dyn22static_555_241202_213210
+save_weights_every: 5
+seed: 555
+seq_length: 270
+static_attributes:
+- area
+- elev_mean
+- dpsbar
+- sand_perc
+- silt_perc
+- clay_perc
+- porosity_hypres
+- conductivity_hypres
+- soil_depth_pelletier
+- frac_snow
+- dwood_perc
+- ewood_perc
+- crop_perc
+- urban_perc
+- reservoir_cap
+- p_mean
+- pet_mean
+- p_seasonality
+- high_prec_freq
+- high_prec_dur
+- low_prec_freq
+- low_prec_dur
+target_variables:
+- discharge_vol
+test_basin_file: 663_basin_camels-gb.txt
+test_end_date: 31/12/2008
+test_start_date: 01/01/1998
+train_basin_file: 663_basin_camels-gb.txt
+train_dir: 
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/663_espinoza22_lstm_multi_3dyn22static_555_241202_213210/train_data
+train_end_date: 31/12/1997
+train_start_date: 01/10/1980
+validate_every: 5
+validate_n_random_basins: 5
+validation_basin_file: 663_basin_camels-gb.txt
+validation_end_date: 30/09/1980
+validation_start_date: 01/10/1975

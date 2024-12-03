@@ -1,0 +1,110 @@
+attribute_means:
+  aridity: 1.5002050855855855
+  carbnatesed: 0.012992491990990989
+  catchment_area: 3115.068918918918
+  claya: 24.370446514864863
+  clayb: 41.08904439774775
+  elev_mean: 514.386178077027
+  elev_range: 684.2636933481983
+  frac_snow: 0.002177981981981982
+  geol_prim_prop: 0.7110142740720721
+  geol_sec_prop: 0.21077932482882886
+  high_prec_dur: 1.3880434819819818
+  high_prec_freq: 19.493897391891895
+  ksat: 160.19158298828827
+  low_prec_dur: 6.252705202702702
+  low_prec_freq: 246.38265393243245
+  mean_slope_pct: 15.58391891891892
+  oldrock: 0.10140892471171173
+  p_mean: 2.9486683603603603
+  p_seasonality: 0.15204691891891892
+  pet_mean: 3.65543840990991
+  prop_forested: 0.7299579279279279
+  sanda: 55.91532932432433
+  silicsed: 0.3745981179054054
+  solpawhc: 128.66040461891893
+  solum_thickness: 0.967729117108108
+attribute_stds:
+  aridity: 0.9306944391521912
+  carbnatesed: 0.06832163637779531
+  catchment_area: 18198.9438843166
+  claya: 14.766107274871143
+  clayb: 26.675174988263084
+  elev_mean: 302.4426106397113
+  elev_range: 397.3909101639555
+  frac_snow: 0.009053067971744794
+  geol_prim_prop: 0.18602316118724446
+  geol_sec_prop: 0.131218001912881
+  high_prec_dur: 0.18970253204746407
+  high_prec_freq: 2.4569069174893956
+  ksat: 79.31743494255132
+  low_prec_dur: 2.6112810066278183
+  low_prec_freq: 33.93373581497759
+  mean_slope_pct: 10.68907258876446
+  oldrock: 0.24341162198445884
+  p_mean: 1.2552620092408882
+  p_seasonality: 0.6607766188593038
+  pet_mean: 0.9060193968465063
+  prop_forested: 0.29973500833105315
+  sanda: 19.419061421047935
+  silicsed: 0.3372537620418462
+  solpawhc: 42.378511774444455
+  solum_thickness: 0.25020435602765917
+xarray_feature_scale:
+  coords: {}
+  attrs: {}
+  dims: {}
+  data_vars:
+    precipitation_AWAP:
+      dims: []
+      attrs: {}
+      data: 7.978735446929932
+    solarrad_AWAP:
+      dims: []
+      attrs: {}
+      data: 8.24155330657959
+    streamflow_mmd:
+      dims: []
+      attrs: {}
+      data: 3.5108938217163086
+    tmax_AWAP:
+      dims: []
+      attrs: {}
+      data: 8.023629188537598
+    tmin_AWAP:
+      dims: []
+      attrs: {}
+      data: 7.002425670623779
+    vprp_AWAP:
+      dims: []
+      attrs: {}
+      data: 5.736674785614014
+xarray_feature_center:
+  coords: {}
+  attrs: {}
+  dims: {}
+  data_vars:
+    precipitation_AWAP:
+      dims: []
+      attrs: {}
+      data: 2.8879072666168213
+    solarrad_AWAP:
+      dims: []
+      attrs: {}
+      data: 17.509990692138672
+    streamflow_mmd:
+      dims: []
+      attrs: {}
+      data: 0.8230166435241699
+    tmax_AWAP:
+      dims: []
+      attrs: {}
+      data: 21.648090362548828
+    tmin_AWAP:
+      dims: []
+      attrs: {}
+      data: 10.302900314331055
+    vprp_AWAP:
+      dims: []
+      attrs: {}
+      data: 12.941557884216309

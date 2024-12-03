@@ -75,7 +75,7 @@ test_start_date: 01/01/1998
 train_basin_file: 67_basin_camels-gb.txt
 train_end_date: 31/12/1997
 train_start_date: 01/10/1980
-validate_every: 5
+validate_every: 2
 validate_n_random_basins: 5
 validation_basin_file: 67_basin_camels-gb.txt
 validation_end_date: 30/09/1980

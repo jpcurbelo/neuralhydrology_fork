@@ -1,0 +1,187 @@
+2024-11-28 21:04:13,226: Logging to /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_555_241128_210413/output.log initialized.
+2024-11-28 21:04:13,226: ### Folder structure created at /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_555_241128_210413
+2024-11-28 21:04:13,226: ### Run configurations for 222_kapoor23_lstm_multi_555
+2024-11-28 21:04:13,227: batch_size: 256
+2024-11-28 21:04:13,227: clip_gradient_norm: 1
+2024-11-28 21:04:13,227: clip_targets_to_zero: ['streamflow_mmd']
+2024-11-28 21:04:13,227: data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_AUS
+2024-11-28 21:04:13,227: dataset: camels_aus
+2024-11-28 21:04:13,227: device: cuda:1
+2024-11-28 21:04:13,227: dynamic_inputs: ['precipitation_AWAP', 'tmin_AWAP', 'tmax_AWAP', 'solarrad_AWAP', 'vprp_AWAP']
+2024-11-28 21:04:13,227: epochs: 30
+2024-11-28 21:04:13,227: experiment_name: 222_kapoor23_lstm_multi_555
+2024-11-28 21:04:13,227: head: regression
+2024-11-28 21:04:13,227: hidden_size: [256]
+2024-11-28 21:04:13,227: initial_forget_bias: 5
+2024-11-28 21:04:13,227: learning_rate: {0: 0.001, 11: 0.0005, 21: 1e-05}
+2024-11-28 21:04:13,227: log_interval: 5
+2024-11-28 21:04:13,227: log_n_figures: 2
+2024-11-28 21:04:13,227: log_tensorboard: True
+2024-11-28 21:04:13,227: loss: NSE
+2024-11-28 21:04:13,227: metrics: ['NSE', 'Alpha-NSE', 'Beta-NSE', 'FHV', 'FMS', 'FLV', 'KGE', 'Beta-KGE', 'Peak-Timing', 'Peak-MAPE', 'Pearson-r']
+2024-11-28 21:04:13,227: model: cudalstm
+2024-11-28 21:04:13,227: num_workers: 16
+2024-11-28 21:04:13,227: optimizer: Adam
+2024-11-28 21:04:13,227: output_activation: linear
+2024-11-28 21:04:13,227: output_dropout: 0.4
+2024-11-28 21:04:13,227: predict_last_n: 1
+2024-11-28 21:04:13,227: save_weights_every: 5
+2024-11-28 21:04:13,227: seed: 555
+2024-11-28 21:04:13,227: seq_length: 270
+2024-11-28 21:04:13,227: static_attributes: ['elev_mean', 'elev_range', 'mean_slope_pct', 'catchment_area', 'ksat', 'sanda', 'claya', 'clayb', 'carbnatesed', 'silicsed', 'p_mean', 'pet_mean', 'aridity', 'frac_snow', 'high_prec_freq', 'high_prec_dur', 'low_prec_freq', 'low_prec_dur', 'p_seasonality', 'oldrock', 'solum_thickness', 'solpawhc', 'geol_prim_prop', 'geol_sec_prop', 'prop_forested']
+2024-11-28 21:04:13,227: target_variables: ['streamflow_mmd']
+2024-11-28 21:04:13,228: test_basin_file: 222_basins_camels-aus.txt
+2024-11-28 21:04:13,228: test_end_date: 2014-12-31 00:00:00
+2024-11-28 21:04:13,228: test_start_date: 2005-01-01 00:00:00
+2024-11-28 21:04:13,228: train_basin_file: 222_basins_camels-aus.txt
+2024-11-28 21:04:13,228: train_end_date: 2004-12-31 00:00:00
+2024-11-28 21:04:13,228: train_start_date: 1990-01-01 00:00:00
+2024-11-28 21:04:13,228: validate_every: 5
+2024-11-28 21:04:13,228: validate_n_random_basins: 5
+2024-11-28 21:04:13,228: validation_basin_file: 222_basins_camels-aus.txt
+2024-11-28 21:04:13,228: validation_end_date: 2014-12-31 00:00:00
+2024-11-28 21:04:13,228: validation_start_date: 2005-01-01 00:00:00
+2024-11-28 21:04:13,228: number_of_basins: 222
+2024-11-28 21:04:13,228: run_dir: /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_555_241128_210413
+2024-11-28 21:04:13,228: train_dir: /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_555_241128_210413/train_data
+2024-11-28 21:04:13,228: img_log_dir: /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_555_241128_210413/img_log
+2024-11-28 21:04:13,253: ### Device cuda:1 will be used for training
+2024-11-28 21:04:13,336: Loading basin data into xarray data set.
+2024-11-28 21:04:53,112: Calculating target variable stds per basin
+2024-11-28 21:04:53,426: Create lookup table and convert to pytorch tensor
+2024-11-28 21:07:29,275: Epoch 1 average loss: avg_loss: 0.04083, avg_total_loss: 0.04083
+2024-11-28 21:09:53,016: Epoch 2 average loss: avg_loss: 0.02355, avg_total_loss: 0.02355
+2024-11-28 21:12:18,013: Epoch 3 average loss: avg_loss: 0.02080, avg_total_loss: 0.02080
+2024-11-28 21:14:43,208: Epoch 4 average loss: avg_loss: 0.01894, avg_total_loss: 0.01894
+2024-11-28 21:17:08,662: Epoch 5 average loss: avg_loss: 0.01732, avg_total_loss: 0.01732
+2024-11-28 21:17:12,548: Epoch 5 average validation loss: 0.01727 -- Median validation metrics: avg_loss: 0.01727, NSE: 0.72933, Alpha-NSE: 0.61857, Beta-NSE: -0.02958, FHV: -32.30321, FMS: -6.91404, FLV: 57.27724, KGE: 0.49176, Beta-KGE: 0.78812, Peak-Timing: 0.25000, Peak-MAPE: 46.64460, Pearson-r: 0.91284
+2024-11-28 21:19:37,706: Epoch 6 average loss: avg_loss: 0.01676, avg_total_loss: 0.01676
+2024-11-28 21:22:01,451: Epoch 7 average loss: avg_loss: 0.01608, avg_total_loss: 0.01608
+2024-11-28 21:24:26,062: Epoch 8 average loss: avg_loss: 0.01533, avg_total_loss: 0.01533
+2024-11-28 21:26:50,567: Epoch 9 average loss: avg_loss: 0.01477, avg_total_loss: 0.01477
+2024-11-28 21:29:12,497: Epoch 10 average loss: avg_loss: 0.01410, avg_total_loss: 0.01410
+2024-11-28 21:29:15,908: Epoch 10 average validation loss: 0.02134 -- Median validation metrics: avg_loss: 0.02134, NSE: 0.70578, Alpha-NSE: 0.92503, Beta-NSE: 0.03323, FHV: 12.23037, FMS: -59.88390, FLV: 73.73487, KGE: 0.56082, Beta-KGE: 1.34819, Peak-Timing: 0.40000, Peak-MAPE: 50.84236, Pearson-r: 0.89050
+2024-11-28 21:29:15,908: Setting learning rate to 0.0005
+2024-11-28 21:31:37,679: Epoch 11 average loss: avg_loss: 0.01218, avg_total_loss: 0.01218
+2024-11-28 21:34:01,847: Epoch 12 average loss: avg_loss: 0.01160, avg_total_loss: 0.01160
+2024-11-28 21:36:26,821: Epoch 13 average loss: avg_loss: 0.01127, avg_total_loss: 0.01127
+2024-11-28 21:38:50,511: Epoch 14 average loss: avg_loss: 0.01076, avg_total_loss: 0.01076
+2024-11-28 21:41:12,895: Epoch 15 average loss: avg_loss: 0.01051, avg_total_loss: 0.01051
+2024-11-28 21:41:16,280: Epoch 15 average validation loss: 0.01653 -- Median validation metrics: avg_loss: 0.01653, NSE: 0.79003, Alpha-NSE: 0.87208, Beta-NSE: -0.00636, FHV: -4.91105, FMS: 2.61716, FLV: 8.97971, KGE: 0.72751, Beta-KGE: 0.97055, Peak-Timing: 0.43750, Peak-MAPE: 39.28033, Pearson-r: 0.89772
+2024-11-28 21:43:39,763: Epoch 16 average loss: avg_loss: 0.01011, avg_total_loss: 0.01011
+2024-11-28 21:46:03,467: Epoch 17 average loss: avg_loss: 0.00999, avg_total_loss: 0.00999
+2024-11-28 21:48:27,239: Epoch 18 average loss: avg_loss: 0.01243, avg_total_loss: 0.01243
+2024-11-28 21:50:50,891: Epoch 19 average loss: avg_loss: 0.01012, avg_total_loss: 0.01012
+2024-11-28 21:53:15,274: Epoch 20 average loss: avg_loss: 0.00935, avg_total_loss: 0.00935
+2024-11-28 21:53:18,517: Epoch 20 average validation loss: 0.01555 -- Median validation metrics: avg_loss: 0.01555, NSE: 0.79504, Alpha-NSE: 0.76301, Beta-NSE: -0.05378, FHV: -24.85851, FMS: -15.15705, FLV: 67.53894, KGE: 0.70535, Beta-KGE: 0.84780, Peak-Timing: 0.44444, Peak-MAPE: 48.50033, Pearson-r: 0.90738
+2024-11-28 21:53:18,517: Setting learning rate to 1e-05
+2024-11-28 21:55:42,968: Epoch 21 average loss: avg_loss: 0.00851, avg_total_loss: 0.00851
+2024-11-28 21:58:07,823: Epoch 22 average loss: avg_loss: 0.00827, avg_total_loss: 0.00827
+2024-11-28 22:00:32,659: Epoch 23 average loss: avg_loss: 0.00800, avg_total_loss: 0.00800
+2024-11-28 22:02:56,922: Epoch 24 average loss: avg_loss: 0.00784, avg_total_loss: 0.00784
+2024-11-28 22:05:22,258: Epoch 25 average loss: avg_loss: 0.00785, avg_total_loss: 0.00785
+2024-11-28 22:05:22,479: The following basins had not enough valid target values to calculate a standard deviation: 803003. NSE loss values for this basin will be NaN.
+2024-11-28 22:05:25,988: Epoch 25 average validation loss: 0.02373 -- Median validation metrics: avg_loss: 0.02373, NSE: 0.65176, Alpha-NSE: 0.63869, Beta-NSE: -0.01260, FHV: -22.12211, FMS: -38.10431, FLV: 37.56815, KGE: 0.58993, Beta-KGE: 0.91972, Peak-Timing: 0.45000, Peak-MAPE: 43.35643, Pearson-r: 0.83079
+2024-11-28 22:07:51,197: Epoch 26 average loss: avg_loss: 0.00786, avg_total_loss: 0.00786
+2024-11-28 22:10:17,727: Epoch 27 average loss: avg_loss: 0.00768, avg_total_loss: 0.00768
+2024-11-28 22:12:42,388: Epoch 28 average loss: avg_loss: 0.00764, avg_total_loss: 0.00764
+2024-11-28 22:15:07,460: Epoch 29 average loss: avg_loss: 0.00769, avg_total_loss: 0.00769
+2024-11-28 22:17:31,443: Epoch 30 average loss: avg_loss: 0.00754, avg_total_loss: 0.00754
+2024-11-28 22:17:35,033: Epoch 30 average validation loss: 0.01930 -- Median validation metrics: avg_loss: 0.01930, NSE: 0.73083, Alpha-NSE: 0.97990, Beta-NSE: 0.03730, FHV: -10.20249, FMS: -6.84230, FLV: 2.26916, KGE: 0.74067, Beta-KGE: 1.05547, Peak-Timing: 0.30769, Peak-MAPE: 41.85455, Pearson-r: 0.87645
+2024-11-28 22:17:35,277: Using the model weights from runs/222_kapoor23_lstm_multi_555_241128_210413/model_epoch030.pt
+2024-11-28 22:19:09,170: The following basins had not enough valid target values to calculate a standard deviation: 803003. NSE loss values for this basin will be NaN.
+2024-11-28 22:19:27,125: Stored metrics at runs/222_kapoor23_lstm_multi_555_241128_210413/test/model_epoch030/test_metrics_seed555.csv
+2024-11-28 22:19:27,192: Stored results at runs/222_kapoor23_lstm_multi_555_241128_210413/test/model_epoch030/test_results.p
+2024-11-28 22:19:27,203: Logging to /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_666_241128_221927/output.log initialized.
+2024-11-28 22:19:27,203: ### Folder structure created at /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_666_241128_221927
+2024-11-28 22:19:27,203: ### Run configurations for 222_kapoor23_lstm_multi_666
+2024-11-28 22:19:27,203: batch_size: 256
+2024-11-28 22:19:27,203: clip_gradient_norm: 1
+2024-11-28 22:19:27,203: clip_targets_to_zero: ['streamflow_mmd']
+2024-11-28 22:19:27,203: data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_AUS
+2024-11-28 22:19:27,203: dataset: camels_aus
+2024-11-28 22:19:27,203: device: cuda:1
+2024-11-28 22:19:27,203: dynamic_inputs: ['precipitation_AWAP', 'tmin_AWAP', 'tmax_AWAP', 'solarrad_AWAP', 'vprp_AWAP']
+2024-11-28 22:19:27,203: epochs: 30
+2024-11-28 22:19:27,203: experiment_name: 222_kapoor23_lstm_multi_666
+2024-11-28 22:19:27,203: head: regression
+2024-11-28 22:19:27,203: hidden_size: [256]
+2024-11-28 22:19:27,203: initial_forget_bias: 5
+2024-11-28 22:19:27,203: learning_rate: {0: 0.001, 11: 0.0005, 21: 1e-05}
+2024-11-28 22:19:27,203: log_interval: 5
+2024-11-28 22:19:27,204: log_n_figures: 2
+2024-11-28 22:19:27,204: log_tensorboard: True
+2024-11-28 22:19:27,204: loss: NSE
+2024-11-28 22:19:27,204: metrics: ['NSE', 'Alpha-NSE', 'Beta-NSE', 'FHV', 'FMS', 'FLV', 'KGE', 'Beta-KGE', 'Peak-Timing', 'Peak-MAPE', 'Pearson-r']
+2024-11-28 22:19:27,204: model: cudalstm
+2024-11-28 22:19:27,204: num_workers: 16
+2024-11-28 22:19:27,204: optimizer: Adam
+2024-11-28 22:19:27,204: output_activation: linear
+2024-11-28 22:19:27,204: output_dropout: 0.4
+2024-11-28 22:19:27,204: predict_last_n: 1
+2024-11-28 22:19:27,204: save_weights_every: 5
+2024-11-28 22:19:27,204: seed: 666
+2024-11-28 22:19:27,204: seq_length: 270
+2024-11-28 22:19:27,204: static_attributes: ['elev_mean', 'elev_range', 'mean_slope_pct', 'catchment_area', 'ksat', 'sanda', 'claya', 'clayb', 'carbnatesed', 'silicsed', 'p_mean', 'pet_mean', 'aridity', 'frac_snow', 'high_prec_freq', 'high_prec_dur', 'low_prec_freq', 'low_prec_dur', 'p_seasonality', 'oldrock', 'solum_thickness', 'solpawhc', 'geol_prim_prop', 'geol_sec_prop', 'prop_forested']
+2024-11-28 22:19:27,204: target_variables: ['streamflow_mmd']
+2024-11-28 22:19:27,204: test_basin_file: 222_basins_camels-aus.txt
+2024-11-28 22:19:27,204: test_end_date: 2014-12-31 00:00:00
+2024-11-28 22:19:27,204: test_start_date: 2005-01-01 00:00:00
+2024-11-28 22:19:27,204: train_basin_file: 222_basins_camels-aus.txt
+2024-11-28 22:19:27,204: train_end_date: 2004-12-31 00:00:00
+2024-11-28 22:19:27,204: train_start_date: 1990-01-01 00:00:00
+2024-11-28 22:19:27,204: validate_every: 5
+2024-11-28 22:19:27,204: validate_n_random_basins: 5
+2024-11-28 22:19:27,204: validation_basin_file: 222_basins_camels-aus.txt
+2024-11-28 22:19:27,204: validation_end_date: 2014-12-31 00:00:00
+2024-11-28 22:19:27,204: validation_start_date: 2005-01-01 00:00:00
+2024-11-28 22:19:27,204: number_of_basins: 222
+2024-11-28 22:19:27,204: run_dir: /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_666_241128_221927
+2024-11-28 22:19:27,204: train_dir: /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_666_241128_221927/train_data
+2024-11-28 22:19:27,204: img_log_dir: /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_666_241128_221927/img_log
+2024-11-28 22:19:27,205: ### Device cuda:1 will be used for training
+2024-11-28 22:19:27,275: Loading basin data into xarray data set.
+2024-11-28 22:20:01,605: Calculating target variable stds per basin
+2024-11-28 22:20:01,896: Create lookup table and convert to pytorch tensor
+2024-11-28 22:22:25,183: Epoch 1 average loss: avg_loss: 0.03932, avg_total_loss: 0.03932
+2024-11-28 22:24:50,509: Epoch 2 average loss: avg_loss: 0.02312, avg_total_loss: 0.02312
+2024-11-28 22:27:14,078: Epoch 3 average loss: avg_loss: 0.02016, avg_total_loss: 0.02016
+2024-11-28 22:29:40,478: Epoch 4 average loss: avg_loss: 0.02076, avg_total_loss: 0.02076
+2024-11-28 22:32:05,474: Epoch 5 average loss: avg_loss: 0.01739, avg_total_loss: 0.01739
+2024-11-28 22:32:08,601: Epoch 5 average validation loss: 0.02118 -- Median validation metrics: avg_loss: 0.02118, NSE: 0.69711, Alpha-NSE: 0.59485, Beta-NSE: 0.05339, FHV: -39.19716, FMS: -68.80336, FLV: 67.71951, KGE: 0.47089, Beta-KGE: 1.28149, Peak-Timing: 0.50000, Peak-MAPE: 69.48198, Pearson-r: 0.84993
+2024-11-28 22:34:32,055: Epoch 6 average loss: avg_loss: 0.01676, avg_total_loss: 0.01676
+2024-11-28 22:36:57,795: Epoch 7 average loss: avg_loss: 0.01575, avg_total_loss: 0.01575
+2024-11-28 22:39:24,126: Epoch 8 average loss: avg_loss: 0.01518, avg_total_loss: 0.01518
+2024-11-28 22:41:48,954: Epoch 9 average loss: avg_loss: 0.01468, avg_total_loss: 0.01468
+2024-11-28 22:44:10,805: Epoch 10 average loss: avg_loss: 0.01431, avg_total_loss: 0.01431
+2024-11-28 22:44:14,229: Epoch 10 average validation loss: 0.01896 -- Median validation metrics: avg_loss: 0.01896, NSE: 0.80409, Alpha-NSE: 0.74837, Beta-NSE: -0.01344, FHV: -21.15493, FMS: -12.84715, FLV: 17.89669, KGE: 0.59532, Beta-KGE: 0.89212, Peak-Timing: 0.35714, Peak-MAPE: 47.53255, Pearson-r: 0.91145
+2024-11-28 22:44:14,229: Setting learning rate to 0.0005
+2024-11-28 22:46:38,444: Epoch 11 average loss: avg_loss: 0.01231, avg_total_loss: 0.01231
+2024-11-28 22:49:02,404: Epoch 12 average loss: avg_loss: 0.01137, avg_total_loss: 0.01137
+2024-11-28 22:51:27,885: Epoch 13 average loss: avg_loss: 0.01118, avg_total_loss: 0.01118
+2024-11-28 22:53:52,340: Epoch 14 average loss: avg_loss: 0.02184, avg_total_loss: 0.02184
+2024-11-28 22:56:17,020: Epoch 15 average loss: avg_loss: 0.01059, avg_total_loss: 0.01059
+2024-11-28 22:56:20,339: Epoch 15 average validation loss: 0.01664 -- Median validation metrics: avg_loss: 0.01664, NSE: 0.79200, Alpha-NSE: 0.99947, Beta-NSE: -0.01931, FHV: 1.91839, FMS: -1.62361, FLV: 19.82297, KGE: 0.84691, Beta-KGE: 0.93123, Peak-Timing: 0.21429, Peak-MAPE: 35.59184, Pearson-r: 0.90100
+2024-11-28 22:58:45,903: Epoch 16 average loss: avg_loss: 0.01019, avg_total_loss: 0.01019
+2024-11-28 23:01:10,753: Epoch 17 average loss: avg_loss: 0.01004, avg_total_loss: 0.01004
+2024-11-28 23:03:36,504: Epoch 18 average loss: avg_loss: 0.00985, avg_total_loss: 0.00985
+2024-11-28 23:06:01,123: Epoch 19 average loss: avg_loss: 0.00971, avg_total_loss: 0.00971
+2024-11-28 23:08:25,375: Epoch 20 average loss: avg_loss: 0.00953, avg_total_loss: 0.00953
+2024-11-28 23:08:28,681: Epoch 20 average validation loss: 0.02167 -- Median validation metrics: avg_loss: 0.02167, NSE: 0.75152, Alpha-NSE: 0.77500, Beta-NSE: 0.01044, FHV: -17.29765, FMS: -11.57409, FLV: 31.13884, KGE: 0.72878, Beta-KGE: 1.07835, Peak-Timing: 0.25000, Peak-MAPE: 46.83911, Pearson-r: 0.87872
+2024-11-28 23:08:28,681: Setting learning rate to 1e-05
+2024-11-28 23:10:51,766: Epoch 21 average loss: avg_loss: 0.00834, avg_total_loss: 0.00834
+2024-11-28 23:13:17,885: Epoch 22 average loss: avg_loss: 0.00810, avg_total_loss: 0.00810
+2024-11-28 23:15:42,141: Epoch 23 average loss: avg_loss: 0.00805, avg_total_loss: 0.00805
+2024-11-28 23:18:05,860: Epoch 24 average loss: avg_loss: 0.00797, avg_total_loss: 0.00797
+2024-11-28 23:20:29,660: Epoch 25 average loss: avg_loss: 0.00794, avg_total_loss: 0.00794
+2024-11-28 23:20:32,652: Epoch 25 average validation loss: 0.02110 -- Median validation metrics: avg_loss: 0.02110, NSE: 0.72921, Alpha-NSE: 0.81745, Beta-NSE: -0.00046, FHV: -12.27842, FMS: -55.90473, FLV: 23.06427, KGE: 0.66463, Beta-KGE: 0.99531, Peak-Timing: 0.23529, Peak-MAPE: 42.22397, Pearson-r: 0.88940
+2024-11-28 23:22:58,095: Epoch 26 average loss: avg_loss: 0.00783, avg_total_loss: 0.00783
+2024-11-28 23:25:23,275: Epoch 27 average loss: avg_loss: 0.00780, avg_total_loss: 0.00780
+2024-11-28 23:27:48,550: Epoch 28 average loss: avg_loss: 0.00778, avg_total_loss: 0.00778
+2024-11-28 23:30:13,055: Epoch 29 average loss: avg_loss: 0.00772, avg_total_loss: 0.00772
+2024-11-28 23:32:31,905: Epoch 30 average loss: avg_loss: 0.00770, avg_total_loss: 0.00770
+2024-11-28 23:32:35,019: Epoch 30 average validation loss: 0.01922 -- Median validation metrics: avg_loss: 0.01922, NSE: 0.71580, Alpha-NSE: 0.78141, Beta-NSE: -0.02813, FHV: -25.13843, FMS: 4.42235, FLV: 83.06645, KGE: 0.58264, Beta-KGE: 0.88812, Peak-Timing: 0.23529, Peak-MAPE: 47.36878, Pearson-r: 0.91398
+2024-11-28 23:32:35,252: Using the model weights from runs/222_kapoor23_lstm_multi_666_241128_221927/model_epoch030.pt
+2024-11-28 23:34:09,821: The following basins had not enough valid target values to calculate a standard deviation: 803003. NSE loss values for this basin will be NaN.
+2024-11-28 23:34:28,069: Stored metrics at runs/222_kapoor23_lstm_multi_666_241128_221927/test/model_epoch030/test_metrics_seed666.csv
+2024-11-28 23:34:28,133: Stored results at runs/222_kapoor23_lstm_multi_666_241128_221927/test/model_epoch030/test_results.p

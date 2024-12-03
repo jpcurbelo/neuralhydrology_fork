@@ -1,0 +1,106 @@
+attribute_means:
+  area: 409.285867269985
+  aridity: 0.5185369532428357
+  clay_perc: 25.083484162895925
+  conductivity_cosby: 1.4098039215686275
+  conductivity_hypres: 1.3399095022624432
+  crop_perc: 23.309049773755657
+  dpsbar: 96.32126696832579
+  dwood_perc: 7.070241327300151
+  elev_mean: 201.65912518853696
+  ewood_perc: 6.818416289592761
+  frac_snow: 0.021885369532428357
+  high_prec_dur: 1.1389291101055805
+  high_prec_freq: 15.613514328808447
+  inwater_perc: 0.6632277526395174
+  low_prec_dur: 3.7217496229260933
+  low_prec_freq: 210.8738009049774
+  organic_perc: 3.859291101055807
+  p_mean: 3.103514328808447
+  p_seasonality: -0.125052790346908
+  pet_mean: 1.3411613876319757
+  porosity_cosby: 43.132714932126696
+  porosity_hypres: 47.98478129713424
+  reservoir_cap: 23999.894419306183
+  sand_perc: 45.341764705882355
+  silt_perc: 29.573242835595774
+  soil_depth_pelletier: 3.859276018099547
+  urban_perc: 7.473469079939668
+attribute_stds:
+  area: 946.2584456965649
+  aridity: 0.21047737729130966
+  clay_perc: 7.635056970446871
+  conductivity_cosby: 0.5475372968159682
+  conductivity_hypres: 0.3287939018051481
+  crop_perc: 25.50865537904269
+  dpsbar: 66.63231946423528
+  dwood_perc: 5.699495069778944
+  elev_mean: 128.2032878853393
+  ewood_perc: 11.283359150166122
+  frac_snow: 0.020681124108408826
+  high_prec_dur: 0.03158309588820617
+  high_prec_freq: 2.8320036867193443
+  inwater_perc: 1.1839618654355668
+  low_prec_dur: 0.49210468889243275
+  low_prec_freq: 31.127846719979473
+  organic_perc: 5.3700626120584705
+  p_mean: 1.4431384226641606
+  p_seasonality: 0.11453949009861684
+  pet_mean: 0.11159788173500086
+  porosity_cosby: 1.268591716941787
+  porosity_hypres: 6.256869378198895
+  reservoir_cap: 320414.1155736586
+  sand_perc: 10.512585611859143
+  silt_perc: 6.012616760949727
+  soil_depth_pelletier: 5.94461088455031
+  urban_perc: 12.735214033024448
+xarray_feature_scale:
+  coords: {}
+  attrs: {}
+  dims: {}
+  data_vars:
+    discharge_vol:
+      dims: []
+      attrs: {}
+      data: 23.576091766357422
+    pet:
+      dims: []
+      attrs: {}
+      data: 1.0890183448791504
+    precipitation:
+      dims: []
+      attrs: {}
+      data: 6.032064437866211
+    shortwave_rad:
+      dims: []
+      attrs: {}
+      data: 81.79229736328125
+    temperature:
+      dims: []
+      attrs: {}
+      data: 5.237022876739502
+xarray_feature_center:
+  coords: {}
+  attrs: {}
+  dims: {}
+  data_vars:
+    discharge_vol:
+      dims: []
+      attrs: {}
+      data: 7.946865558624268
+    pet:
+      dims: []
+      attrs: {}
+      data: 1.3453466892242432
+    precipitation:
+      dims: []
+      attrs: {}
+      data: 3.066998243331909
+    shortwave_rad:
+      dims: []
+      attrs: {}
+      data: 111.93753051757812
+    temperature:
+      dims: []
+      attrs: {}
+      data: 8.617951393127441

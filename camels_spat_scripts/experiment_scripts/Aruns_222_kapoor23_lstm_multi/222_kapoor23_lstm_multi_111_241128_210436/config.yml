@@ -1,0 +1,96 @@
+batch_size: 256
+clip_gradient_norm: 1
+clip_targets_to_zero:
+- streamflow_mmd
+commit_hash: '3894593'
+data_dir: ../../../../../gladwell/hydrology/SUMMA/summa-ml-models/CAMELS_AUS
+dataset: camels_aus
+device: cuda:0
+dynamic_inputs:
+- precipitation_AWAP
+- tmin_AWAP
+- tmax_AWAP
+- solarrad_AWAP
+- vprp_AWAP
+epochs: 30
+experiment_name: 222_kapoor23_lstm_multi_111
+head: regression
+hidden_size:
+- 256
+img_log_dir: 
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_111_241128_210436/img_log
+initial_forget_bias: 5
+learning_rate:
+  0: 0.001
+  11: 0.0005
+  21: 1e-05
+log_interval: 5
+log_n_figures: 2
+log_tensorboard: true
+loss: NSE
+metrics:
+- NSE
+- Alpha-NSE
+- Beta-NSE
+- FHV
+- FMS
+- FLV
+- KGE
+- Beta-KGE
+- Peak-Timing
+- Peak-MAPE
+- Pearson-r
+model: cudalstm
+num_workers: 16
+number_of_basins: 222
+optimizer: Adam
+output_activation: linear
+output_dropout: 0.4
+package_version: 1.9.1
+predict_last_n: 1
+run_dir: 
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_111_241128_210436
+save_weights_every: 5
+seed: 111
+seq_length: 270
+static_attributes:
+- elev_mean
+- elev_range
+- mean_slope_pct
+- catchment_area
+- ksat
+- sanda
+- claya
+- clayb
+- carbnatesed
+- silicsed
+- p_mean
+- pet_mean
+- aridity
+- frac_snow
+- high_prec_freq
+- high_prec_dur
+- low_prec_freq
+- low_prec_dur
+- p_seasonality
+- oldrock
+- solum_thickness
+- solpawhc
+- geol_prim_prop
+- geol_sec_prop
+- prop_forested
+target_variables:
+- streamflow_mmd
+test_basin_file: 222_basins_camels-aus.txt
+test_end_date: 31/12/2014
+test_start_date: 01/01/2005
+train_basin_file: 222_basins_camels-aus.txt
+train_dir: 
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/222_kapoor23_lstm_multi_111_241128_210436/train_data
+train_end_date: 31/12/2004
+train_start_date: 01/01/1990
+validate_every: 5
+validate_n_random_basins: 5
+validation_basin_file: 222_basins_camels-aus.txt
+validation_end_date: 31/12/2014
+validation_start_date: 01/01/2005

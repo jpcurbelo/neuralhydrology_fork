@@ -37,9 +37,15 @@ sys.path.append(root_dir)
 # JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_50ep'
 # JOBS_FOLDER = 'runs_559_cyril_camelsus_ealstm'
 # JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_lrok'
-JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_lrok_newInv'
+# JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_lrok_newInv'
 # JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_nseinv_30ep'
 # JOBS_FOLDER = 'runs_559_cyril_camelsus_lstm_nseinv_50ep'
+
+# JOBS_FOLDER = 'Aruns_569_hoge22_lstm_multi'
+# JOBS_FOLDER = 'Aruns_222_kapoor23_lstm_multi'
+# JOBS_FOLDER = 'Aruns_671_feng22_lstm_multi'
+# JOBS_FOLDER = 'Aruns_663_espinoza22_lstm_multi'
+JOBS_FOLDER = 'Aruns_663_espinoza22_lstm_multi_3dyn22static'
 
 EPOCH = 30   #30
 

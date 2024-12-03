@@ -31,7 +31,8 @@ def contains_cyrils_data(folder4cdf_dir_list):
     # If no Cyril's data is found
     return False
 
-def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zoom_ranges_y=None):
+def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', output_file_main='None',
+                       zoom_ranges_x=None, zoom_ranges_y=None):
     """
     Function to generate CDF plots with both the main plot and optional zoomed-in subplots.
     
@@ -103,13 +104,19 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zo
     # ax_main.plot([], [], ' ', label=r'$^*$ 531 basins (CAMELS-US)')
     # ax_main.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
 
-    if contains_cyrils_data(folder4cdf_dir_list):
-        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
-        ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
-        output_file_main = f'cdf_{metric.lower()}_usa-can.png'
-    else:
-        output_file_main = f'cdf_{metric.lower()}_usa.png'
+    if output_file_main == 'None':
+        if contains_cyrils_data(folder4cdf_dir_list):
+            ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
+            ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
+            output_file_main = f'cdf_{metric.lower()}_usa-can.png'
+        else:
+            output_file_main = f'cdf_{metric.lower()}_usa.png'
 
+    if 'review' in output_file_main:
+        ax_main.plot([], [], ' ', label=r'$^{*}$ 569 basins (CAMELS-US)')
+        ax_main.plot([], [], ' ', label=r'$^{**}$ 671 basins (CAMELS-US)')
+        ax_main.plot([], [], ' ', label=r'$^{\dagger}$ 222 basins (CAMELS-AUS)')
+        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 663 basins (CAMELS-GB)')
 
     # Set labels and limits for the main plot
     ax_main.set_xlim(0, 1)
@@ -243,12 +250,15 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', zoom_ranges_x=None, zo
     # ax_main_zoomed.plot([], [], ' ', label=r'$^*$ 531 basins (CAMELS-US)')
     # ax_main_zoomed.plot([], [], ' ', label=r'$^\dagger$ 505 basins (CAMELS-SPAT)')
 
-    if contains_cyrils_data(folder4cdf_dir_list):
-        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
-        ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
-        output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa-can.png'
+    if output_file_main == 'None':
+        if contains_cyrils_data(folder4cdf_dir_list):
+            ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
+            ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
+            output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa-can.png'
+        else:
+            output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa.png'
     else:
-        output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa.png'
+        output_file_zoomed = output_file_main.replace('.png', '_zoomed.png')
 
     # Set labels and limits for the main plot
     ax_main_zoomed.set_xlim(0, 1)

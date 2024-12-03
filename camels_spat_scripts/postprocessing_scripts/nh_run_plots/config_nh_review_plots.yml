@@ -1,0 +1,210 @@
+# Files directory
+data_dir: ../../../../../../gladwell/hydrology/SUMMA/summa-ml-models
+
+# map_shape_file: CAMELS_US/basin_set_full_res/usa-states-census-2014.shp
+# hm_catchment: CAMELS_US/basin_set_full_res/HCDN_nhru_final_671.shp
+
+map_shape_file: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/LAD_MAY_2024_UK_BFC.shp
+hm_catchment: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/CAMELS_GB_catchment_boundaries.shp
+
+metrics4plotting: 
+  - NSE 
+  - KGE
+  # - NSEinv
+  # - KGEinv
+metrics4table:
+  - NSE
+  - Alpha-NSE
+  - Beta-NSE
+  - FHV
+  - FMS
+  - FLV
+
+# result_dir: Aruns_569_hoge22_lstm_multi
+# result_dir: Aruns_569_hoge22_ealstm_multi
+# result_dir: Aruns_569_hoge22_lstm_single_ensemble_8seeds
+# result_dir: Aruns_671_feng22_lstm_multi
+# result_dir: Aruns_222_kapoor23_lstm_multi
+result_dir: Aruns_663_espinoza22_lstm_multi
+
+
+result_file: 
+  test_ensemble_metrics.csv
+  # test_all-single_ensemble_8seeds.csv
+
+files4table:
+  - 111.csv
+  - 222.csv
+  - 333.csv
+  - 444.csv
+  - 555.csv
+  - 666.csv
+  - 777.csv
+  - 888.csv
+  - test_ensemble_metrics.csv
+  # - test_all-single_ensemble_8seeds.csv
+
+folders4cdf_dir:
+  - directory: Aruns_569_hoge22_lstm_multi
+    experiment: 'Hoge et al., 2022 (LSTM multi: 5+27) $^*$'
+    color: 'tab:red'
+    marker: o
+    linestyle: '-'
+    colname: 'hoge22_lstm_multi'
+
+  - directory: Aruns_569_hoge22_ealstm_multi
+    experiment: 'Hoge et al., 2022 (EA-LSTM: 5+27) $^*$'
+    color: 'tab:red'
+    marker: null
+    linestyle: '--'
+    colname: 'hoge22_ealstm_multi'
+
+  - directory: Aruns_569_hoge22_lstm_single_ensemble_8seeds
+    experiment: 'Hoge et al., 2022 (LSTM single: 5) $^*$'
+    color: 'tab:red'
+    marker: null
+    linestyle: '-.'
+    colname: 'hoge22_lstm_single'
+
+  - directory: Aruns_671_feng22_lstm_multi
+    experiment: 'Feng et al., 2022 (LSTM multi: 5+27) $^{**}$'
+    color: 'tab:blue'
+    marker: o
+    linestyle: '-'
+    colname: 'feng22_lstm_multi'
+
+  - directory: Aruns_222_kapoor23_lstm_multi
+    experiment: 'Kapoor et al., 2023 (LSTM multi: 5+25) $^{\dagger}$'
+    color: 'tab:green'
+    marker: o
+    linestyle: '-'
+    colname: 'kapoor23_lstm_multi'
+
+  - directory: Aruns_663_espinoza22_lstm_multi
+    experiment: 'Espinoza et al., 2022 (LSTM multi: 4+27) $^{\diamond}$'
+    color: 'tab:purple'
+    marker: o
+    linestyle: '-'
+    colname: 'espinoza22_lstm_multi'
+
+  - directory: Aruns_663_espinoza22_lstm_multi_3dyn22static
+    experiment: 'Espinoza et al., 2022 (LSTM multi: 3+22) $^{\diamond}$'
+    color: 'tab:purple'
+    marker: null
+    linestyle: '--'
+    colname: 'espinoza22_lstm_multi_3dyn22static'
+
+
+
+
+
+
+
+
+
+
+# ## NH run on 531 CAMELS catchments with EA-LSTM/LSTM model
+# result_dir: 531_camels_ealstm
+# result_file: 
+#   # test_metrics_531camels_ealstm_seed111.csv
+#   # test_metrics_531camels_ealstm_seed111flv07.csv
+#   test_metrics_531camels_ealstm_seed111flv07valid.csv
+#   # test_metrics_531camels_lstm_seed111.csv
+# files4table:
+#   - test_metrics_531camels_ealstm_seed111.csv
+#   - test_metrics_531camels_ealstm_seed111flv07.csv
+#   - test_metrics_531camels_ealstm_seed111flv07valid.csv
+#   # - test_metrics_531camels_lstm_seed111.csv
+#   # - test_metrics_531camels_lstm_seed111flv07.csv
+
+
+# ## NH run on 426 CAMELS_spat catchments
+# result_dir: 426_camels_spat_usa
+# result_file: 
+#   test_metrics_cedar_batch1b_15inp.csv
+#   # test_metrics_cedar_batch3a.csv
+#   # test_metrics_cedar_batch1b.csv
+#   # test_metrics_cedar_batch1a.csv
+#   # test_metrics_norm-area_v0.csv
+#   # test_metrics_norm-area_v1.csv
+# files4table:
+#   - test_metrics_cedar_batch1b_15inp.csv
+#   - test_metrics_cedar_batch3a.csv
+#   - test_metrics_cedar_batch1b.csv
+#   - test_metrics_cedar_batch1a.csv
+#   - test_metrics_norm-area_v0.csv
+#   - test_metrics_norm-area_v1.csv
+
+
+# ## NH run on 416 CAMELS_spat catchments
+# result_dir: 416_camels_spat_usa
+# result_file: 
+#   test_metrics_17inp.csv
+# files4table:
+#   - test_metrics_17inp.csv
+
+
+# ## NH run on 416 CAMELS_spat catchments
+# result_dir: 416_camels_spat_usa
+# result_file: 
+#   test_metrics_cedar_batch2c.csv
+# files4table:
+#   - test_metrics_cedar_batch2c.csv
+
+
+# result_dir: EALSTM_PAPER_results_loss_NSE
+# result_file: 
+#   # test_metrics_531camels_ealstm_seed111.csv
+#   test_metrics_531camels_ealstm_ensemble.csv
+# files4table:
+#   - test_metrics_531camels_ealstm_seed111.csv
+#   - test_metrics_531camels_ealstm_seed222.csv
+#   - test_metrics_531camels_ealstm_seed333.csv
+#   - test_metrics_531camels_ealstm_seed444.csv
+#   - test_metrics_531camels_ealstm_seed555.csv
+#   - test_metrics_531camels_ealstm_seed666.csv
+#   - test_metrics_531camels_ealstm_seed777.csv
+#   - test_metrics_531camels_ealstm_seed888.csv
+#   - test_metrics_531camels_ealstm_ensemble.csv
+
+#   - test_metrics_531camels_lstm_seed111.csv
+#   - test_metrics_531camels_lstm_seed222.csv
+#   - test_metrics_531camels_lstm_seed333.csv
+#   - test_metrics_531camels_lstm_seed444.csv
+#   - test_metrics_531camels_lstm_seed555.csv
+#   - test_metrics_531camels_lstm_seed666.csv
+#   - test_metrics_531camels_lstm_seed777.csv
+#   - test_metrics_531camels_lstm_seed888.csv
+#   - test_metrics_531camels_lstm_ensemble.csv
+
+# result_dir: 426_camels_spat_usa
+# result_dir: 447_camels_ealstm
+# result_dir: 531_camels_ealstm
+# result_dir: EALSTM_PAPER_results_loss_MSE
+# result_dir: EALSTM_PAPER_results_loss_NSE
+
+# result_file:
+#   # test_metrics_531camels_ealstm.csv
+#   # test_metrics_531camels_lstm.csv
+#   # test_metrics_447camels_ealstm.csv
+#   # test_metrics_447camels_lstm.csv
+#   test_metrics_531camels_ealstm_seed111.csv
+#   # test_metrics_531camels_lstm_seed111.csv
+
+
+# files4table:
+#   # - test_metrics_447camels_ealstm.csv
+#   # - test_metrics_447camels_lstm.csv
+#   - test_metrics_531camels_ealstm_seed111.csv
+#   - test_metrics_531camels_lstm_seed111.csv
+
+# metrics4table:
+# # NSE,Alpha-NSE,Beta-NSE,FHV,FMS,FLV
+#   - NSE
+#   - Alpha-NSE
+#   - Beta-NSE
+#   - FHV
+#   - FMS
+#   - FLV
+
+
