@@ -112,6 +112,7 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', output_file_main='None
         else:
             output_file_main = f'cdf_{metric.lower()}_usa.png'
 
+    print(f'Saving main plot to: {output_file_main}')
     if 'review' in output_file_main:
         ax_main.plot([], [], ' ', label=r'$^{*}$ 569 basins (CAMELS-US)')
         ax_main.plot([], [], ' ', label=r'$^{**}$ 671 basins (CAMELS-US)')

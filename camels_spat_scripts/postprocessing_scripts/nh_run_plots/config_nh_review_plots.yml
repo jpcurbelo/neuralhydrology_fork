@@ -4,8 +4,14 @@ data_dir: ../../../../../../gladwell/hydrology/SUMMA/summa-ml-models
 # map_shape_file: CAMELS_US/basin_set_full_res/usa-states-census-2014.shp
 # hm_catchment: CAMELS_US/basin_set_full_res/HCDN_nhru_final_671.shp
 
-map_shape_file: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/LAD_MAY_2024_UK_BFC.shp
-hm_catchment: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/CAMELS_GB_catchment_boundaries.shp
+# map_shape_file: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/LAD_MAY_2024_UK_BFC.shp
+# hm_catchment: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/CAMELS_GB_catchment_boundaries.shp
+
+# map_shape_file: CAMELS_AUS/02_location_boundary_area/shp/AUS_2021_AUST_GDA2020.shp
+# hm_catchment: CAMELS_AUS/02_location_boundary_area/shp/CAMELS_AUS_Boundaries_adopted.shp
+
+map_shape_file: CAMELS_AUS/02_location_boundary_area/shp/STE_2021_AUST_GDA2020.shp
+hm_catchment: CAMELS_AUS/02_location_boundary_area/shp/CAMELS_AUS_Boundaries_adopted.shp
 
 metrics4plotting: 
   - NSE 
@@ -24,8 +30,9 @@ metrics4table:
 # result_dir: Aruns_569_hoge22_ealstm_multi
 # result_dir: Aruns_569_hoge22_lstm_single_ensemble_8seeds
 # result_dir: Aruns_671_feng22_lstm_multi
-# result_dir: Aruns_222_kapoor23_lstm_multi
-result_dir: Aruns_663_espinoza22_lstm_multi
+result_dir: Aruns_222_kapoor23_lstm_multi
+# result_dir: Aruns_663_espinoza22_lstm_multi
+# result_dir: Aruns_663_espinoza22_lstm_multi_3dyn22static
 
 
 result_file: 
