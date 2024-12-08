@@ -112,12 +112,11 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', output_file_main='None
         else:
             output_file_main = f'cdf_{metric.lower()}_usa.png'
 
-    print(f'Saving main plot to: {output_file_main}')
     if 'review' in output_file_main:
-        ax_main.plot([], [], ' ', label=r'$^{*}$ 569 basins (CAMELS-US)')
-        ax_main.plot([], [], ' ', label=r'$^{**}$ 671 basins (CAMELS-US)')
-        ax_main.plot([], [], ' ', label=r'$^{\dagger}$ 222 basins (CAMELS-AUS)')
-        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 663 basins (CAMELS-GB)')
+        ax_main.plot([], [], ' ', label=r'$^{*}$ CAMELS-US  (569 basins)')
+        ax_main.plot([], [], ' ', label=r'$^{\circ}$ CAMELS-US  (671 basins)')
+        ax_main.plot([], [], ' ', label=r'$^{\dagger}$ CAMELS-AUS (222 basins)')
+        ax_main.plot([], [], ' ', label=r'$^{\diamond}$ CAMELS-GB  (663 basins)')
 
     # Set labels and limits for the main plot
     ax_main.set_xlim(0, 1)
@@ -253,13 +252,19 @@ def plot_cdf_with_zoom(folder4cdf_dir_list, metric='nse', output_file_main='None
 
     if output_file_main == 'None':
         if contains_cyrils_data(folder4cdf_dir_list):
-            ax_main.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
-            ax_main.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
+            ax_main_zoomed.plot([], [], ' ', label=r'$^{\diamond}$ 928 basins (CAMELS-SPAT)')
+            ax_main_zoomed.plot([], [], ' ', label=r'$^{\diamond\diamond}$ 915 basins (CAMELS-SPAT)')
             output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa-can.png'
         else:
             output_file_zoomed = f'cdf_{metric.lower()}_zoomed_usa.png'
     else:
         output_file_zoomed = output_file_main.replace('.png', '_zoomed.png')
+
+    if 'review' in output_file_main:
+        ax_main_zoomed.plot([], [], ' ', label=r'$^{*}$ CAMELS-US  (569 basins)')
+        ax_main_zoomed.plot([], [], ' ', label=r'$^{\circ}$ CAMELS-US  (671 basins)')
+        ax_main_zoomed.plot([], [], ' ', label=r'$^{\dagger}$ CAMELS-AUS (222 basins)')
+        ax_main_zoomed.plot([], [], ' ', label=r'$^{\diamond}$ CAMELS-GB  (663 basins)')
 
     # Set labels and limits for the main plot
     ax_main_zoomed.set_xlim(0, 1)

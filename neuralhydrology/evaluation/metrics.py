@@ -99,6 +99,45 @@ def nse(obs: DataArray, sim: DataArray, inverse:bool=False) -> float:
 
     return float(value)
 
+
+def mnse(obs: DataArray, sim: DataArray) -> float:
+    '''
+    Calculate the modified Nash-Sutcliffe Efficiency with exponent 1 instead of 2.
+
+    Parameters
+    ----------
+    obs : DataArray
+        Observed time series.
+    sim : DataArray
+        Simulated time series.
+
+    Returns 
+    -------
+    float
+        Modified Nash-Sutcliffe Efficiency  
+
+    References
+    ----------
+    .. [#]  Höge, M., Scheidegger, A., Baity-Jesi, M., Albert, C., and Fenicia, F.
+            Improving hydrologic models for predictions and process understanding using neural ODEs, 
+            Hydrology and Earth System Sciences, 26, 5085-5102, 
+            https://doi.org/10.5194/hess-26-5085-2022, 2022.
+    '''
+
+    # verify inputs
+    _validate_inputs(obs, sim)
+
+    # get time series with only valid observations
+    obs, sim = _mask_valid(obs, sim)
+
+    denominator = ((obs - obs.mean()).abs()).sum()
+    numerator   = ((sim - obs).abs()).sum()
+
+    value = 1 - numerator / denominator
+
+    return float(value)
+
+
 def mse(obs: DataArray, sim: DataArray) -> float:
     r"""Calculate mean squared error.
     
@@ -817,6 +856,7 @@ def calculate_all_metrics(obs: DataArray,
 
     results = {
         "NSE": nse(obs, sim),
+        "mNSE": mnse(obs, sim),
         "MSE": mse(obs, sim),
         "RMSE": rmse(obs, sim),
         "KGE": kge(obs, sim),

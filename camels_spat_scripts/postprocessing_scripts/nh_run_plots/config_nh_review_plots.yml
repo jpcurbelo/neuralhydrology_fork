@@ -1,8 +1,8 @@
 # Files directory
 data_dir: ../../../../../../gladwell/hydrology/SUMMA/summa-ml-models
 
-# map_shape_file: CAMELS_US/basin_set_full_res/usa-states-census-2014.shp
-# hm_catchment: CAMELS_US/basin_set_full_res/HCDN_nhru_final_671.shp
+map_shape_file: CAMELS_US/basin_set_full_res/usa-states-census-2014.shp
+hm_catchment: CAMELS_US/basin_set_full_res/HCDN_nhru_final_671.shp
 
 # map_shape_file: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/LAD_MAY_2024_UK_BFC.shp
 # hm_catchment: CAMELS_GB/data/CAMELS_GB_catchment_boundaries/CAMELS_GB_catchment_boundaries.shp
@@ -10,8 +10,8 @@ data_dir: ../../../../../../gladwell/hydrology/SUMMA/summa-ml-models
 # map_shape_file: CAMELS_AUS/02_location_boundary_area/shp/AUS_2021_AUST_GDA2020.shp
 # hm_catchment: CAMELS_AUS/02_location_boundary_area/shp/CAMELS_AUS_Boundaries_adopted.shp
 
-map_shape_file: CAMELS_AUS/02_location_boundary_area/shp/STE_2021_AUST_GDA2020.shp
-hm_catchment: CAMELS_AUS/02_location_boundary_area/shp/CAMELS_AUS_Boundaries_adopted.shp
+# map_shape_file: CAMELS_AUS/02_location_boundary_area/shp/STE_2021_AUST_GDA2020.shp
+# hm_catchment: CAMELS_AUS/02_location_boundary_area/shp/CAMELS_AUS_Boundaries_adopted.shp
 
 metrics4plotting: 
   - NSE 
@@ -29,27 +29,30 @@ metrics4table:
 # result_dir: Aruns_569_hoge22_lstm_multi
 # result_dir: Aruns_569_hoge22_ealstm_multi
 # result_dir: Aruns_569_hoge22_lstm_single_ensemble_8seeds
+result_dir: Aruns_569_hoge22_lstm_single_random-seed
 # result_dir: Aruns_671_feng22_lstm_multi
-result_dir: Aruns_222_kapoor23_lstm_multi
+# result_dir: Aruns_222_kapoor23_lstm_multi
 # result_dir: Aruns_663_espinoza22_lstm_multi
 # result_dir: Aruns_663_espinoza22_lstm_multi_3dyn22static
 
 
 result_file: 
-  test_ensemble_metrics.csv
+  # test_ensemble_metrics.csv
   # test_all-single_ensemble_8seeds.csv
+  test_all-single_random-seed.csv
 
 files4table:
-  - 111.csv
-  - 222.csv
-  - 333.csv
-  - 444.csv
-  - 555.csv
-  - 666.csv
-  - 777.csv
-  - 888.csv
-  - test_ensemble_metrics.csv
+  # - 111.csv
+  # - 222.csv
+  # - 333.csv
+  # - 444.csv
+  # - 555.csv
+  # - 666.csv
+  # - 777.csv
+  # - 888.csv
+  # - test_ensemble_metrics.csv
   # - test_all-single_ensemble_8seeds.csv
+  - test_all-single_random-seed.csv
 
 folders4cdf_dir:
   - directory: Aruns_569_hoge22_lstm_multi
@@ -67,14 +70,21 @@ folders4cdf_dir:
     colname: 'hoge22_ealstm_multi'
 
   - directory: Aruns_569_hoge22_lstm_single_ensemble_8seeds
-    experiment: 'Hoge et al., 2022 (LSTM single: 5) $^*$'
+    experiment: 'Hoge et al., 2022 (LSTM single-ensemble: 5) $^*$'
     color: 'tab:red'
     marker: null
     linestyle: '-.'
     colname: 'hoge22_lstm_single'
 
+  - directory: Aruns_569_hoge22_lstm_single_random-seed
+    experiment: 'Hoge et al., 2022 (LSTM single-random: 5) $^*$'
+    color: 'tab:red'
+    marker: null
+    linestyle: ':'
+    colname: 'hoge22_lstm_single'
+
   - directory: Aruns_671_feng22_lstm_multi
-    experiment: 'Feng et al., 2022 (LSTM multi: 5+27) $^{**}$'
+    experiment: 'Feng et al., 2022 (LSTM multi: 5+27) $^{\circ}$'
     color: 'tab:blue'
     marker: o
     linestyle: '-'
@@ -87,12 +97,12 @@ folders4cdf_dir:
     linestyle: '-'
     colname: 'kapoor23_lstm_multi'
 
-  - directory: Aruns_663_espinoza22_lstm_multi
-    experiment: 'Espinoza et al., 2022 (LSTM multi: 4+27) $^{\diamond}$'
-    color: 'tab:purple'
-    marker: o
-    linestyle: '-'
-    colname: 'espinoza22_lstm_multi'
+  # - directory: Aruns_663_espinoza22_lstm_multi
+  #   experiment: 'Espinoza et al., 2022 (LSTM multi: 4+27) $^{\diamond}$'
+  #   color: 'tab:purple'
+  #   marker: o
+  #   linestyle: '-'
+  #   colname: 'espinoza22_lstm_multi'
 
   - directory: Aruns_663_espinoza22_lstm_multi_3dyn22static
     experiment: 'Espinoza et al., 2022 (LSTM multi: 3+22) $^{\diamond}$'
