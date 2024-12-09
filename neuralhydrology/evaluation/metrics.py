@@ -130,8 +130,9 @@ def mnse(obs: DataArray, sim: DataArray) -> float:
     # get time series with only valid observations
     obs, sim = _mask_valid(obs, sim)
 
-    denominator = ((obs - obs.mean()).abs()).sum()
-    numerator   = ((sim - obs).abs()).sum()
+    # Calculate the numerator and denominator for mNSE
+    numerator = np.abs(sim - obs).sum()
+    denominator = np.abs(obs - obs.mean()).sum()
 
     value = 1 - numerator / denominator
 
@@ -913,6 +914,8 @@ def calculate_metrics(obs: DataArray,
     for metric in metrics:
         if metric.lower() == "nse":
             values["NSE"] = nse(obs, sim)
+        elif metric.lower() == "mnse":
+            values["mNSE"] = mnse(obs, sim)
         elif metric.lower() == "nseinv":
             values["NSEinv"] = nse(obs, sim, inverse=True)
         elif metric.lower() == "mse":
@@ -933,6 +936,8 @@ def calculate_metrics(obs: DataArray,
             values["Pearson-r"] = pearsonr(obs, sim)
         elif metric.lower() == "fhv":
             values["FHV"] = fdc_fhv(obs, sim)
+        elif metric.lower() == "fhv_1%":
+            values["FHV_1%"] = fdc_fhv(obs, sim, h=0.01)
         elif metric.lower() == "fms":
             values["FMS"] = fdc_fms(obs, sim)
         elif metric.lower() == "flv":

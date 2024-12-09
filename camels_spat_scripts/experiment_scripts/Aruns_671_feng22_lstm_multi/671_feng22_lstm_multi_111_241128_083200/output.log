@@ -184,3 +184,7 @@
 2024-11-28 16:22:11,898: Using the model weights from runs/671_feng22_lstm_multi_222_241128_123017/model_epoch030.pt
 2024-11-28 16:28:15,829: Stored metrics at runs/671_feng22_lstm_multi_222_241128_123017/test/model_epoch030/test_metrics_seed222.csv
 2024-11-28 16:28:16,096: Stored results at runs/671_feng22_lstm_multi_222_241128_123017/test/model_epoch030/test_results.p
+2024-12-08 16:35:45,885: Logging to Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_111_241128_083200/output.log initialized.
+2024-12-08 16:35:46,162: Using the model weights from Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_111_241128_083200/model_epoch030.pt
+2024-12-08 16:43:45,564: Stored metrics at Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_111_241128_083200/test/model_epoch030/test_metrics_seed111.csv
+2024-12-08 16:43:45,915: Stored results at Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_111_241128_083200/test/model_epoch030/test_results.p

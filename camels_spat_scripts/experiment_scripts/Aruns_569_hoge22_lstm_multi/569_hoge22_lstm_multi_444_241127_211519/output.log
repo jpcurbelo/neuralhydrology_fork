@@ -1,0 +1,38 @@
+2024-12-08 16:35:03,972: Logging to Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/output.log initialized.
+2024-12-08 16:35:04,239: Using the model weights from Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/model_epoch030.pt
+2024-12-08 16:35:05,531: Uncaught exception
+Traceback (most recent call last):
+  File "/home/ame805/neuralhydrology_fork/venv-nh/bin/nh-run", line 33, in <module>
+    sys.exit(load_entry_point('neuralhydrology', 'console_scripts', 'nh-run')())
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/nh_run.py", line 51, in _main
+    eval_run(run_dir=Path(args["run_dir"]), period=args["period"], epoch=args["epoch"], gpu=args["gpu"])
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/nh_run.py", line 176, in eval_run
+    start_evaluation(cfg=config, run_dir=run_dir, epoch=epoch, period=period)
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/evaluation/evaluate.py", line 23, in start_evaluation
+    tester.evaluate(epoch=epoch, save_results=True, save_all_output=cfg.save_all_output, metrics=cfg.metrics)
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/evaluation/tester.py", line 313, in evaluate
+    values = calculate_metrics(obs, sim, metrics=var_metrics, resolution=freq)
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/evaluation/metrics.py", line 952, in calculate_metrics
+    raise RuntimeError(f"Unknown metric {metric}")
+RuntimeError: Unknown metric FHV_1% - mNSE
+2024-12-08 19:52:29,773: Logging to Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/output.log initialized.
+2024-12-08 19:52:29,987: Using the model weights from Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/model_epoch030.pt
+2024-12-08 19:52:31,086: Uncaught exception
+Traceback (most recent call last):
+  File "/home/ame805/neuralhydrology_fork/venv-nh/bin/nh-run", line 33, in <module>
+    sys.exit(load_entry_point('neuralhydrology', 'console_scripts', 'nh-run')())
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/nh_run.py", line 51, in _main
+    eval_run(run_dir=Path(args["run_dir"]), period=args["period"], epoch=args["epoch"], gpu=args["gpu"])
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/nh_run.py", line 176, in eval_run
+    start_evaluation(cfg=config, run_dir=run_dir, epoch=epoch, period=period)
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/evaluation/evaluate.py", line 23, in start_evaluation
+    tester.evaluate(epoch=epoch, save_results=True, save_all_output=cfg.save_all_output, metrics=cfg.metrics)
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/evaluation/tester.py", line 313, in evaluate
+    values = calculate_metrics(obs, sim, metrics=var_metrics, resolution=freq)
+  File "/home/ame805/neuralhydrology_fork/neuralhydrology/evaluation/metrics.py", line 952, in calculate_metrics
+    raise RuntimeError(f"Unknown metric {metric}")
+RuntimeError: Unknown metric FHV_1% - mNSE
+2024-12-08 20:14:08,014: Logging to Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/output.log initialized.
+2024-12-08 20:14:08,280: Using the model weights from Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/model_epoch030.pt
+2024-12-08 20:17:49,008: Stored metrics at Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/test/model_epoch030/test_metrics_seed444.csv
+2024-12-08 20:17:49,209: Stored results at Aruns_569_hoge22_lstm_multi/569_hoge22_lstm_multi_444_241127_211519/test/model_epoch030/test_results.p

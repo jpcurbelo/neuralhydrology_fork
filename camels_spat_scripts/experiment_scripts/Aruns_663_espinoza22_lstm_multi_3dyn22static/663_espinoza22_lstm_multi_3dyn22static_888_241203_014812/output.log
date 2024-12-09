@@ -1,0 +1,6 @@
+2024-12-08 17:15:29,006: Logging to Aruns_663_espinoza22_lstm_multi_3dyn22static/663_espinoza22_lstm_multi_3dyn22static_888_241203_014812/output.log initialized.
+2024-12-08 17:15:29,227: Using the model weights from Aruns_663_espinoza22_lstm_multi_3dyn22static/663_espinoza22_lstm_multi_3dyn22static_888_241203_014812/model_epoch030.pt
+2024-12-08 17:15:59,742: The following basins had not enough valid target values to calculate a standard deviation: 18017. NSE loss values for this basin will be NaN.
+2024-12-08 17:16:00,860: The following basins had not enough valid target values to calculate a standard deviation: 18018. NSE loss values for this basin will be NaN.
+2024-12-08 17:21:29,644: Stored metrics at Aruns_663_espinoza22_lstm_multi_3dyn22static/663_espinoza22_lstm_multi_3dyn22static_888_241203_014812/test/model_epoch030/test_metrics_seed888.csv
+2024-12-08 17:21:29,908: Stored results at Aruns_663_espinoza22_lstm_multi_3dyn22static/663_espinoza22_lstm_multi_3dyn22static_888_241203_014812/test/model_epoch030/test_results.p

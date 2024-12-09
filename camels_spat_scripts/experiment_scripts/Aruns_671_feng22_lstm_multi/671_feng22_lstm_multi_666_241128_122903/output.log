@@ -1,0 +1,4 @@
+2024-12-08 17:12:23,918: Logging to Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_666_241128_122903/output.log initialized.
+2024-12-08 17:12:24,173: Using the model weights from Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_666_241128_122903/model_epoch030.pt
+2024-12-08 17:19:48,865: Stored metrics at Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_666_241128_122903/test/model_epoch030/test_metrics_seed666.csv
+2024-12-08 17:19:49,201: Stored results at Aruns_671_feng22_lstm_multi/671_feng22_lstm_multi_666_241128_122903/test/model_epoch030/test_results.p

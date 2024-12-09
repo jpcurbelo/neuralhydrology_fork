@@ -1,0 +1,5 @@
+2024-12-08 16:42:46,470: Logging to Aruns_222_kapoor23_lstm_multi/222_kapoor23_lstm_multi_666_241128_221927/output.log initialized.
+2024-12-08 16:42:46,719: Using the model weights from Aruns_222_kapoor23_lstm_multi/222_kapoor23_lstm_multi_666_241128_221927/model_epoch030.pt
+2024-12-08 16:44:18,021: The following basins had not enough valid target values to calculate a standard deviation: 803003. NSE loss values for this basin will be NaN.
+2024-12-08 16:44:35,676: Stored metrics at Aruns_222_kapoor23_lstm_multi/222_kapoor23_lstm_multi_666_241128_221927/test/model_epoch030/test_metrics_seed666.csv
+2024-12-08 16:44:35,744: Stored results at Aruns_222_kapoor23_lstm_multi/222_kapoor23_lstm_multi_666_241128_221927/test/model_epoch030/test_results.p

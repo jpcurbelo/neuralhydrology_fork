@@ -28,6 +28,8 @@ log_n_figures: 2
 log_tensorboard: true
 loss: NSE
 metrics:
+- FHV_1%
+- mNSE
 - NSE
 - Alpha-NSE
 - Beta-NSE
@@ -47,8 +49,8 @@ output_activation: linear
 output_dropout: 0.4
 package_version: 1.9.1
 predict_last_n: 1
-run_dir: 
-  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/runs/663_espinoza22_lstm_multi_3dyn22static_555_241202_213210
+run_dir:
+  /home/ame805/neuralhydrology_fork/camels_spat_scripts/experiment_scripts/Aruns_663_espinoza22_lstm_multi_3dyn22static/663_espinoza22_lstm_multi_3dyn22static_555_241202_213210
 save_weights_every: 5
 seed: 555
 seq_length: 270

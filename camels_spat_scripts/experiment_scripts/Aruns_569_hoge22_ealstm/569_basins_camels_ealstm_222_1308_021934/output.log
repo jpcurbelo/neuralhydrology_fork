@@ -1,0 +1,4 @@
+2024-12-08 16:41:52,395: Logging to Aruns_569_hoge22_ealstm/569_basins_camels_ealstm_222_1308_021934/output.log initialized.
+2024-12-08 16:41:52,606: Using the model weights from Aruns_569_hoge22_ealstm/569_basins_camels_ealstm_222_1308_021934/model_epoch030.pt
+2024-12-08 16:50:15,322: Stored metrics at Aruns_569_hoge22_ealstm/569_basins_camels_ealstm_222_1308_021934/test/model_epoch030/test_metrics_seed222.csv
+2024-12-08 16:50:15,536: Stored results at Aruns_569_hoge22_ealstm/569_basins_camels_ealstm_222_1308_021934/test/model_epoch030/test_results.p
